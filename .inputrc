@@ -1,0 +1,17 @@
+# 日本語関係
+set kanji-code utf-8
+set convert-meta off
+set meta-flag on
+set output-meta on
+set input-meta on
+set enable-keypad on
+
+# タブ補完時大文字小文字を無視する
+set completion-ignore-case on
+
+# ~をタブで展開する
+set expand-tilde on
+
+# history補完をC-n, C-pに割り当てる
+"\C-p": history-search-backword
+"\C-n": history-search-forword

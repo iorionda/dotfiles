@@ -4,6 +4,10 @@
 PATH=/usr/local/share/python:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin::~/.gem/ruby/1.8/bin/
 export PATH
 
+# Python Path
+PYTHON_PATH=/usr/local/bin/python
+export PYTHON_PATH
+
 # LANG
 export LANG=ja_JP.UTF-8
 
@@ -145,12 +149,6 @@ zstyle ':completion:*:descriptions' format ${Yellow}'completing %B%d%b'${Reset}
 zstyle ':completion:*:corrections' format ${Yellow}'%B%d '${Red}'(errors: %e)%b'${Reset}
 zstyle ':completion:*:options' description 'yes'
 
-#zstyle ':completion:*:messages' format '%d'
-#zstyle ':completion:*:warnings' format 'No matches for: %d'
-#zstyle ':completion:*:descriptions' format 'completing %B%d%b'
-#zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-#zstyle ':completion:*:options' description 'yes'
-
 # グループ名に空文字列を指定すると，マッチ対象のタグ名がグループ名に使われる。
 # したがって，すべての マッチ種別を別々に表示させたいなら以下のようにする
 zstyle ':completion:*' group-name ''
@@ -166,7 +164,7 @@ zstyle 'completion:*:*files' ignored-patterns '*?.0' '*?~' '*\#'
 ### 語の途中でもカーソル位置まで補完
 setopt complete_in_word
 ### カーソル位置は保持したままファイル名一覧を順次その場で表示
-setopt always_last_prompt 
+setopt always_last_prompt
 ### globを展開しないで候補の一覧から補完する
 setopt hist_expand
 ### 補完候補がない時にbeepを鳴らさない
@@ -267,7 +265,7 @@ alias po="popd"
 ### GUU grepがあったら優先して使う
 if type ggrep > /dev/null 2>&1; then
     alias grep=ggrep
-fi    
+fi
 ### デフォルトオプションの設定
 export GREP_OPTIONS
 ### perl-regexpかextend-regexpを設定する
@@ -308,47 +306,51 @@ zstyle ':vcs_info:*bzr:*' use-simple true
 
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
-	zstyle ':vcs-info:git:*' check-for-changes true
-	zstyle ':vcs-info:git:*' stagedstr '+'
-	zstyle ':vcs-info:git:*' unstagedstr '-'
-	zstyle ':vcs-info:git:*' formats '(%s)-[%c%u%b]'
-	zstyle ':vcs-info:git:*' actionformats '(%s)-[%c%u%b|%a]'
+  zstyle ':vcs-info:git:*' check-for-changes true
+  zstyle ':vcs-info:git:*' stagedstr '+'
+  zstyle ':vcs-info:git:*' unstagedstr '-'
+  zstyle ':vcs-info:git:*' formats '(%s)-[%c%u%b]'
+  zstyle ':vcs-info:git:*' actionformats '(%s)-[%c%u%b|%a]'
 fi
 
 function git_not_pushd() {
-	if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
-		head="$(git rev-parse HEAD)"
-		for x in $(git rev-parse --remotes)
-		do
-			if [ "$head" = "$x" ]; then
-				return 0
-			fi
-		done
-		echo "NOT PUSHED"
-	fi
-	return 0
+  if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
+    head="$(git rev-parse HEAD)"
+    for x in $(git rev-parse --remotes)
+    do
+      if [ "$head" = "$x" ]; then
+        return 0
+      fi
+    done
+    echo "NOT PUSHED"
+  fi
+  return 0
 }
 
  function update_vcs_info_msg() {
-	psvar=()
- 	LANG=en_US.UTF-8 vcs_info
- 	psvar[2]=$(git_not_pushd)
- 	[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  psvar=()
+   LANG=en_US.UTF-8 vcs_info
+   psvar[2]=$(git_not_pushd)
+   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 add-zsh-hook precmd update_vcs_info_msg
 
 prompt_self="%B%{%F{green}%}(%n@%m)%b%{%f%}"
 prompt_status="%{%F{green}%}(%?)%{%f%}"
-prompt_path="%{%F{cyan}%}[%~]%{%f%}"
+# current pathの省略表示
+prompt_path="%{%F{cyan}%}[%(5~,%-2~/.../%2~,%~)]%{%f%}"
+# prompt_path="%{%F{cyan}%}[%~]%{%f%}"
+# prompt_path="%{%F{cyan}%}[%d]%{%f%}"
 prompt_date="%{%F{red}%}<%D{%Y-%m-%d %H:%M}>%{%f%}"
-#prompt_vcs_info="%B%1(v|%F{green}%1v%f|)%b"
-prompt_vcs_info="%B%1(v|%1v|)%b"
+prompt_vcs_info="%{%F{green}%}%B%1(v|%1v|)%{%f%}%b"
+prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
+prompt_job="%(1j,(%j),)"
 
 if [ "$EMACS" ]; then
-            PROMPT="${prompt_self}${prompt_path}${prompt_status}${prompt_date} %# "
+            PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
             PROMPT2=' >>>'
             SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
-	    RPROMPT="${Green}${prompt_vcs_info}${Default}"
+      RPROMPT="${Green}${prompt_vcs_info}${Default}"
 else
     case ${UID} in
         0)
@@ -358,11 +360,13 @@ else
             RPROMPT
             ;;
         *)
-            PROMPT="${prompt_self}${prompt_path}${prompt_status}${prompt_date} %# "
+#            PROMPT="${prompt_self}-${prompt_status}-${prompt_date}"$'\n'"${prompt_history}-${prompt_vcs_info}-${prompt_job}%# "
+            PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
             PROMPT2=' >>>'
             SPROMPT="${Red}もしかして %r のこと? べ、別にあんたのために修正したわけじゃないんだからね! [n,y,a,e]:${Default}"
             # SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
-	    RPROMPT="${Green}${prompt_vcs_info}${Default}"
+            RPROMPT="${prompt_vcs_info}"
+#            RPROMPT="${prompt_path}"
             ;;
     esac
 fi
@@ -371,12 +375,12 @@ fi
 # Virtualenv
 ################################################################################
 ### virtualenvのルートディレクトリにする場所
-WORKON_HOME=${HOME}/.virtualenv
+WORKON_HOME=${HOME}/.virtualenvs
 ### パッケージをvirtualenv環境下にインストール
 export PIP_RESPECT_VIRTUALENV=true
 ### virtualwrapperの読み込み
 if [ -f /usr/local/share/python/virtualenvwrapper.sh ]; then
-#     source /usr/local/share/python/virtualenvwrapper.sh
+  source /usr/local/share/python/virtualenvwrapper.sh
 fi
 setopt nonomatch
 
@@ -401,6 +405,11 @@ eval "$(rbenv init -)"
 # node.js
 ################################################################################
 export NODE_PATH=/usr/local/lib/node:$NODE_PATH
+
+################################################################################
+# Gisty
+################################################################################
+export GISTY_DIR="$HOME/dev/gists"
 
 ################################################################################
 # incr

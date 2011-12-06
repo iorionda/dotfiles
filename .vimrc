@@ -40,7 +40,7 @@ command! Rv source $MYVIMRC
 
 " ステータスライン
 set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c][%p%%]%{g:HahHah()}
+set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %{g:HahHah()}%m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c][%p%%]
 
 " インデントの設定
 set autoindent
@@ -99,7 +99,7 @@ noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
 nnoremap <Space><Space> <C-f>
-nnoremap <Space><Space> <C-b>
+nnoremap <BS><BS> <C-b>
 
 nnoremap gb '[
 nnoremap gp ']
@@ -113,6 +113,66 @@ nnoremap <C-l> <C-w>l
 
 nnoremap ( %
 nnoremap ) %
+
+" 編集関連
+" insertモードを抜けるとIMEをOFF
+set noimdisable
+set iminsert=0 imsearch=0
+set noimcmdline
+inoremap <Silent> <ESC> <ESC>:set iminsert=0<CR>
+
+" Tabを空白に変換
+set expandtab
+
+" コンマの後に空白を追加
+inoremap , ,<Space>
+" XMLの閉じタグを挿入する
+augroup MyXML
+	autocmd!
+	autocmd FileType xml inoremap <buffer> </ </<C-x><C-o>
+augroup END
+
+" 保存時に行末の空白を除去する
+autocmd BufWritePre * :%s/\s\+$//ge
+" 保存時にtabをスペースに変換する
+autocmd BufWritePre * :%s/\t/ /ge
+
+function! ClosePairOn()
+	let b:closepair = 0
+	inoremap [ []<Left>
+	inoremap { {}<Left>
+	inoremap ( ()<Left>
+	inoremap " ""<Left>
+	inoremap ' ''<Left>
+	inoremap ` ``<Left>
+endfunction
+
+function! ClosePairOff()
+	iunmap [
+	iunmap {
+	iunmap (
+	iunmap "
+	iunmap '
+	iunmap `
+endfunction
+
+function! ToggleClosePair()
+	if !exists("g:closepair_status")
+		let g:closepair_status = 1
+	endif
+
+	if (g:closepair_status)
+		let g:closepair_status = 0
+		echo "Current: Closing Pair On"
+		call ClosePairOn()
+	else
+		let g:closepair_status = 1
+		echo "Current: Closing Pair Off"
+		call ClosePairOff()
+	endif
+endfunction
+
+nnoremap { :call ToggleClosePair()<CR>
 
 " Vundle.vmで管理しているPluginを読み込む
 filetype off

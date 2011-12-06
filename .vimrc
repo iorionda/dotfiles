@@ -1,4 +1,9 @@
 "" 基本設定
+" 色の設定
+set t_Co=256
+syntax on
+colorscheme wombat256
+
 " 起動時にフルスクリーンにする
 if has('gui_macvim')
   set fuoptions=maxvert,maxhorz
@@ -74,19 +79,40 @@ highlight CursorLine ctermbg=black guibg=black
 :set lazyredraw
 :set ttyfast
 
-" 色の設定
-set t_Co=256
-syntax on
-colorscheme wombat256
+" 移動関連
+nnoremap h <Left>
+nnoremap j gj
+nnoremap k gk
+nnoremap l <Right>
+nnoremap <Down> gj
+nnoremap <Up>   gk
 
-" インデント
-set cindent
-set expandtab
-set tabstop=2
-set shiftwidth=2
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
 
-" 行番号の表示
-set number
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+noremap <Space>j <C-f>
+noremap <Space>k <C-b>
+
+nnoremap <Space><Space> <C-f>
+nnoremap <Space><Space> <C-b>
+
+nnoremap gb '[
+nnoremap gp ']
+
+nnoremap vy vawy
+
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+nnoremap ( %
+nnoremap ) %
 
 " Vundle.vmで管理しているPluginを読み込む
 filetype off

@@ -1,3 +1,9 @@
+" 起動時にフルスクリーンにする
+if has('gui_macvim')
+  set fuoptions=maxvert,maxhorz
+  au GUIEnter * set fullscreen
+endif
+
 " 色の設定
 set t_Co=256
 syntax on
@@ -15,9 +21,10 @@ set number
 " Vundle.vmで管理しているPluginを読み込む
 filetype off
 if has('vim_starting')
-  set rtp+=~/.vim/vundle.git
+  set rtp+=~/.vim/bundle/vundle/
   call vundle#rc()
 endif
+
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'

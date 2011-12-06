@@ -128,8 +128,8 @@ set expandtab
 inoremap , ,<Space>
 " XMLの閉じタグを挿入する
 augroup MyXML
-	autocmd!
-	autocmd FileType xml inoremap <buffer> </ </<C-x><C-o>
+  autocmd!
+  autocmd FileType xml inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
 " 保存時に行末の空白を除去する
@@ -138,38 +138,38 @@ autocmd BufWritePre * :%s/\s\+$//ge
 autocmd BufWritePre * :%s/\t/ /ge
 
 function! ClosePairOn()
-	let b:closepair = 0
-	inoremap [ []<Left>
-	inoremap { {}<Left>
-	inoremap ( ()<Left>
-	inoremap " ""<Left>
-	inoremap ' ''<Left>
-	inoremap ` ``<Left>
+  let b:closepair = 0
+  inoremap [ []<Left>
+  inoremap { {}<Left>
+  inoremap ( ()<Left>
+  inoremap " ""<Left>
+  inoremap ' ''<Left>
+  inoremap ` ``<Left>
 endfunction
 
 function! ClosePairOff()
-	iunmap [
-	iunmap {
-	iunmap (
-	iunmap "
-	iunmap '
-	iunmap `
+  iunmap [
+  iunmap {
+  iunmap (
+  iunmap "
+  iunmap '
+  iunmap `
 endfunction
 
 function! ToggleClosePair()
-	if !exists("g:closepair_status")
-		let g:closepair_status = 1
-	endif
+  if !exists("g:closepair_status")
+    let g:closepair_status = 1
+  endif
 
-	if (g:closepair_status)
-		let g:closepair_status = 0
-		echo "Current: Closing Pair On"
-		call ClosePairOn()
-	else
-		let g:closepair_status = 1
-		echo "Current: Closing Pair Off"
-		call ClosePairOff()
-	endif
+  if (g:closepair_status)
+    let g:closepair_status = 0
+    echo "Current: Closing Pair On"
+    call ClosePairOn()
+  else
+    let g:closepair_status = 1
+    echo "Current: Closing Pair Off"
+    call ClosePairOff()
+  endif
 endfunction
 
 nnoremap { :call ToggleClosePair()<CR>
@@ -186,5 +186,6 @@ Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'gmarik/vundle'
 Bundle 'mattn/hahhah-vim'
+Bundle 'scrooloose/nerdtree'
 
 filetype plugin indent on

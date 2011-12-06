@@ -33,6 +33,10 @@ set clipboard=unnamed
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
+" ステータスライン
+set laststatus=2
+set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c][%p%%]
+
 " 色の設定
 set t_Co=256
 syntax on

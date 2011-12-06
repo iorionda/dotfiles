@@ -35,7 +35,44 @@ command! Rv source $MYVIMRC
 
 " ステータスライン
 set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c][%p%%]
+set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c][%p%%]%{g:HahHah()}
+
+" インデントの設定
+set autoindent
+set smartindent
+set cindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+
+if has('autocmd')
+  filetype plugin on
+  filetype indent on
+
+  autocmd FileType html :set indentexpr=
+  autocmd FileType xhtml :set indentexpr=
+endif
+
+" 表示関連
+set showmatch
+set number
+set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set display=uhex
+
+set cursorline
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+:hi clear CursorLine
+:hi CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
+
+:set lazyredraw
+:set ttyfast
 
 " 色の設定
 set t_Co=256
@@ -62,5 +99,6 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'gmarik/vundle'
+Bundle 'mattn/hahhah-vim'
 
 filetype plugin indent on

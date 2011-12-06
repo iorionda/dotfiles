@@ -14,8 +14,13 @@ set number
 
 " Vundle.vmで管理しているPluginを読み込む
 filetype off
-set rtp+=~/.vim/bundle/vundle
-" call vundle#rc()
-Bundle 'qmarik/vundle'
+if has('vim_starting')
+  set rtp+=~/.vim/vundle.git
+  call vundle#rc()
+endif
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/unite.vim'
+Bundle 'thinca/vim-ref'
+Bundle 'gmarik/vundle'
 
 filetype plugin indent on

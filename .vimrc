@@ -1,8 +1,10 @@
 "" 基本設定
 " 色の設定
-set t_Co=256
-syntax on
-colorscheme wombat256
+if &term =~ "xterm-256color"
+  set t_Co=256
+  syntax on
+  colorscheme wombat256
+endif
 
 " 起動時にフルスクリーンにする
 if has('gui_macvim')
@@ -40,7 +42,7 @@ command! Rv source $MYVIMRC
 
 " ステータスライン
 set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %{g:HahHah()}%m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c][%p%%]
+set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %{g:HahHah()}%m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c/%04L][%p%%]
 
 " インデントの設定
 set autoindent
@@ -49,6 +51,8 @@ set cindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
+set expandtab
+set smarttab
 
 if has('autocmd')
   filetype plugin on
@@ -56,9 +60,21 @@ if has('autocmd')
 
   autocmd FileType html :set indentexpr=
   autocmd FileType xhtml :set indentexpr=
+
+  if has('python')
+    autocmd FileType python setl autoindent
+    autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+    autocmd FileType python set omnifunc=pysmell#Complete
+  endif
 endif
 
 " 表示関連
+" □とか○の文字があってもカーソル位置がずれないようにする
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
 set showmatch
 set number
 set list
@@ -98,9 +114,6 @@ inoremap <C-l> <Right>
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
 
-nnoremap <Space><Space> <C-f>
-nnoremap <BS><BS> <C-b>
-
 nnoremap gb '[
 nnoremap gp ']
 
@@ -137,6 +150,8 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
 autocmd BufWritePre * :%s/\t/ /ge
 
+"対応する括弧を自動で補完する
+" { を入力するたびに ClosePairOn() と ClosePairOff()がToggleする
 function! ClosePairOn()
   let b:closepair = 0
   inoremap [ []<Left>
@@ -178,14 +193,27 @@ nnoremap { :call ToggleClosePair()<CR>
 filetype off
 if has('vim_starting')
   set rtp+=~/.vim/bundle/vundle/
+"  set rtp+=~/.vim/vundle.git
   call vundle#rc()
 endif
 
+" original repos on github
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'gmarik/vundle'
 Bundle 'mattn/hahhah-vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'QuickBuf'
+Bundle 'Shougo/vimfiler'
 
+" vim-scripts repos
+Bundle 'TwitVim'
+
+" non github repos
 filetype plugin indent on
+
+" プラグインの設定
+" QuickBuf
+let g:qb_hotkey="<Space><Space>"
+

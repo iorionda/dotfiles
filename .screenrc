@@ -33,9 +33,9 @@ msgminwait 1
 
 # hardstatus and caption
 hardstatus on
-hardstatus alwayslastline '%{= ck}%H%{-} %L=%-w%45L>%{=u bw}%n %t%{-}%+w %-17<%=%m/%d %02c:%s'
-caption always '%?%F%{= bw}%:%{= wk}%?%2n%f%07=%t%='
-sorendition '+r .b'
+hardstatus alwayslastline "%{= ck}%H%{-} %?%h%:%t (screen #%n on %H)%?%-17<%=[%m/%d %02c:%s]"
+caption always "%{=r dd}%-Lw%40L>%?%F%{= dG}%:[%? %n%f %t %?%F%{-}%:]%?%+Lw %?"
+sorendition "+r dd"
 
 # Prefixキーの設定
 escape ^Tt
@@ -84,5 +84,6 @@ bind v eval 'split -v' focus screen
 bind s eval 'split' focus screen
 bind = eval 'resize -v ='
 bind + eval 'resize -h +'
+
 #^t h との誤爆を防ぐために^t ^hは無効にする
 bind ^h

@@ -1,10 +1,10 @@
 "" 基本設定
 " 色の設定
-if &term =~ "xterm-256color"
+" if &term =~ "xterm-256color"
   set t_Co=256
   syntax on
   colorscheme wombat256
-endif
+" endif
 
 " 起動時にフルスクリーンにする
 if has('gui_macvim')

@@ -1,8 +1,32 @@
 # users generic .zshrc file for zsh(1)
 
 ## Environment variable configuration
-PATH=/usr/local/share/python:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin::~/.gem/ruby/1.8/bin/
-export PATH
+typeset -U path
+path=(
+    /bin(N-/)
+    $HOME/local/bin(N-/)
+    /usr/local/bin(N-/)
+    /usr/local/sbin:
+    /usr/bin(N-/)
+    /usr/X11/bin(N-/))
+
+typeset -xT SUDO_PATH sudo_path
+typeset -U sudo_path
+sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
+
+typeset -U man_path
+man_path=(
+    $HOME/local/share/man(N-/)
+    /usr/local/share/man(N-/)
+    /usr/share/man(N-/))
+
+typeset -xT RUBYLIB ruby_path
+typeset -U ruby_path
+ruby_path=(./lib)
+
+typeset -xT PYTHONPATH python_path
+typeset -U python_path
+python_path=(./lib)
 
 # Python Path
 PYTHON_PATH=/usr/local/bin/python

@@ -6,19 +6,23 @@ path=(
     /bin(N-/)
     $HOME/local/bin(N-/)
     /usr/local/bin(N-/)
-    /usr/local/sbin:
+    /usr/local/sbin(N-/)
     /usr/bin(N-/)
-    /usr/X11/bin(N-/))
+    /usr/X11/bin(N-/)
+    )
 
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
-sudo_path=({,/usr/pkg,/usr/local,/usr}/sbin(N-/))
+sudo_path=(
+    {,/usr}/sbin(N-/)
+      )
 
 typeset -U man_path
 man_path=(
     $HOME/local/share/man(N-/)
     /usr/local/share/man(N-/)
-    /usr/share/man(N-/))
+    /usr/share/man(N-/)
+    )
 
 typeset -xT RUBYLIB ruby_path
 typeset -U ruby_path
@@ -27,10 +31,6 @@ ruby_path=(./lib)
 typeset -xT PYTHONPATH python_path
 typeset -U python_path
 python_path=(./lib)
-
-# Python Path
-PYTHON_PATH=/usr/local/bin/python
-export PYTHON_PATH
 
 # LANG
 export LANG=ja_JP.UTF-8
@@ -47,7 +47,7 @@ fi
 
 # LESSの設定
 export LESS='-R'
-export LESSOPEN='| /usr/local/bin/src-hilite-lesspipe.sh %s'
+export LESSOPEN='| ~/local/bin/src-hilite-lesspipe.sh %s'
 
 # キーバインドをEmacsに
 bindkey -e
@@ -371,29 +371,26 @@ prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
 prompt_job="%(1j,(%j),)"
 
 if [ "$EMACS" ]; then
-            PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
-            PROMPT2=' >>>'
-            SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
-      RPROMPT="${Green}${prompt_vcs_info}${Default}"
-else
-    case ${UID} in
-        0)
-            PROMPT
-            PROMPT2
-            SPROPT
-            RPROMPT
-            ;;
-        *)
-#            PROMPT="${prompt_self}-${prompt_status}-${prompt_date}"$'\n'"${prompt_history}-${prompt_vcs_info}-${prompt_job}%# "
-            PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
-            PROMPT2=' >>>'
-            SPROMPT="${Red}もしかして %r のこと? べ、別にあんたのために修正したわけじゃないんだからね! [n,y,a,e]:${Default}"
-            # SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
-            RPROMPT="${prompt_vcs_info}"
-#            RPROMPT="${prompt_path}"
-            ;;
-    esac
+    PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
+    PROMPT2=' >>>'
+#    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
+    RPROMPT="${Green}${prompt_vcs_info}${Default}"
 fi
+
+case ${UID} in
+  0)
+    PROMPT
+    PROMPT2
+    SPROPT
+    RPROMPT
+    ;;
+  *)
+    PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
+    PROMPT2=' >>>'
+#    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
+    RPROMPT="${prompt_vcs_info}"
+    ;;
+esac
 
 ################################################################################
 # Virtualenv
@@ -441,4 +438,10 @@ export GISTY_DIR="$HOME/dev/gists"
 # source ~/.zsh/plugins/incr*.zsh
 
 # # echo Now zsh version $ZSH_VERSION start.
+
+################################################################################
+# プロジェクト用
+################################################################################
+alias lotte="cd ~/local/proj/zerostart/lotte/trunk/"
+alias aucfan="cd ~/local/proj/zerostart/aucfan/trunk/"
 

@@ -442,6 +442,7 @@ export GISTY_DIR="$HOME/dev/gists"
 ################################################################################
 # プロジェクト用
 ################################################################################
+alias vim='mvim'
 alias lotte="cd ~/local/proj/zerostart/lotte/trunk/"
 alias aucfan="cd ~/local/proj/zerostart/aucfan/trunk/"
-
+alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.solr.home=multicore -jar start.jar"

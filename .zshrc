@@ -79,6 +79,13 @@ autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
 ################################################################################
+# rlwrap
+################################################################################
+if [ -x /usr/local/bin/rlwrap ]; then
+  alias mysql='/usr/local/bin/rlwrap -a -pRED mysql'
+fi
+
+################################################################################
 # ディレクトリ移動
 ################################################################################
 ### ディレクトリ名だけでcdする
@@ -317,6 +324,7 @@ alias diff=colordiff
 export GIT_PAGER='/usr/local/bin/lv -c -Au8'
 
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+alias view='vi -R'
 
 ################################################################################
 # プロンプト
@@ -443,6 +451,8 @@ export GISTY_DIR="$HOME/dev/gists"
 # プロジェクト用
 ################################################################################
 alias vim='mvim'
-alias lotte="cd ~/local/proj/zerostart/lotte/trunk/"
-alias aucfan="cd ~/local/proj/zerostart/aucfan/trunk/"
+alias world="cd ~/local/proj/zerostart/world"
+alias lotte="cd ~/local/proj/zerostart/lotte/"
+alias aucfan="cd ~/local/proj/zerostart/aucfan/"
+
 alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.solr.home=multicore -jar start.jar"

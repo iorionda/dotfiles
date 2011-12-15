@@ -456,3 +456,9 @@ alias lotte="cd ~/local/proj/zerostart/lotte/"
 alias aucfan="cd ~/local/proj/zerostart/aucfan/"
 
 alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.solr.home=multicore -jar start.jar"
+################################################################################
+# 起動時
+################################################################################
+if [ ! "$WINDOW" ]; then
+    exec screen -S main -xRR
+fi

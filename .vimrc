@@ -170,9 +170,6 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
 autocmd BufWritePre * :%s/\t/ /ge
 
-inoremap = <Space>=<Space>
-inoremap == <Space>==<Space>
-
 "対応する括弧を自動で補完する
 " { を入力するたびに ClosePairOn() と ClosePairOff()がToggleする
 function! ClosePairOn()

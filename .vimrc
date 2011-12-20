@@ -1,10 +1,18 @@
+" -*- coding:utf-8 -*-
+
 "" 基本設定
+set guifont=Ricty:h14
+set guifontwide=Ricty:h14
+
 " 色の設定
-" if &term =~ "xterm-256color"
+if &term =~ "xterm-256color"
   set t_Co=256
   syntax on
-  colorscheme wombat256
-" endif
+  colorscheme darkmoor
+else
+    syntax on
+    colorscheme wombat
+endif
 
 " 起動時にフルスクリーンにする
 if has('gui_macvim')
@@ -64,7 +72,7 @@ if has('autocmd')
   autocmd FileType xhtml :set indentexpr=
 
   filetype plugin on
-"  autocmd FileType python let g:pydiction_location = '$HOME/.vim/bundle/pydiction/complete-dict'
+  autocmd FileType python let g:pydiction_location = '$HOME/.vim/bundle/pydiction/complete-dict'
   autocmd FileType python setl autoindent
   autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
   autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
@@ -89,26 +97,20 @@ set hlsearch
 " Esc連打でハイライトを消す
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
-augroup END
-
 " カレントウィンドウにのみ罫線を引く
-augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorcolumn nocursorline
-  autocmd WinEnter,BufRead * set cursorcolumn cursorline
-augroup END
-
-highlight CursorLine ctermbg=black guibg=black
-highlight CursorColumn ctermbg=black guibg=black
-
-highlight clear CursorLine
-highlight CursorLine gui=underline term=underline
-highlight CursorColumn term=reverse cterm=reverse
-highlight CursorLine ctermbg=black guibg=black
+" .vim/colorscheme/darkmoorに移動
+"augroup cch
+"  autocmd! cch
+"  autocmd WinLeave * set nocursorcolumn nocursorline
+"  autocmd WinEnter,BufRead * set cursorcolumn cursorline
+"augroup END
+"
+"highlight CursorLine ctermbg=black guibg=black
+"highlight CursorColumn ctermbg=black guibg=black
+"highlight clear CursorLine
+"highlight CursorLine gui=underline term=underline
+"highlight CursorColumn term=reverse cterm=reverse
+"highlight CursorLine ctermbg=black guibg=black
 
 set lazyredraw
 set ttyfast
@@ -167,6 +169,9 @@ augroup END
 autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
 autocmd BufWritePre * :%s/\t/ /ge
+
+inoremap = <Space>=<Space>
+inoremap == <Space>==<Space>
 
 "対応する括弧を自動で補完する
 " { を入力するたびに ClosePairOn() と ClosePairOff()がToggleする
@@ -341,6 +346,7 @@ let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
 let g:pymode_syntax_slow_sync = 0
 
 " vim-indent-guides
+let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_auto_colors = 0 "autoにするとよく見えなかったので自動的に色付けするのはストップ
 let g:indent_guides_color_change_percent = 10 "色の変化の幅（？）。パーセンテージらしい
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=black guibg=black ctermbg=1 "インデントの色
@@ -355,6 +361,10 @@ let g:SimplenoteUsername = "iori.onda@gmail.com"
 let g:SimplenotePassword = "msgOVE4x"
 
 "Bundle 'Pydiction'
+if has("autocmd")
+    autocmd FileType python set complete+=k~/.vim/bundle/pydiction/complete-dict iskeyword+=.,(
+endif
+"
 Bundle 'pep8'
 
 " non github repos

@@ -323,8 +323,9 @@ alias gerp='grep --ignore-case'$GREP_OPTIONS
 alias diff=colordiff
 export GIT_PAGER='/usr/local/bin/lv -c -Au8'
 
+alias vim='mvim'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-alias view='vi -R'
+alias view='vim -R'
 
 ################################################################################
 # プロンプト
@@ -378,13 +379,6 @@ prompt_vcs_info="%{%F{green}%}%B%1(v|%1v|)%{%f%}%b"
 prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
 prompt_job="%(1j,(%j),)"
 
-if [ "$EMACS" ]; then
-    PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
-    PROMPT2=' >>>'
-#    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
-    RPROMPT="${Green}${prompt_vcs_info}${Default}"
-fi
-
 case ${UID} in
   0)
     PROMPT
@@ -395,7 +389,7 @@ case ${UID} in
   *)
     PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
     PROMPT2=' >>>'
-#    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
+    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
     RPROMPT="${prompt_vcs_info}"
     ;;
 esac
@@ -405,6 +399,7 @@ esac
 ################################################################################
 ### virtualenvのルートディレクトリにする場所
 WORKON_HOME=${HOME}/.virtualenvs
+
 ### パッケージをvirtualenv環境下にインストール
 export PIP_RESPECT_VIRTUALENV=true
 ### virtualwrapperの読み込み
@@ -450,7 +445,6 @@ export GISTY_DIR="$HOME/dev/gists"
 ################################################################################
 # プロジェクト用
 ################################################################################
-alias vim='mvim'
 alias world="cd ~/local/proj/zerostart/world"
 alias lotte="cd ~/local/proj/zerostart/lotte/"
 alias aucfan="cd ~/local/proj/zerostart/aucfan/"
@@ -462,3 +456,6 @@ alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.s
 if [ ! "$WINDOW" ]; then
     exec screen -S main -xRR
 fi
+
+fortune -a
+

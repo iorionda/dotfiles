@@ -367,17 +367,16 @@ function git_not_pushd() {
    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 add-zsh-hook precmd update_vcs_info_msg
+local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
 
-prompt_self="%B%{%F{green}%}(%n@%m)%b%{%f%}"
-prompt_status="%{%F{green}%}(%?)%{%f%}"
+local prompt_self="%B%{%F{green}%}(%n@%m)%b%{%f%}"
+local prompt_status="%(?,%{$fg[green]%}(%?)%{$reset_color%},%{$fg[red]%}(%?))%{$reset_color%}"
 # current pathの省略表示
-prompt_path="%{%F{cyan}%}[%(5~,%-2~/.../%2~,%~)]%{%f%}"
-# prompt_path="%{%F{cyan}%}[%~]%{%f%}"
-# prompt_path="%{%F{cyan}%}[%d]%{%f%}"
-prompt_date="%{%F{red}%}<%D{%Y-%m-%d %H:%M}>%{%f%}"
-prompt_vcs_info="%{%F{green}%}%B%1(v|%1v|)%{%f%}%b"
-prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
-prompt_job="%(1j,(%j),)"
+local prompt_path="%{%F{cyan}%}[%(5~,%-2~/.../%2~,%~)]%{%f%}"
+local prompt_date="%{%F{red}%}<%D{%Y-%m-%d %H:%M}>%{%f%}"
+local prompt_vcs_info="%{%F{green}%}%B%1(v|%1v|)%{%f%}%b"
+local prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
+local prompt_job="%(1j,(%j),)"
 
 case ${UID} in
   0)
@@ -387,9 +386,9 @@ case ${UID} in
     RPROMPT
     ;;
   *)
-    PROMPT="${prompt_self}-${prompt_path}-${prompt_status}-${prompt_date} %# "
+    PROMPT="${prompt_self}-${prompt_path}-${smiley} ${prompt_status} -${prompt_date} %# "
     PROMPT2=' >>>'
-    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
+#    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
     RPROMPT="${prompt_vcs_info}"
     ;;
 esac
@@ -418,7 +417,13 @@ export GEOS_DIR='/usr/local'
 # RVM
 ################################################################################
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
-
+# show rvm prompt like "1.9.2@gemset_name"
+#function rvm_prompt {
+#    result=`rvm-prompt v g 2> /dev/null`
+#    if [ "$result" ] ; then
+#        echo "[$result]"
+#    fi
+#}
 ################################################################################
 # rbenv
 ################################################################################
@@ -456,6 +461,4 @@ alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.s
 if [ ! "$WINDOW" ]; then
     exec screen -S main -xRR
 fi
-
-fortune -a
 

@@ -367,11 +367,9 @@ function git_not_pushd() {
    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 add-zsh-hook precmd update_vcs_info_msg
-local smiley="%(?,%{$fg[green]%}☺%{$reset_color%},%{$fg[red]%}☹%{$reset_color%})"
-
+local prompt_smiley="%(?,%{%F{green}%}☺,%{%F{red}%}☹%{%f%})"
 local prompt_self="%B%{%F{green}%}(%n@%m)%b%{%f%}"
-local prompt_status="%(?,%{$fg[green]%}(%?)%{$reset_color%},%{$fg[red]%}(%?))%{$reset_color%}"
-# current pathの省略表示
+local prompt_status="%(?,%{%F{green}%}(%?,%{%F{red}%}(%?))%{%f%}"
 local prompt_path="%{%F{cyan}%}[%(5~,%-2~/.../%2~,%~)]%{%f%}"
 local prompt_date="%{%F{red}%}<%D{%Y-%m-%d %H:%M}>%{%f%}"
 local prompt_vcs_info="%{%F{green}%}%B%1(v|%1v|)%{%f%}%b"
@@ -386,7 +384,7 @@ case ${UID} in
     RPROMPT
     ;;
   *)
-    PROMPT="${prompt_self}-${prompt_path}-${smiley} ${prompt_status} -${prompt_date} %# "
+    PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
     PROMPT2=' >>>'
 #    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
     RPROMPT="${prompt_vcs_info}"

@@ -21,6 +21,7 @@ if has('gui_macvim')
 endif
 
 let mapleader="," "キーマップリーダー
+set encoding=utf-8
 set scrolloff=5
 set textwidth=0
 set nobackup
@@ -50,7 +51,7 @@ command! Rv source $MYVIMRC
 
 " ステータスライン
 set laststatus=2
-set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %{g:HahHah()}%m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c/%04L][%p%%]
+" set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %{g:HahHah()}%m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c/%04L][%p%%]
 
 " インデントの設定
 set autoindent
@@ -97,21 +98,6 @@ set hlsearch
 " Esc連打でハイライトを消す
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
-" カレントウィンドウにのみ罫線を引く
-" .vim/colorscheme/darkmoorに移動
-"augroup cch
-"  autocmd! cch
-"  autocmd WinLeave * set nocursorcolumn nocursorline
-"  autocmd WinEnter,BufRead * set cursorcolumn cursorline
-"augroup END
-"
-"highlight CursorLine ctermbg=black guibg=black
-"highlight CursorColumn ctermbg=black guibg=black
-"highlight clear CursorLine
-"highlight CursorLine gui=underline term=underline
-"highlight CursorColumn term=reverse cterm=reverse
-"highlight CursorLine ctermbg=black guibg=black
-
 set lazyredraw
 set ttyfast
 
@@ -148,17 +134,17 @@ nnoremap ( %
 nnoremap ) %
 
 " 編集関連
+source $VIMRUNTIME/macros/matchit.vim
+set tags+=tags
+
 " insertモードを抜けるとIMEをOFF
 set noimdisable
 set iminsert=0 imsearch=0
 set noimcmdline
 inoremap <Silent> <ESC> <ESC>set iminsert=0<CR>
 
-" Tabを空白に変換
-set expandtab
-
 " コンマの後に空白を追加
-inoremap , ,<Space>
+" inoremap , ,<Space>
 " XMLの閉じタグを挿入する
 augroup MyXML
   autocmd!
@@ -166,9 +152,9 @@ augroup MyXML
 augroup END
 
 " 保存時に行末の空白を除去する
-autocmd BufWritePre * :%s/\s\+$//ge
+ autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
-autocmd BufWritePre * :%s/\t/ /ge
+autocmd BufWritePre * :%s/\t/    /ge
 
 "対応する括弧を自動で補完する
 " { を入力するたびに ClosePairOn() と ClosePairOff()がToggleする
@@ -224,6 +210,10 @@ Bundle 'mattn/hahhah-vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimfiler'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'h1mesuke/vim-alignta'
+Bundle 'thinca/vim-quickrun'
+Bundle 'scrooloose/syntastic'
+Bundle 'Lokaltog/vim-powerline'
 
 if has('python')
   Bundle 'ehamberg/vim-cute-python'
@@ -232,13 +222,20 @@ if has('python')
 endif
 
 " vim-scripts repos
+Bundle 'Gundo'
+nmap U :<C-u>GundoToggle<CR>
+
+Bundle 'QuickBuf'
 Bundle 'TwitVim'
 Bundle 'scratch'
 Bundle 'rest.vim'
 Bundle 'occur.vim'
-"Bundle 'AutoClose'
-"Bundle 'EnhCommentify.vim'
-Bundle 'QuickBuf'
+Bundle 'Source-Explorer-srcexpl.vim'
+Bundle 'trinity.vim'
+Bundle 'pep8'
+Bundle 'taglist-plus'
+Bundle 'taglist.vim'
+Bundle 'snipMate'
 
 " python-mode
 filetype off
@@ -361,11 +358,7 @@ let g:SimplenotePassword = "msgOVE4x"
 if has("autocmd")
     autocmd FileType python set complete+=k~/.vim/bundle/pydiction/complete-dict iskeyword+=.,(
 endif
-"
-Bundle 'pep8'
 
 " non github repos
 filetype plugin indent on
-
-
 

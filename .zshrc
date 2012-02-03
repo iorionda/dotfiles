@@ -318,7 +318,7 @@ if grep --help | grep -q -- --color; then
     GREP_OPTIONS="--color=auto $GREP_OPTIONS"
 fi
 
-alias gerp='grep --ignore-case'$GREP_OPTIONS
+alias grep='grep --ignore-case' $GREP_OPTIONS
 
 alias diff=colordiff
 export GIT_PAGER='/usr/local/bin/lv -c -Au8'

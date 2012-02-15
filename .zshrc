@@ -3,26 +3,25 @@
 ## Environment variable configuration
 typeset -U path
 path=(
-    /bin(N-/)
-    $HOME/local/bin(N-/)
-    /usr/local/bin(N-/)
-    /usr/local/sbin(N-/)
-    /usr/bin(N-/)
-    /usr/X11/bin(N-/)
-    )
+/bin(N-/)
+$HOME/local/bin(N-/)
+/usr/local/bin(N-/)
+/usr/local/sbin(N-/)
+/usr/bin(N-/)
+/usr/X11/bin(N-/)
+/usr/local/share/python(N-/)
+)
 
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
-sudo_path=(
-    {,/usr}/sbin(N-/)
-      )
+sudo_path=({,/usr}/sbin(N-/))
 
 typeset -U man_path
 man_path=(
-    $HOME/local/share/man(N-/)
-    /usr/local/share/man(N-/)
-    /usr/share/man(N-/)
-    )
+$HOME/local/share/man(N-/)
+/usr/local/share/man(N-/)
+/usr/share/man(N-/)
+)
 
 typeset -xT RUBYLIB ruby_path
 typeset -U ruby_path
@@ -39,11 +38,9 @@ export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 
 # エディタの設定
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-export EDITOR=vim
-if ! type vim > /dev/null 2>&1; then
-    alias vim=vim
-fi
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 
 # LESSの設定
 export LESS='-R'
@@ -82,7 +79,7 @@ zle -N self-insert url-quote-magic
 # rlwrap
 ################################################################################
 if [ -x /usr/local/bin/rlwrap ]; then
-  alias mysql='/usr/local/bin/rlwrap -a -pRED mysql'
+    alias mysql='/usr/local/bin/rlwrap -a -pRED mysql'
 fi
 
 ################################################################################
@@ -339,32 +336,32 @@ zstyle ':vcs_info:*bzr:*' use-simple true
 
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
-  zstyle ':vcs-info:git:*' check-for-changes true
-  zstyle ':vcs-info:git:*' stagedstr '+'
-  zstyle ':vcs-info:git:*' unstagedstr '-'
-  zstyle ':vcs-info:git:*' formats '(%s)-[%c%u%b]'
-  zstyle ':vcs-info:git:*' actionformats '(%s)-[%c%u%b|%a]'
+    zstyle ':vcs-info:git:*' check-for-changes true
+    zstyle ':vcs-info:git:*' stagedstr '+'
+    zstyle ':vcs-info:git:*' unstagedstr '-'
+    zstyle ':vcs-info:git:*' formats '(%s)-[%c%u%b]'
+    zstyle ':vcs-info:git:*' actionformats '(%s)-[%c%u%b|%a]'
 fi
 
 function git_not_pushd() {
-  if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
+if [ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" = "true" ]; then
     head="$(git rev-parse HEAD)"
     for x in $(git rev-parse --remotes)
     do
-      if [ "$head" = "$x" ]; then
-        return 0
-      fi
+        if [ "$head" = "$x" ]; then
+            return 0
+        fi
     done
     echo "NOT PUSHED"
-  fi
-  return 0
+fi
+return 0
 }
 
- function update_vcs_info_msg() {
-  psvar=()
-   LANG=en_US.UTF-8 vcs_info
-   psvar[2]=$(git_not_pushd)
-   [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+function update_vcs_info_msg() {
+psvar=()
+LANG=en_US.UTF-8 vcs_info
+psvar[2]=$(git_not_pushd)
+[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 add-zsh-hook precmd update_vcs_info_msg
 local prompt_smiley="%(?,%{%F{green}%}☺,%{%F{red}%}☹%{%f%})"
@@ -377,18 +374,18 @@ local prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
 local prompt_job="%(1j,(%j),)"
 
 case ${UID} in
-  0)
-    PROMPT
-    PROMPT2
-    SPROPT
-    RPROMPT
-    ;;
-  *)
-    PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
-    PROMPT2=' >>>'
-#    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
-    RPROMPT="${prompt_vcs_info}"
-    ;;
+    0)
+        PROMPT
+        PROMPT2
+        SPROPT
+        RPROMPT
+        ;;
+    *)
+        PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
+        PROMPT2=' >>>'
+        #    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
+        RPROMPT="${prompt_vcs_info}"
+        ;;
 esac
 
 ################################################################################
@@ -401,7 +398,7 @@ WORKON_HOME=${HOME}/.virtualenvs
 export PIP_RESPECT_VIRTUALENV=true
 ### virtualwrapperの読み込み
 if [ -f /usr/local/share/python/virtualenvwrapper.sh ]; then
-  source /usr/local/share/python/virtualenvwrapper.sh
+    source /usr/local/share/python/virtualenvwrapper.sh
 fi
 setopt nonomatch
 
@@ -446,6 +443,27 @@ export GISTY_DIR="$HOME/dev/gists"
 # # echo Now zsh version $ZSH_VERSION start.
 
 ################################################################################
+# tmux
+################################################################################
+# terminalの中でsshしたら新しいwindowを作成する
+if [ "$TERM" = "screen" ];then
+    function ssh_tmux() {
+        eval server=\${$#}
+        tmux new-window -n $@ "exec ssh $@"
+    }
+    alias ssh=ssh_tmux
+fi
+
+# terminalの中でmanをしたら新しいpainを作成する
+if [ "$TERM" = "screen" ];then
+    function man_tmux() {
+        eval server=\${$#}
+        tmux split-window "exec man $@"
+    }
+    alias man=man_tmux
+fi
+
+################################################################################
 # プロジェクト用
 ################################################################################
 alias world="cd ~/local/proj/zerostart/world"
@@ -456,7 +474,7 @@ alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.s
 ################################################################################
 # 起動時
 ################################################################################
-if [ ! "$WINDOW" ]; then
-    exec screen -S main -xRR
-fi
+# if [ ! "$WINDOW" ]; then
+#    exec screen -S main -xRR
+# fi
 

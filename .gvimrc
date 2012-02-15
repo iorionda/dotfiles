@@ -1,5 +1,5 @@
 " 色の設定
-colorscheme wombat256
+colorscheme wombat256mod
 set transparency=0
 
 " フォントの設定

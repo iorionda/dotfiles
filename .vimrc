@@ -1,14 +1,15 @@
 " -*- coding:utf-8 -*-
-
+"
 "" 基本設定
 set guifont=Ricty:h14
 set guifontwide=Ricty:h14
 
 " 色の設定
+
 if &term =~ "xterm-256color"
   set t_Co=256
   syntax on
-  colorscheme darkmoor
+  colorscheme wombat256mod
 else
     syntax on
     colorscheme wombat
@@ -207,6 +208,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'gmarik/vundle'
 Bundle 'mattn/hahhah-vim'
+Bundle 'mattn/mkdpreview-vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimfiler'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -361,4 +363,3 @@ endif
 
 " non github repos
 filetype plugin indent on
-

@@ -446,7 +446,7 @@ export GISTY_DIR="$HOME/dev/gists"
 # tmux
 ################################################################################
 # terminalの中でsshしたら新しいwindowを作成する
-if [ "$TERM" = "screen" ];then
+if [ "$TERM" = "screen-256color-bce" ];then
     function ssh_tmux() {
         eval server=\${$#}
         tmux new-window -n $@ "exec ssh $@"
@@ -455,7 +455,7 @@ if [ "$TERM" = "screen" ];then
 fi
 
 # terminalの中でmanをしたら新しいpainを作成する
-if [ "$TERM" = "screen" ];then
+if [ "$TERM" = "screen-256color-bce" ];then
     function man_tmux() {
         eval server=\${$#}
         tmux split-window "exec man $@"

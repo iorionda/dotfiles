@@ -246,6 +246,7 @@ setopt long_list_jobs
 ### 自動的に消費時間の統計情報を表示する
 export PREPORTTIME=3
 
+
 ################################################################################
 # エイリアスの設定
 ################################################################################
@@ -294,6 +295,7 @@ alias po="popd"
 if type ggrep > /dev/null 2>&1; then
     alias grep=ggrep
 fi
+
 ### デフォルトオプションの設定
 export GREP_OPTIONS
 ### perl-regexpかextend-regexpを設定する
@@ -320,8 +322,10 @@ alias grep='grep --ignore-case' $GREP_OPTIONS
 alias diff=colordiff
 export GIT_PAGER='/usr/local/bin/lv -c -Au8'
 
-alias vim='mvim'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+
+alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias view='vim -R'
 
 ################################################################################
@@ -358,17 +362,18 @@ return 0
 }
 
 function update_vcs_info_msg() {
-psvar=()
-LANG=en_US.UTF-8 vcs_info
-psvar[2]=$(git_not_pushd)
-[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    psvar[2]=$(git_not_pushd)
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 add-zsh-hook precmd update_vcs_info_msg
+
 local prompt_smiley="%(?,%{%F{green}%}☺,%{%F{red}%}☹%{%f%})"
 local prompt_self="%B%{%F{green}%}(%n@%m)%b%{%f%}"
 local prompt_status="%(?,%{%F{green}%}(%?,%{%F{red}%}(%?))%{%f%}"
 local prompt_path="%{%F{cyan}%}[%(5~,%-2~/.../%2~,%~)]%{%f%}"
-local prompt_date="%{%F{red}%}<%D{%Y-%m-%d %H:%M}>%{%f%}"
+local prompt_date="%{%F{blue}%}[%D{%Y-%m-%d %H:%M}]%{%f%}"
 local prompt_vcs_info="%{%F{green}%}%B%1(v|%1v|)%{%f%}%b"
 local prompt_history="%B%{%F{green}%}[%h]%{%f%}%b"
 local prompt_job="%(1j,(%j),)"
@@ -383,7 +388,7 @@ case ${UID} in
     *)
         PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
         PROMPT2=' >>>'
-        #    SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
+        SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
         RPROMPT="${prompt_vcs_info}"
         ;;
 esac
@@ -463,14 +468,7 @@ if [ "$TERM" = "screen-256color-bce" ];then
     alias man=man_tmux
 fi
 
-################################################################################
-# プロジェクト用
-################################################################################
-alias world="cd ~/local/proj/zerostart/world"
-alias lotte="cd ~/local/proj/zerostart/lotte/"
-alias aucfan="cd ~/local/proj/zerostart/aucfan/"
-
-alias solr_start="cd $HOME/local/src/apache-solr-3.5.0/example/ && java -Dsolr.solr.home=multicore -jar start.jar"
+alias solr_start="cd /usr/local/solr/example/ && java -Dsolr.solr.home=multicore -jar start.jar&"
 ################################################################################
 # 起動時
 ################################################################################

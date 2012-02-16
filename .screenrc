@@ -3,7 +3,7 @@ defbce "on"
 # 太字には明るい色を使う(^[はvimでC-v ESCで入力する)
 attrcolor b "^["
 # 256色表示設定
-term xterm-256color
+term screen-256color-bce
 # スクロールバッファは最大10000行にする
 defscrollback 10000
 # 別画面サポート。Vimやless使うときに便利

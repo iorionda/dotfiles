@@ -1,18 +1,17 @@
 " -*- coding:utf-8 -*-
-"
 "" 基本設定
-set guifont=Ricty:h14
-set guifontwide=Ricty:h14
+set guifont=Ricty:h18
+set guifontwide=Ricty:h18
 
 " 色の設定
 
-if &term =~ "xterm-256color"
+if &term =~ "screen-256color-bce"
   set t_Co=256
   syntax on
   colorscheme wombat256mod
 else
     syntax on
-    colorscheme wombat256mod
+    colorscheme wombat
 endif
 
 " 起動時にフルスクリーンにする
@@ -38,7 +37,7 @@ set showcmd
 set showmode
 set viminfo='50,<1000,s100,\"50
 set modelines=0
-
+set ignorecase
 set clipboard+=unnamed
 
 set mouse=a
@@ -74,6 +73,7 @@ if has('autocmd')
   autocmd FileType xhtml :set indentexpr=
 
   filetype plugin on
+
   autocmd FileType python let g:pydiction_location = '$HOME/.vim/bundle/pydiction/complete-dict'
   autocmd FileType python setl autoindent
   autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
@@ -88,6 +88,19 @@ endif
 if exists('&ambiwidth')
   set ambiwidth=double
 endif
+
+ " カーソル行をハイライト
+  set cursorline
+  " カレントウィンドウにのみ罫線を引く
+  augroup cch
+    autocmd! cch
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+  augroup END
+
+hi clear CursorLine
+hi CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
 
 set showmatch
 set number
@@ -145,7 +158,7 @@ set noimcmdline
 inoremap <Silent> <ESC> <ESC>set iminsert=0<CR>
 
 " コンマの後に空白を追加
-" inoremap , ,<Space>
+inoremap , ,<Space>
 " XMLの閉じタグを挿入する
 augroup MyXML
   autocmd!
@@ -153,7 +166,7 @@ augroup MyXML
 augroup END
 
 " 保存時に行末の空白を除去する
- autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/\s\+$//ge
 " 保存時にtabをスペースに変換する
 autocmd BufWritePre * :%s/\t/    /ge
 
@@ -218,7 +231,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 
 if has('python')
-  Bundle 'ehamberg/vim-cute-python'
+"  Bundle 'ehamberg/vim-cute-python'
   Bundle 'klen/python-mode'
   Bundle 'mrtazz/simplenote.vim'
 endif

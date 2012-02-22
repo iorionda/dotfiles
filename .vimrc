@@ -1,23 +1,23 @@
 " -*- coding:utf-8 -*-
-"" 基本設定
+" 基本設定
 set guifont=Ricty:h18
 set guifontwide=Ricty:h18
 
 " 色の設定
 
 if &term =~ "screen-256color-bce"
-  set t_Co=256
-  syntax on
-  colorscheme wombat256mod
+    set t_Co=256
+    syntax on
+    colorscheme wombat256mod
 else
     syntax on
-    colorscheme wombat
+    colorscheme wombat256mod
 endif
 
 " 起動時にフルスクリーンにする
 if has('gui_macvim')
-  set fuoptions=maxvert,maxhorz
-  au GUIEnter * set fullscreen
+    set fuoptions=maxvert,maxhorz
+    au GUIEnter * set fullscreen
 endif
 
 let mapleader="," "キーマップリーダー
@@ -38,20 +38,17 @@ set showmode
 set viminfo='50,<1000,s100,\"50
 set modelines=0
 set ignorecase
-set clipboard+=unnamed
+set clipboard=unnamed
 
 set mouse=a
 set guioptions=+a
 set ttymouse=xterm2
-
-set clipboard=unnamed
 
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC
 
 " ステータスライン
 set laststatus=2
-" set statusline=%{expand('%:p:t')}\ %<\(%{expand('%:p:h')}\)%=\ %{g:HahHah()}%m%r%y%w%{'[enc='.(&fenc!=''?&fenc:&enc).'][format='.&ff.']'}[%04l,%04c/%04L][%p%%]
 
 " インデントの設定
 set autoindent
@@ -66,37 +63,42 @@ set smarttab
 " 表示関連
 " ファイルタイプ毎の設定
 if has('autocmd')
-  filetype plugin on
-  filetype indent on
+    filetype plugin on
+    filetype indent on
 
-  autocmd FileType html :set indentexpr=
-  autocmd FileType xhtml :set indentexpr=
+    autocmd FileType html :set indentexpr=
+    autocmd FileType xhtml :set indentexpr=
 
-  filetype plugin on
+    filetype plugin on
 
-  autocmd FileType python let g:pydiction_location = '$HOME/.vim/bundle/pydiction/complete-dict'
-  autocmd FileType python setl autoindent
-  autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-  autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-  autocmd FileType python setl omnifunc=pysmell#Complete
+    " PEP 8 Indent rule
+    autocmd FileType python let g:pydiction_location = '$HOME/.vim/bundle/pydiction/complete-dict'
+    autocmd FileType python setl autoindent nosmartindent cindent
+    autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
+    autocmd FileType python setl omnifunc=pysmell#Complete
+    autocmd FileType python setl textwidth=80 colorcolumn=80
+    autocmd FileType python setl foldmethod=indent foldlevel=99
 endif
 " マルチバイト文字を入力している最中にカーソルの色を変更する
 if has('multi_byte_ime') || ('xim')
-  highlight CursorIM guibg=Purple guifg=NONE
+    highlight CursorIM guibg=Purple guifg=NONE
 endif
 " □とか○の文字があってもカーソル位置がずれないようにする
 if exists('&ambiwidth')
-  set ambiwidth=double
+    set ambiwidth=double
 endif
 
- " カーソル行をハイライト
-  set cursorline
-  " カレントウィンドウにのみ罫線を引く
-  augroup cch
-    autocmd! cch
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
-  augroup END
+" カーソル行をハイライト
+set cursorline
+" カレントウィンドウにのみ罫線を引く
+if has('autocmd')
+    augroup cch
+        autocmd! cch
+        autocmd WinLeave * set nocursorline
+        autocmd WinEnter,BufRead * set cursorline
+    augroup END
+endif
 
 hi clear CursorLine
 hi CursorLine gui=underline
@@ -161,8 +163,8 @@ inoremap <Silent> <ESC> <ESC>set iminsert=0<CR>
 inoremap , ,<Space>
 " XMLの閉じタグを挿入する
 augroup MyXML
-  autocmd!
-  autocmd FileType xml inoremap <buffer> </ </<C-x><C-o>
+    autocmd!
+    autocmd FileType xml inoremap <buffer> </ </<C-x><C-o>
 augroup END
 
 " 保存時に行末の空白を除去する
@@ -173,46 +175,46 @@ autocmd BufWritePre * :%s/\t/    /ge
 "対応する括弧を自動で補完する
 " { を入力するたびに ClosePairOn() と ClosePairOff()がToggleする
 function! ClosePairOn()
-  let b:closepair = 0
-  inoremap [ []<Left>
-  inoremap { {}<Left>
-  inoremap ( ()<Left>
-  inoremap " ""<Left>
-  inoremap ' ''<Left>
-  inoremap ` ``<Left>
+    let b:closepair = 0
+    inoremap [ []<Left>
+    inoremap { {}<Left>
+    inoremap ( ()<Left>
+    inoremap " ""<Left>
+    inoremap ' ''<Left>
+    inoremap ` ``<Left>
 endfunction
 
 function! ClosePairOff()
-  iunmap [
-  iunmap {
-  iunmap (
-  iunmap "
-  iunmap '
-  iunmap `
+    iunmap [
+    iunmap {
+    iunmap (
+    iunmap "
+    iunmap '
+    iunmap `
 endfunction
 
 function! ToggleClosePair()
-  if !exists("g:closepair_status")
-    let g:closepair_status = 1
-  endif
+    if !exists("g:closepair_status")
+        let g:closepair_status = 1
+    endif
 
-  if (g:closepair_status)
-    let g:closepair_status = 0
-    echo "Current: Closing Pair On"
-    call ClosePairOn()
-  else
-    let g:closepair_status = 1
-    echo "Current: Closing Pair Off"
-    call ClosePairOff()
-  endif
+    if (g:closepair_status)
+        let g:closepair_status = 0
+        echo "Current: Closing Pair On"
+        call ClosePairOn()
+    else
+        let g:closepair_status = 1
+        echo "Current: Closing Pair Off"
+        call ClosePairOff()
+    endif
 endfunction
 
 nnoremap { :call ToggleClosePair()<CR>
 
 filetype off
 if has('vim_starting')
-  set rtp+=~/.vim/bundle/vundle/
-  call vundle#rc()
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
 endif
 
 " original repos on github
@@ -220,26 +222,18 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'gmarik/vundle'
-Bundle 'mattn/hahhah-vim'
 Bundle 'mattn/mkdpreview-vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/vimfiler'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'h1mesuke/vim-alignta'
 Bundle 'thinca/vim-quickrun'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
-
-if has('python')
-"  Bundle 'ehamberg/vim-cute-python'
-  Bundle 'klen/python-mode'
-  Bundle 'mrtazz/simplenote.vim'
-endif
+Bundle 'kana/vim-fakeclip'
+Bundle 'mitechie/pyflakes-pathogen'
 
 " vim-scripts repos
 Bundle 'Gundo'
-nmap U :<C-u>GundoToggle<CR>
-
 Bundle 'QuickBuf'
 Bundle 'TwitVim'
 Bundle 'scratch'
@@ -252,107 +246,8 @@ Bundle 'taglist-plus'
 Bundle 'taglist.vim'
 Bundle 'snipMate'
 
-" python-mode
-filetype off
-filetype plugin indent on
-syntax on
-
-" Disable pylint checking every save
-let g:pymode_lint_write = 0
-" Set key 'R' for run python code
-let g:pymode_run_key = 'R'
-" Load show documentation plugin
-let g:pymode_doc = 1
-" Key for show python documentation
-let g:pymode_doc_key = 'K'
-" Executable command for documentation search
-let g:pydoc = 'pydoc'
-" Load run code plugin
-let g:pymode_run = 1
-" Key for run python code
-let g:pymode_run_key = '<leader>r'
-" Load pylint code plugin
-let g:pymode_lint = 1
-" Switch pylint or pyflakes code checker
-" values (pylint, pyflakes)
-let g:pymode_lint_checker = "pylint"
-" Pylint configuration file
-" If file not found use 'pylintrc' from python-mode plugin directory
-let g:pymode_lint_config = "$HOME/.pylintrc"
-" Check code every save
-let g:pymode_lint_write = 1
-" Auto open cwindow if errors be finded
-let g:pymode_lint_cwindow = 1
-" Auto jump on first error
-let g:pymode_lint_jump = 0
-" Place error signs
-let g:pymode_lint_signs = 1
-" Minimal height of pylint error window
-let g:pymode_lint_minheight = 3
-" Maximal height of pylint error window
-let g:pymode_lint_maxheight = 6
-" Load rope plugin
-let g:pymode_rope = 1
-" Auto create and open ropeproject
-let g:pymode_rope_auto_project = 1
-" Enable autoimport
-let g:pymode_rope_enable_autoimport = 1
-" Auto generate global cache
-let g:pymode_rope_autoimport_generate = 1
-let g:pymode_rope_autoimport_underlineds = 0
-let g:pymode_rope_codeassist_maxfixes = 10
-let g:pymode_rope_sorted_completions = 1
-let g:pymode_rope_extended_complete = 1
-let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-let g:pymode_rope_confirm_saving = 1
-let g:pymode_rope_global_prefix = "<C-x>p"
-let g:pymode_rope_local_prefix = "<C-c>r"
-let g:pymode_rope_vim_completion = 1
-let g:pymode_rope_guess_project = 1
-let g:pymode_rope_goto_def_newwin = 0
-let g:pymode_rope_always_show_complete_menu = 0
-" Load motion plugin
-let g:pymode_motion = 1
-" Load breakpoints plugin
-let g:pymode_breakpoint = 1
-" Key for set/unset breakpoint
-let g:pymode_breakpoint_key = '<leader>b'
-" Autoremove unused whitespaces
-let g:pymode_utils_whitespaces = 1
-" Auto fix vim python paths if virtualenv enabled
-let g:pymode_virtualenv = 1
-" Set default pymode python indent options
-let g:pymode_options_indent = 1
-" Set default pymode python fold options
-let g:pymode_options_fold = 1
-" Set default pymode python other options
-let g:pymode_options_other = 1
-" Enable pymode's custom syntax highlighting
-let g:pymode_syntax = 1
-" Enable all python highlightings
-let g:pymode_syntax_all = 1
-" Highlight "print" as function
-let g:pymode_syntax_print_as_function = 0
-" Highlight indentation errors
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-" Highlight trailing spaces
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-" Highlight string formatting
-let g:pymode_syntax_string_formatting = g:pymode_syntax_all
-" Highlight str.format syntax
-let g:pymode_syntax_string_format = g:pymode_syntax_all
-" Highlight string.Template syntax
-let g:pymode_syntax_string_templates = g:pymode_syntax_all
-" Highlight doc-tests
-let g:pymode_syntax_doctests = g:pymode_syntax_all
-" Highlight builtin objects (__doc__, self, etc)
-let g:pymode_syntax_builtin_objs = g:pymode_syntax_all
-" Highlight builtin functions
-let g:pymode_syntax_builtin_funcs = g:pymode_syntax_all
-" Highlight exceptions
-let g:pymode_syntax_highlight_exceptions = g:pymode_syntax_all
-" For fast machines
-let g:pymode_syntax_slow_sync = 0
+" Gundo
+nmap U :<C-u>GundoToggle<CR>
 
 " vim-indent-guides
 let g:indent_guides_enable_on_vim_startup=1
@@ -366,12 +261,8 @@ hi IndentGuidesEven ctermbg=darkgrey
 " QuickBUf
 let g:qb_hotkey="<Space><Space>"
 
-" Simplenote
-let g:SimplenoteUsername = "iori.onda@gmail.com"
-let g:SimplenotePassword = "msgOVE4x"
-
 "Bundle 'Pydiction'
-if has("autocmd")
+if has('autocmd')
     autocmd FileType python set complete+=k~/.vim/bundle/pydiction/complete-dict iskeyword+=.,(
 endif
 

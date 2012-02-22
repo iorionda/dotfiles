@@ -12,11 +12,10 @@ set background=dark
 hi clear
 
 if exists("syntax_on")
- syntax reset
+    syntax reset
 endif
 
 let colors_name = "darkmoor"
-
 
 " General colors
 hi Normal  ctermfg=254  ctermbg=234  cterm=none  guifg=#f6f3e8 guibg=#242424 gui=none
@@ -35,12 +34,11 @@ hi NonText  ctermfg=244  ctermbg=236  cterm=none  guifg=#808080 guibg=#303030 gu
 
 " Vim >= 7.0 specific colors
 if version >= 700
-hi CursorLine     ctermbg=236  cterm=none      guibg=#2d2d2d
-hi MatchParen ctermfg=7  ctermbg=243  cterm=bold  guifg=#f6f3e8 guibg=#857b6f gui=bold
-hi Pmenu  ctermfg=7  ctermbg=238      guifg=#f6f3e8 guibg=#444444
-hi PmenuSel  ctermfg=0  ctermbg=192      guifg=#000000 guibg=#cae682
+    hi CursorLine     ctermbg=236  cterm=none      guibg=#2d2d2d
+    hi MatchParen ctermfg=7  ctermbg=243  cterm=bold  guifg=#f6f3e8 guibg=#857b6f gui=bold
+    hi Pmenu  ctermfg=7  ctermbg=238      guifg=#f6f3e8 guibg=#444444
+    hi PmenuSel  ctermfg=0  ctermbg=192      guifg=#000000 guibg=#cae682
 endif
-
 
 " Syntax highlighting
 hi Keyword  ctermfg=111  cterm=none  guifg=#8ac6f2 gui=none
@@ -56,16 +54,15 @@ hi String  ctermfg=113  cterm=none  guifg=#95e454 gui=italic
 hi Comment  ctermfg=246  cterm=none  guifg=#99968b gui=italic
 hi Todo   ctermfg=245  cterm=none  guifg=#8f8f8f gui=italic
 
-
 " Links
 hi! link FoldColumn  Folded
 hi! link CursorColumn CursorLine
 
 " カレントウィンドウにのみ罫線を引く
 augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorcolumn nocursorline
-  autocmd WinEnter,BufRead * set cursorcolumn cursorline
+    autocmd! cch
+    autocmd WinLeave * set nocursorcolumn nocursorline
+    autocmd WinEnter,BufRead * set cursorcolumn cursorline
 augroup END
 
 highlight CursorLine ctermbg=236 guibg=#2d2d2d

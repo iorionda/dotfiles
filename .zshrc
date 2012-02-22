@@ -370,7 +370,7 @@ function update_vcs_info_msg() {
 add-zsh-hook precmd update_vcs_info_msg
 
 local prompt_smiley="%(?,%{%F{green}%}☺,%{%F{red}%}☹%{%f%})"
-local prompt_self="%B%{%F{green}%}(%n@%m)%b%{%f%}"
+local prompt_self="%B%{%F{green}%}[%n@%m]%b%{%f%}"
 local prompt_status="%(?,%{%F{green}%}(%?,%{%F{red}%}(%?))%{%f%}"
 local prompt_path="%{%F{cyan}%}[%(5~,%-2~/.../%2~,%~)]%{%f%}"
 local prompt_date="%{%F{blue}%}[%D{%Y-%m-%d %H:%M}]%{%f%}"
@@ -386,7 +386,8 @@ case ${UID} in
         RPROMPT
         ;;
     *)
-        PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
+#        PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
+        PROMPT="${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
         PROMPT2=' >>>'
         SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
         RPROMPT="${prompt_vcs_info}"
@@ -468,7 +469,7 @@ if [ "$TERM" = "screen-256color-bce" ];then
     alias man=man_tmux
 fi
 
-alias solr_start="cd /usr/local/solr/example/ && java -Dsolr.solr.home=multicore -jar start.jar&"
+alias solr_start="cd /usr/local/solr/example/ && nohup java -Dsolr.solr.home=multicore -jar start.jar&"
 ################################################################################
 # 起動時
 ################################################################################

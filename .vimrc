@@ -250,11 +250,11 @@ Bundle 'taglist.vim'
 Bundle 'snipMate'
 
 "smartchr
-inoremap <buffer> <expr> = smartchr#loop(' = ',  ' == ',  '=')
-inoremap <buffer> <expr> <S-=> smartchr#loop(' + ',  '+')
-inoremap <buffer> <expr> - smartchr#loop(' - ',  '-')
-inoremap <buffer> <expr> ,  smartchr#loop(',  ',  ', ')
-inoremap <buffer> <expr> . smartchr#loop('.',  '<%=  %>',  '<%  %>')
+inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
+inoremap <buffer> <expr> <S-=> smartchr#loop(' + ', '+')
+inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
+inoremap <buffer> <expr> ,  smartchr#loop(', ', ',')
+inoremap <buffer> <expr> . smartchr#loop('.', '<%=  %>', '<%  %>')
 
 " Gundo
 nmap U :<C-u>GundoToggle<CR>

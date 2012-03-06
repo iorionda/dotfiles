@@ -1,7 +1,7 @@
 " -*- coding:utf-8 -*-
 " 基本設定
-set guifont=Ricty:h18
-set guifontwide=Ricty:h18
+set guifont=Ricty:h11
+set guifontwide=Ricty:h11
 
 " 色の設定
 
@@ -230,7 +230,10 @@ Bundle 'thinca/vim-quickrun'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kana/vim-fakeclip'
+Bundle 'kana/vim-smartchr'
 Bundle 'mitechie/pyflakes-pathogen'
+Bundle 'lambdalisue/vim-python-virtualenv'
+Bundle 'lambdalisue/vim-django-support'
 
 " vim-scripts repos
 Bundle 'Gundo'
@@ -245,6 +248,13 @@ Bundle 'pep8'
 Bundle 'taglist-plus'
 Bundle 'taglist.vim'
 Bundle 'snipMate'
+
+"smartchr
+inoremap <buffer> <expr> = smartchr#loop(' = ',  ' == ',  '=')
+inoremap <buffer> <expr> <S-=> smartchr#loop(' + ',  '+')
+inoremap <buffer> <expr> - smartchr#loop(' - ',  '-')
+inoremap <buffer> <expr> ,  smartchr#loop(',  ',  ', ')
+inoremap <buffer> <expr> . smartchr#loop('.',  '<%=  %>',  '<%  %>')
 
 " Gundo
 nmap U :<C-u>GundoToggle<CR>

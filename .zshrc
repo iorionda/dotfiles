@@ -246,7 +246,6 @@ setopt long_list_jobs
 ### 自動的に消費時間の統計情報を表示する
 export PREPORTTIME=3
 
-
 ################################################################################
 # エイリアスの設定
 ################################################################################
@@ -386,7 +385,6 @@ case ${UID} in
         RPROMPT
         ;;
     *)
-#        PROMPT="${prompt_history}-${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
         PROMPT="${prompt_self}-${prompt_path}-${prompt_smiley} ${prompt_status}-${prompt_date} %# "
         PROMPT2=' >>>'
         SPROMPT="${Red}%r is correct? [n, y, a, e]:${Default}"
@@ -409,22 +407,23 @@ fi
 setopt nonomatch
 
 ################################################################################
+# pythonbrew
+################################################################################
+if [ -s "$HOME/.pythonbrew/etc/bashrc" ]; then
+    source "$HOME/.pythonbrew/etc/bashrc"
+
+    # exec command like virtualenvwrapper
+    alias mkvirtualenv="pythonbrew venv create"
+    alias rmvirtualenv="pythonbrew venv delete"
+    alias workon="pythonbrew venv use"
+fi
+
+################################################################################
 # GEOS
 ################################################################################
 export GEOS_LIBRARY_PATH='/usr/local/lib/libgeos_c.so'
 export GEOS_DIR='/usr/local'
 
-################################################################################
-# RVM
-################################################################################
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
-# show rvm prompt like "1.9.2@gemset_name"
-#function rvm_prompt {
-#    result=`rvm-prompt v g 2> /dev/null`
-#    if [ "$result" ] ; then
-#        echo "[$result]"
-#    fi
-#}
 ################################################################################
 # rbenv
 ################################################################################
@@ -445,8 +444,6 @@ export GISTY_DIR="$HOME/dev/gists"
 # incr
 ################################################################################
 # source ~/.zsh/plugins/incr*.zsh
-
-# # echo Now zsh version $ZSH_VERSION start.
 
 ################################################################################
 # tmux
@@ -473,7 +470,8 @@ alias solr_start="cd /usr/local/solr/example/ && nohup java -Dsolr.solr.home=mul
 ################################################################################
 # 起動時
 ################################################################################
-# if [ ! "$WINDOW" ]; then
-#    exec screen -S main -xRR
-# fi
+if [ -e $HOME/local/etc/profile.d/autojump.zsh ]; then
+        source $HOME/local/etc/profile.d/autojump.zsh
+    fi
+fpath=($fpath $HOME/local/functions(N))
 

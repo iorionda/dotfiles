@@ -75,6 +75,16 @@ bindkey "^B" backward-word
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
+# 素早くvvを入力した時に最後に実行したvimを実行する
+bindkey -s "vv" "!vi\n"
+
+# 素早く:qを入力した時に端末を終了する
+bindkey -s ':q' "^A^Kexit\n"
+
+# 素早くps auxw | grepを超かっこよく入力する方法A
+# bindkey -s P 'ps auxw'
+# bindkey -s G '| grep '
+
 ################################################################################
 # rlwrap
 ################################################################################
@@ -260,7 +270,7 @@ case ${OSTYPE} in
         else
             alias la="ls -lhAFG"
         fi
-        alias ps="ps -fU$(whoami)"
+#        alias ps="ps -fU$(whoami)"
         ;;
     SunOS)
         if [ -x "`which gls`" ]; then
@@ -269,11 +279,11 @@ case ${OSTYPE} in
         else
             alias la="ls -lhAF"
         fi
-        alias ps="ps -fl -u$(/usr/xpg4/bin/id -un)"
+#        alias ps="ps -fl -u$(/usr/xpg4/bin/id -un)"
         ;;
     *)
         alias la="ls -lhAF --color=auto"
-        alias ps="psfU$(whoami) --forest"
+#        alias ps="psfU$(whoami) --forest"
         ;;
 esac
 
@@ -443,7 +453,7 @@ export GISTY_DIR="$HOME/dev/gists"
 ################################################################################
 # incr
 ################################################################################
-# source ~/.zsh/plugins/incr*.zsh
+source ~/.zsh.d/plugins/incr*.zsh
 
 ################################################################################
 # tmux
@@ -466,12 +476,12 @@ if [ "$TERM" = "screen-256color-bce" ];then
     alias man=man_tmux
 fi
 
-alias solr_start="cd /usr/local/solr/example/ && nohup java -Dsolr.solr.home=multicore -jar start.jar&"
 ################################################################################
 # 起動時
 ################################################################################
 if [ -e $HOME/local/etc/profile.d/autojump.zsh ]; then
         source $HOME/local/etc/profile.d/autojump.zsh
-    fi
+fi
 fpath=($fpath $HOME/local/functions(N))
 
+source /Users/iori/local/src/zaw/zaw.zsh

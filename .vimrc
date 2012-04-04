@@ -4,7 +4,6 @@ set guifont=Ricty:h11
 set guifontwide=Ricty:h11
 
 " 色の設定
-
 if &term =~ "screen-256color-bce"
     set t_Co=256
     syntax on
@@ -234,10 +233,10 @@ Bundle 'kana/vim-smartchr'
 Bundle 'mitechie/pyflakes-pathogen'
 Bundle 'lambdalisue/vim-python-virtualenv'
 Bundle 'lambdalisue/vim-django-support'
+Bundle 'mattn/vdbi-vim'
 
 " vim-scripts repos
 Bundle 'Gundo'
-Bundle 'QuickBuf'
 Bundle 'TwitVim'
 Bundle 'scratch'
 Bundle 'rest.vim'
@@ -252,9 +251,7 @@ Bundle 'snipMate'
 "smartchr
 inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
 inoremap <buffer> <expr> <S-=> smartchr#loop(' + ', '+')
-inoremap <buffer> <expr> - smartchr#loop(' - ', '-')
 inoremap <buffer> <expr> ,  smartchr#loop(', ', ',')
-inoremap <buffer> <expr> . smartchr#loop('.', '<%=  %>', '<%  %>')
 
 " Gundo
 nmap U :<C-u>GundoToggle<CR>
@@ -268,10 +265,7 @@ let g:indent_guides_color_change_percent = 10 "色の変化の幅（？）。パ
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
-" QuickBUf
-let g:qb_hotkey="<Space><Space>"
-
-"Bundle 'Pydiction'
+Bundle 'Pydiction'
 if has('autocmd')
     autocmd FileType python set complete+=k~/.vim/bundle/pydiction/complete-dict iskeyword+=.,(
 endif

@@ -1,26 +1,36 @@
 " -*- coding:utf-8 -*-
 " 基本設定
-set guifont=Ricty:h11
-set guifontwide=Ricty:h11
+set notitle
+
+set guifont=Ricty_for_Powerline:h12
+set guifontwide=Ricty:h12
+let g:Powerline_symbols = 'fancy'
 
 " 色の設定
-if &term =~ "screen-256color-bce"
+colorscheme wombat256mod
+
+" ターミナルタイプによるカラー設定
+if &term =~ "xterm-256color" || "screen-256color"
+" 256色
     set t_Co=256
-    syntax on
-    colorscheme wombat256mod
-else
-    syntax on
-    colorscheme wombat256mod
+    set t_Sf=<1b>[3%dm
+    set t_Sb=<1b>[4%dm
+elseif &term =~ "xterm-debian" || &term =~ "xterm-xfree86"
+    set t_Co=16
+    set t_Sf=<1b>[3%dm
+    set t_Sb=<1b>[4%dm
+elseif &term =~ "xterm-color"
+    set t_Co=8
+    set t_Sf=<1b>[3%dm
+    set t_Sb=<1b>[4%dm
 endif
 
-" 起動時にフルスクリーンにする
-if has('gui_macvim')
-    set fuoptions=maxvert,maxhorz
-    au GUIEnter * set fullscreen
-endif
+syntax enable
+hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
 
 let mapleader="," "キーマップリーダー
 set encoding=utf-8
+set fileencodings=utf-8,cp-932,euc-jp
 set scrolloff=5
 set textwidth=0
 set nobackup
@@ -75,14 +85,16 @@ if has('autocmd')
     autocmd FileType python setl autoindent nosmartindent cindent
     autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
-    autocmd FileType python setl omnifunc=pysmell#Complete
+    autocmd FileType python set omnifunc=pythoncomplete#Complete
     autocmd FileType python setl textwidth=80 colorcolumn=80
     autocmd FileType python setl foldmethod=indent foldlevel=99
 endif
+
 " マルチバイト文字を入力している最中にカーソルの色を変更する
 if has('multi_byte_ime') || ('xim')
     highlight CursorIM guibg=Purple guifg=NONE
 endif
+
 " □とか○の文字があってもカーソル位置がずれないようにする
 if exists('&ambiwidth')
     set ambiwidth=double
@@ -90,6 +102,7 @@ endif
 
 " カーソル行をハイライト
 set cursorline
+
 " カレントウィンドウにのみ罫線を引く
 if has('autocmd')
     augroup cch
@@ -110,6 +123,7 @@ set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set display=uhex
 set cursorline
 set hlsearch
+
 " Esc連打でハイライトを消す
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
@@ -156,10 +170,13 @@ set tags+=tags
 set noimdisable
 set iminsert=0 imsearch=0
 set noimcmdline
-inoremap <Silent> <ESC> <ESC>set iminsert=0<CR>
+inoremap <Silent> <ESC> <ESC>:set iminsert=0<CR>
+" inoremap <Silent> <ESC> <ESC>set iminsert=0<CR>
 
+" 行末の時に迷惑
 " コンマの後に空白を追加
-inoremap , ,<Space>
+" inoremap , ,<Space>
+
 " XMLの閉じタグを挿入する
 augroup MyXML
     autocmd!
@@ -216,60 +233,92 @@ if has('vim_starting')
     call vundle#rc()
 endif
 
+" Execute python script C-P
+function! s:ExecPy()
+    exe "!" . &ft . " %"
+endfunction
+
+command! Exec call <SID>ExecPy()
+autocmd FileType python map <silent> <C-P> :call <SID>ExecPy()<CR>
+
+" NERDTree
+nmap <Leader>nn :NERDTreeToggle<CR>
+
+"powerline
+let g:Powerline_symbols = 'fancy'
+
+" PEP8
+map mp :!pep8 %<CR>
+
+
+"インデントの色
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
+
 " original repos on github
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimfiler'
+Bundle 'kana/vim-fakeclip'
+Bundle 'kana/vim-smartchr'
 Bundle 'thinca/vim-ref'
 Bundle 'gmarik/vundle'
 Bundle 'mattn/mkdpreview-vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'h1mesuke/vim-alignta'
 Bundle 'thinca/vim-quickrun'
+Bundle 'thinca/vim-ref'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'kana/vim-fakeclip'
-Bundle 'kana/vim-smartchr'
 Bundle 'mitechie/pyflakes-pathogen'
-Bundle 'lambdalisue/vim-python-virtualenv'
-Bundle 'lambdalisue/vim-django-support'
 Bundle 'mattn/vdbi-vim'
+Bundle 'reinh/vim-makegreen'
+Bundle 'lambdalisue/nose.vim'
+Bundle 'sontek/rope-vim'
+
+" vim-indent-guides
+Bundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size = 4 "インデントの色付け幅
+let g:indent_guides_auto_colors = 0 "autoにするとよく見えなかったので自動的に色付けするのはストップ
+let g:indent_guides_color_change_percent = 10 "色の変化の幅（？）。パーセンテージらしい
+"
+"memolist
+Bundle 'glidenote/memolist.vim'
+map <Leader>mn  :MemoNew<CR>
+map <Leader>ml  :MemoList<CR>
+map <Leader>mg  :MemoGrep<CR>
+"
+Bundle 'kien/ctrlp.vim'
+Bundle 'mattn/benchvimrc-vim'
+
+"numbers.vim
+Bundle 'myusuf3/numbers.vim'
+nnoremap <F3> :NumbersToggle<CR>
+
+Bundle 'kien/ctrlp.vim'
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:working_path_mode = 'rc'
+let g:custom_ignore = {
+    \ 'dir': '¥.git¥|vendor/bundle¥|tmp',
+    \ 'file': '¥.jpg$¥|¥.jpeg$¥|¥.png$¥|¥.gif$¥|¥.log'
+    \ }
 
 " vim-scripts repos
-Bundle 'Gundo'
 Bundle 'TwitVim'
 Bundle 'scratch'
 Bundle 'rest.vim'
 Bundle 'occur.vim'
 Bundle 'Source-Explorer-srcexpl.vim'
 Bundle 'trinity.vim'
-Bundle 'pep8'
 Bundle 'taglist-plus'
 Bundle 'taglist.vim'
 Bundle 'snipMate'
 
-"smartchr
-inoremap <buffer> <expr> = smartchr#loop(' = ', ' == ', '=')
-inoremap <buffer> <expr> <S-=> smartchr#loop(' + ', '+')
-inoremap <buffer> <expr> ,  smartchr#loop(', ', ',')
-
 " Gundo
+Bundle 'Gundo'
 nmap U :<C-u>GundoToggle<CR>
 
-" vim-indent-guides
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size = 4 "インデントの色付け幅
-let g:indent_guides_auto_colors = 0 "autoにするとよく見えなかったので自動的に色付けするのはストップ
-let g:indent_guides_color_change_percent = 10 "色の変化の幅（？）。パーセンテージらしい
-"インデントの色
-hi IndentGuidesOdd  ctermbg=black
-hi IndentGuidesEven ctermbg=darkgrey
-
-Bundle 'Pydiction'
-if has('autocmd')
-    autocmd FileType python set complete+=k~/.vim/bundle/pydiction/complete-dict iskeyword+=.,(
-endif
-
+Bundle 'sudo.vim'
 " non github repos
-filetype plugin indent on
 
+filetype plugin indent on

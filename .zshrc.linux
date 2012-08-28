@@ -1,3 +1,8 @@
+# TERMの設定
+if [ "$TERM" ]; then
+    export TERM=xterm
+fi
+
 # Terminal Colorの設定
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad

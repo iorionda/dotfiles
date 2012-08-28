@@ -19,17 +19,23 @@ path=(
     /usr/local/share/python(N-/)
     /sbin(N-/)
     /usr/sbin(N-/)
+    /opt/local/bin(N-/)
     )
 
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
-sudo_path=({,/usr}/sbin(N-/))
+sudo_path=(
+    /usr/sbin(N-/)
+    /opt/local/sbin(N-/)
+    )
 
 typeset -U man_path
 man_path=(
     $HOME/local/share/man(N-/)
     /usr/local/share/man(N-/)
     /usr/share/man(N-/)
+    /opt/local/share/man(N-/)
+    /opt/local/man(N-/)
     )
 
 typeset -xT RUBYLIB ruby_path
@@ -94,12 +100,6 @@ export GEOS_LIBRARY_PATH='/usr/local/lib/libgeos_c.so'
 export GEOS_DIR='/usr/local'
 
 ################################################################################
-# rbenv
-################################################################################
-path=($HOME/.rbenv/bin(N) $path)
-eval "$(rbenv init -)"
-
-################################################################################
 # node.js
 ################################################################################
 export NODE_PATH=/usr/local/lib/node:$NODE_PATH
@@ -128,5 +128,5 @@ pbcopy-buffer(){
             zle -M "pbcopy: ${BUFFER}"
         }
 
-        zle -N pbcopy-buffer
-        bindkey '^x^p' pbcopy-buffer
+zle -N pbcopy-buffer
+bindkey '^x^p' pbcopy-buffer

@@ -13,3 +13,8 @@ set guioptions-=T
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black    guibg=black    ctermbg=1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey guibg=darkgrey ctermbg=2
 
+" 起動時にフルスクリーンにする
+" if has('gui_macvim')
+"    set fuoptions=maxvert,maxhorz
+"    au GUIEnter * set fullscreen
+" endif

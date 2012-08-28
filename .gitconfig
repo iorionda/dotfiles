@@ -1,0 +1,27 @@
+[user]
+    name = Iori ONDA
+    email = iori.onda@me.com
+
+[github]
+    token = 410f2a3bb3ba59f36ffa90e81ef07715
+    user = iori-o
+
+[color]
+    ui = true
+    diff = true
+    status = auto
+    branch = auto
+
+[tig "bind"]
+    generic = g move-first-line
+    generic = G move-last-line
+
+[alias]
+    graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+    st = status
+    df = diff
+    co = checkout
+    last = show -1 HEAD --stat p
+    dfc = diff --color-words
+
+

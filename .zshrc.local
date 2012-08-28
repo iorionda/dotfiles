@@ -6,7 +6,7 @@
 ## zaw
 #
 zsh-history() {
-    source ~/dotfiles/.zsh.d/plugins/zaw/zaw.zsh
+    source ~/dotfiles/.zsh/plugins/zaw/zaw.zsh
     zaw zsh-src-history
 }
 zle -N zsh-history
@@ -19,11 +19,11 @@ alias weechat='weechat-curses'
 #
 typeset -U fpath
 fpath=(
-    $HOME/.zsh.d/*(/N)
+    $HOME/.zsh/*(/N)
     $fpath
 )
 autoload -U colors; colors
-autoload -U $(echo ~/.zsh.d/functions/*(:t))
+autoload -U $(echo ~/.zsh/functions/*(:t))
 
 # MySQLの接続元ホストのユーザ名($USER)によって色分けします。(自分は使ってません)
 typeset -A mysql_prompt_style_client_user

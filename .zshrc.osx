@@ -113,8 +113,8 @@ export GISTY_ACCESS_TOKEN=4abc896373018be644eb770af0e3674033cb5837
 ################################################################################
 # source auto-fu.zsh
 ################################################################################
-if [ -f ~/.zsh.d/functions/auto-fu.zsh ]; then
-    source ~/.zsh/auto-fu.zsh
+if [ -f ~/.zsh/functions/auto-fu.zsh ]; then
+    source ~/.zsh/functions/auto-fu.zsh
     function zle-line-init () { auto-fu-init }
     zle -N zle-line-init
     zstyle ':completion:*' completer _oldlist _complete

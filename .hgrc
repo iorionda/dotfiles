@@ -1,5 +1,10 @@
 [ui]
-
 username = Iori ONDA <iori.onda@me.com>
-editor  = vim
+editor = vim
+
+[web]
+cacerts = /etc/hg-dummy-cert.pem
+
+[extensions]
+flow = /Users/iori/local/src/hgflow.py
 

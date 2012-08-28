@@ -15,3 +15,6 @@ set expand-tilde on
 # history補完をC-n, C-pに割り当てる
 "\C-p": history-search-backword
 "\C-n": history-search-forword
+
+# コンソールの横幅をあふれたとき自動スクロール
+set horizontal-scroll-mode on

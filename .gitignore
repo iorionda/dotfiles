@@ -12,9 +12,10 @@
 !/.screenrc
 !/.source-highlight
 !/.tmux.conf
-!/.vim
-!/.vimperatorrc
 !/.vimrc
+!/.vim
+!/.vim/bundle/vundle/
+!/.vimperatorrc
 !/.zsh
 !/.zshrc
 !/.zshrc.alias

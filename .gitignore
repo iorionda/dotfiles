@@ -24,6 +24,7 @@
 !/.zshrc.local
 !/.zshrc.osx
 !/.zshrc.percol
+!/.percol.d
 README
 link.sh
 

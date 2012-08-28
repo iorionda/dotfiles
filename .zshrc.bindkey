@@ -1,0 +1,20 @@
+# キーバインドをEmacsに
+bindkey -e
+
+# ctrl-W,  ctrl-b で単語移動
+bindkey "^W" forward-word
+bindkey "^B" backward-word
+
+# 素早くvvを入力した時に最後に実行したvimを実行する
+bindkey -s "vv" "!vi\n"
+
+# # 素早く:qを入力した時に端末を終了する
+bindkey -s ':q' "^A^Kexit\n"
+
+# zsh 4.3.10 以降じゃないと動かないと思う
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+# 展開する前に補完候補を表示する(Ctrl-iで補完するようにする)
+bindkey "^i" menu-complete
+

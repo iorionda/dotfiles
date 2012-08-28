@@ -1,0 +1,132 @@
+################################################################################
+# Terminal Colorの設定
+################################################################################
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+################################################################################
+# path
+################################################################################
+typeset -U path
+path=(
+    /bin(N-/)
+    $HOME/local/bin(N-/)
+    /usr/local/bin(N-/)
+    /usr/local/sbin(N-/)
+    /usr/bin(N-/)
+    /usr/X11/bin(N-/)
+    /usr/local/share/python(N-/)
+    /sbin(N-/)
+    /usr/sbin(N-/)
+    )
+
+typeset -xT SUDO_PATH sudo_path
+typeset -U sudo_path
+sudo_path=({,/usr}/sbin(N-/))
+
+typeset -U man_path
+man_path=(
+    $HOME/local/share/man(N-/)
+    /usr/local/share/man(N-/)
+    /usr/share/man(N-/)
+    )
+
+typeset -xT RUBYLIB ruby_path
+typeset -U ruby_path
+ruby_path=(./lib)
+
+typeset -xT PYTHONPATH python_path
+typeset -U python_path
+python_path=(
+    ./lib(N-/)
+    /usr/local/Cellar/python/2.7.2/lib/python2.7/site-packages/pyglet/(N-/)
+)
+
+################################################################################
+# Java
+################################################################################
+export JAVA_HOME=/Library/Java/Home
+export PATH=$JAVA_HOME/bin:$PATH
+export _JAVA_OPTINOS="-Dfile.encoding=UTF-8"
+
+################################################################################
+# alias
+################################################################################
+export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+alias gvim='env LANG=ja_JP.UTF-8 open /Applications/MacVim.app "$@"'
+alias view='vim -R'
+alias reper='sudo diskutil repairPermissions /'
+
+################################################################################
+# Virtualenv
+################################################################################
+### virtualenvのルートディレクトリにする場所
+WORKON_HOME=${HOME}/.virtualenvs
+
+### パッケージをvirtualenv環境下にインストール
+export PIP_RESPECT_VIRTUALENV=true
+### virtualwrapperの読み込み
+if [ -f /usr/local/share/python/virtualenvwrapper.sh ]; then
+    source /usr/local/share/python/virtualenvwrapper.sh
+fi
+setopt nonomatch
+
+################################################################################
+# pythonbrew
+################################################################################
+# 終わコンになったので
+# if [ -s "$HOME/.pythonbrew/etc/bashrc" ]; then
+#     source "$HOME/.pythonbrew/etc/bashrc"
+#
+#     # exec command like virtualenvwrapper
+#     alias mkvirtualenv="pythonbrew venv create"
+#     alias rmvirtualenv="pythonbrew venv delete"
+#     alias workon="pythonbrew venv use"
+# fi
+
+################################################################################
+# GEOS
+################################################################################
+export GEOS_LIBRARY_PATH='/usr/local/lib/libgeos_c.so'
+export GEOS_DIR='/usr/local'
+
+################################################################################
+# rbenv
+################################################################################
+path=($HOME/.rbenv/bin(N) $path)
+eval "$(rbenv init -)"
+
+################################################################################
+# node.js
+################################################################################
+export NODE_PATH=/usr/local/lib/node:$NODE_PATH
+
+################################################################################
+# Gisty
+################################################################################
+export GISTY_DIR="$HOME/dev/gists"
+export GISTY_ACCESS_TOKEN=4abc896373018be644eb770af0e3674033cb5837
+
+################################################################################
+# source auto-fu.zsh
+################################################################################
+if [ -f ~/.zsh.d/functions/auto-fu.zsh ]; then
+    source ~/.zsh/auto-fu.zsh
+    function zle-line-init () { auto-fu-init }
+    zle -N zle-line-init
+    zstyle ':completion:*' completer _oldlist _complete
+fi
+
+## mac の zsh で、表示されてるコマンドラインを手早くクリップボードにコピーしたい
+# http://d.hatena.ne.jp/hiboma/20120315/1331821643
+#
+pbcopy-buffer(){
+        print -rn $BUFFER | pbcopy
+            zle -M "pbcopy: ${BUFFER}"
+        }
+
+        zle -N pbcopy-buffer
+        bindkey '^x^p' pbcopy-buffer

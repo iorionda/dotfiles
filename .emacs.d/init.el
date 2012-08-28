@@ -7,7 +7,7 @@
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, 
+;; the Free Software Foundation, either version 3 of the License,
 ;; any later version.
 
 ;; This program is distributed in the hope that it will be useful,
@@ -29,12 +29,12 @@
       user-mail-address "iori.onda@me.com")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; load-path 
+;; load-path
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun add-to-load-path(&rest paths)
   (mapc '(lambda (path)
-	   (add-to-list 'load-path path))
-	(mapcar 'expand-file-name paths)))
+       (add-to-list 'load-path path))
+    (mapcar 'expand-file-name paths)))
 
 (add-to-load-path
  "~/.emacs.d"
@@ -84,17 +84,17 @@
 (defun grep-default-command ()
   (if current-prefix-arg
       (let ((grep-command-before-target
-	     (concat grep-command-before-query
-		     (shell-quote-argument (grep-tag-default)))))
-	(cons (if buffer-file-name
-		  (concat grep-command-before-target
-			  " *."
-			  (file-name-extention buffer-file-name))
-		(concat grep-command-before-target " ."))
-	      (+ (length grep-command-before-target) 1 )))
+         (concat grep-command-before-query
+             (shell-quote-argument (grep-tag-default)))))
+    (cons (if buffer-file-name
+          (concat grep-command-before-target
+              " *."
+              (file-name-extention buffer-file-name))
+        (concat grep-command-before-target " ."))
+          (+ (length grep-command-before-target) 1 )))
     (car grep-command)))
 (setq grep-command (cons (concat grep-command-before-query " .")
-			 (+ (length grep-command-before-query) 1)))
+             (+ (length grep-command-before-query) 1)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; display image
@@ -109,7 +109,7 @@
 (setq show-paren-style 'mixed)
 
 ;; blank
-(when 
+(when
     (boundp 'show-trailling-whitespace)
   (setq-default show-trailling-whitespace t))
 
@@ -201,7 +201,7 @@
       (scroll-bar-mode -1)
       (setq frame-title-format (format "emacs@%s : %%f" (system-name)))
       ;; font
-      ;;システム依存を排除するために一旦デフォルトフォントセットを上書き 
+      ;;システム依存を排除するために一旦デフォルトフォントセットを上書き
       (set-face-attribute  'default nil :family "Ricty"  :height 160)
       (set-frame-font "ricty-13.5")
       (add-to-list 'default-frame-alist '(font . "ricty-13.5"))
@@ -240,7 +240,7 @@
 (setq recent-exclude '("/TAGS$/" "/var/tmp"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; *scratch* buffer の自動復旧 
+;; *scratch* buffer の自動復旧
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun my-make-scratch (&optional arg)
   (interactive)
@@ -257,14 +257,14 @@
           ((= arg 1) (message "another *scratch* is created")))))
 
 (add-hook 'kill-buffer-query-functions
-	  ;; *scratch* バッファで kill-buffer したら内容を消去するだけにする
+      ;; *scratch* バッファで kill-buffer したら内容を消去するだけにする
           (lambda ()
             (if (string= "*scratch*" (buffer-name))
                 (progn (my-make-scratch 0) nil)
               t)))
 
 (add-hook 'after-save-hook
-	  ;; *scratch* バッファの内容を保存したら *scratch* バッファを新しく作る
+      ;; *scratch* バッファの内容を保存したら *scratch* バッファを新しく作る
          (lambda ()
             (unless (member (get-buffer "*scratch*") (buffer-list))
               (my-make-scratch 1))))

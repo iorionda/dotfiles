@@ -7,7 +7,8 @@ set guifontwide=Ricty:h12
 let g:Powerline_symbols = 'fancy'
 
 " 色の設定
-colorscheme wombat256mod
+"colorscheme wombat256mod
+colorscheme jellybeans
 
 " ターミナルタイプによるカラー設定
 if &term =~ "xterm-256color" || "screen-256color"
@@ -29,6 +30,7 @@ syntax enable
 hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
 
 let mapleader="," "キーマップリーダー
+
 set encoding=utf-8
 set fileencodings=utf-8,cp-932,euc-jp
 set scrolloff=5
@@ -177,6 +179,9 @@ inoremap <Silent> <ESC> <ESC>:set iminsert=0<CR>
 " コンマの後に空白を追加
 " inoremap , ,<Space>
 
+"<Leader><Leader>で変更があれば保存
+noremap <Leader><Leader> :up<CR>
+
 " XMLの閉じタグを挿入する
 augroup MyXML
     autocmd!
@@ -271,9 +276,13 @@ Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'mitechie/pyflakes-pathogen'
 Bundle 'mattn/vdbi-vim'
+Bundle 'ocim/htmljinja.vim'
 Bundle 'reinh/vim-makegreen'
 Bundle 'lambdalisue/nose.vim'
 Bundle 'sontek/rope-vim'
+Bundle 'scrooloose/nerdcommenter'
+" Nerd_Commenter の基本設定
+let NERDSpaceDelims = 1
 
 " vim-indent-guides
 Bundle 'nathanaelkane/vim-indent-guides'

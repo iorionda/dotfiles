@@ -23,5 +23,3 @@
     co = checkout
     last = show -1 HEAD --stat p
     dfc = diff --color-words
-
-

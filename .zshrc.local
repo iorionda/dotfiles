@@ -68,3 +68,25 @@ mysql_prompt_style_server_host=(
 mysql_prompt='${style_client_host}${USER}@${HOST}${fg_bold[white]} -> '
 mysql_prompt=$mysql_prompt'${style_server_user}\u${reset_color}${fg_bold[white]}@${style_server_host}\h${reset_color}${fg_bold[white]}:${fg[magenta]}\d ${fg_bold[white]}\v\n'
 mysql_prompt=$mysql_prompt'${fg_bold[white]}${bg_level}mysql${reset_color}> '
+
+## percol
+#
+function percol_select_history() {
+  local tac_cmd
+  which gtac &> /dev/null && tac_cmd=gtac || tac_cmd=tac
+  BUFFER=$($tac_cmd ~/.zsh_history | sed 's/^: [0-9]*:[0-9]*;//' \
+    | percol --match-method regex --query "$LBUFFER")
+  CURSOR=$#BUFFER         # move cursor
+  zle -R -c               # refresh
+}
+zle -N percol_select_history
+bindkey '^R' percol_select_history
+
+function percol_select_dirstack_entry() {
+    BUFFER=$(dirs -pl | percol --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle -R -c
+}
+zle -N percol_select_dirstack_entry
+bindkey '^K' percol_select_dirstack_entry
+

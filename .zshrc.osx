@@ -10,6 +10,7 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 ################################################################################
 typeset -U path
 path=(
+    /opt/local/bin(N-/)
     /bin(N-/)
     $HOME/local/bin(N-/)
     /usr/local/bin(N-/)
@@ -19,23 +20,22 @@ path=(
     /usr/local/share/python(N-/)
     /sbin(N-/)
     /usr/sbin(N-/)
-    /opt/local/bin(N-/)
     )
 
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=(
-    /usr/sbin(N-/)
     /opt/local/sbin(N-/)
+    /usr/sbin(N-/)
     )
 
 typeset -U man_path
 man_path=(
+    /opt/local/share/man(N-/)
+    /opt/local/man(N-/)
     $HOME/local/share/man(N-/)
     /usr/local/share/man(N-/)
     /usr/share/man(N-/)
-    /opt/local/share/man(N-/)
-    /opt/local/man(N-/)
     )
 
 typeset -xT RUBYLIB ruby_path

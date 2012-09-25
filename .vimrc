@@ -2,12 +2,11 @@
 " 基本設定
 set notitle
 
-set guifont=Ricty_for_Powerline:h12
-set guifontwide=Ricty:h12
+set guifont=SourceCodePro-Regular-Powerline:h13
+set guifontwide=SourceCodePro-Regular-Powerline:h13
 let g:Powerline_symbols = 'fancy'
 
 " 色の設定
-"colorscheme wombat256mod
 colorscheme jellybeans
 
 " ターミナルタイプによるカラー設定
@@ -102,9 +101,6 @@ if exists('&ambiwidth')
     set ambiwidth=double
 endif
 
-" カーソル行をハイライト
-set cursorline
-
 " カレントウィンドウにのみ罫線を引く
 if has('autocmd')
     augroup cch
@@ -113,10 +109,6 @@ if has('autocmd')
         autocmd WinEnter,BufRead * set cursorline
     augroup END
 endif
-
-hi clear CursorLine
-hi CursorLine gui=underline
-highlight CursorLine ctermbg=black guibg=black
 
 set showmatch
 set number
@@ -254,7 +246,6 @@ let g:Powerline_symbols = 'fancy'
 
 " PEP8
 map mp :!pep8 %<CR>
-
 
 "インデントの色
 hi IndentGuidesOdd  ctermbg=black

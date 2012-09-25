@@ -74,7 +74,9 @@ export MACPORTS_PREFIX=/opt/local
 export VIRTUALENV_BIN=$MACPORTS_PREFIX/Library/Frameworks/Python.framework/Versions/$PYTHON_VER
 export PYTHONPATH=$MACPORTS_PREFIX/lib/python$PYTHON_VER/:$PYTHONPATH
 export WORKON_HOME=$HOME/.virtualenvs
-. $VIRTUALENV_BIN/bin/virtualenvwrapper.sh
+if [ -x $VIRTUALENV_BIN ]; then
+    . $VIRTUALENV_BIN/bin/virtualenvwrapper.sh
+fi
 
 mkvenv () {
   base_python=`which python$1`

@@ -271,7 +271,9 @@ Bundle 'ocim/htmljinja.vim'
 Bundle 'reinh/vim-makegreen'
 Bundle 'lambdalisue/nose.vim'
 Bundle 'sontek/rope-vim'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
+
 " Nerd_Commenter の基本設定
 let NERDSpaceDelims = 1
 

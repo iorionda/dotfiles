@@ -70,7 +70,9 @@ mysql_prompt=$mysql_prompt'${style_server_user}\u${reset_color}${fg_bold[white]}
 mysql_prompt=$mysql_prompt'${fg_bold[white]}${bg_level}mysql${reset_color}> '
 
 ## percol
-#
+# git clone git://github.com/mooz/percol.git
+# cd percol
+# python setup.py install
 function percol_select_history() {
   local tac_cmd
   which gtac &> /dev/null && tac_cmd=gtac || tac_cmd=tac
@@ -90,3 +92,5 @@ function percol_select_dirstack_entry() {
 zle -N percol_select_dirstack_entry
 bindkey '^K' percol_select_dirstack_entry
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

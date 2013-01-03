@@ -52,12 +52,10 @@ if [ -x /usr/local/bin/rlwrap ]; then
     alias mysql='/usr/local/bin/rlwrap -a -pRED mysql'
 fi
 
-
 ################################################################################
 # rm
 ################################################################################
 alias rr="command rm -rf"
-
 
 ################################################################################
 # file
@@ -71,39 +69,6 @@ alias mv="mv -i"
 ################################################################################
 alias pd="pushd"
 alias po="popd"
-
-################################################################################
-# grep
-################################################################################
-# GUU grepがあったら優先して使う
-if type ggrep > /dev/null 2>&1; then
-    alias grep=ggrep
-fi
-
-# デフォルトオプションの設定
-export GREP_OPTIONS
-### perl-regexpかextend-regexpを設定する
-if grep --help | grep -q -- --perl-regexp; then
-    GREP_OPTIONS="--perl-regexp $GREP_OPTIONS"
-else
-    GREP_OPTIONS="--extend-regexp $GREP_OPTIONS"
-fi
-
-# バイナリファイルにはマッチさせない
-GREP_OPTIONS="--binary-file=without-match"
-
-# 管理用のディレクトリは無視する
-if grep --help | grep -q -- --exclude-dir; then
-    GREP_OPTIONS="--exclude-dir=.svn $GREP_OPTIONS"
-    GREP_OPTIONS="--exclude-dir=.git $GREP_OPTIONS"
-fi
-
-# 可能なら色をつける
-if grep --help | grep -q -- --color; then
-    GREP_OPTIONS="--color=auto $GREP_OPTIONS"
-fi
-
-alias grep='grep --ignore-case' $GREP_OPTIONS
 
 ################################################################################
 # diff
@@ -134,7 +99,6 @@ if [ "$TERM" = "screen-256color-bce" ];then
     }
     alias man=man_tmux
 fi
-
 
 ################################################################################
 # 展開コマンドのオプション

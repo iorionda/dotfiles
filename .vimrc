@@ -1,7 +1,6 @@
 " -*- coding:utf-8 -*-
 " 基本設定
 set notitle
-
 set guifont=SourceCodePro-Regular-Powerline:h13
 set guifontwide=SourceCodePro-Regular-Powerline:h13
 let g:Powerline_symbols = 'fancy'
@@ -49,7 +48,6 @@ set viminfo='50,<1000,s100,\"50
 set modelines=0
 set ignorecase
 set clipboard=unnamed
-
 set mouse=a
 set guioptions=+a
 set ttymouse=xterm2

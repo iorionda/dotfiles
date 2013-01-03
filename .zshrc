@@ -382,10 +382,6 @@ function _pip_completion {
 compctl -K _pip_completion pip
 # pip zsh completion end
 
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 ## alias設定
 [ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
 

@@ -80,7 +80,7 @@ if has('autocmd')
     filetype plugin on
 
     " PEP 8 Indent rule
-    autocmd FileType python let g:pydiction_location = '$HOME/.vim/bundle/pydiction/complete-dict'
+    autocmd FileType python let g:pydiction_location = '$HOME/.vim/NeoBundle/pydiction/complete-dict'
     autocmd FileType python setl autoindent nosmartindent cindent
     autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4 smarttab
@@ -222,11 +222,6 @@ endfunction
 
 nnoremap { :call ToggleClosePair()<CR>
 
-filetype off
-if has('vim_starting')
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-endif
 
 " Execute python script C-P
 function! s:ExecPy()
@@ -249,76 +244,101 @@ map mp :!pep8 %<CR>
 hi IndentGuidesOdd  ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
 
+"-------------------------------------------------
+" neoNeoBundle.vim
+"-------------------------------------------------
+set nocompatible
+filetype plugin indent off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
 " original repos on github
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimfiler'
-Bundle 'kana/vim-fakeclip'
-Bundle 'kana/vim-smartchr'
-Bundle 'thinca/vim-ref'
-Bundle 'gmarik/vundle'
-Bundle 'mattn/mkdpreview-vim'
-Bundle 'h1mesuke/vim-alignta'
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-ref'
-Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'mitechie/pyflakes-pathogen'
-Bundle 'mattn/vdbi-vim'
-Bundle 'ocim/htmljinja.vim'
-Bundle 'reinh/vim-makegreen'
-Bundle 'lambdalisue/nose.vim'
-Bundle 'sontek/rope-vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'kana/vim-smartchr'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'mattn/mkdpreview-vim'
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundle 'mattn/vdbi-vim'
+NeoBundle 'ocim/htmljinja.vim'
+NeoBundle 'reinh/vim-makegreen'
+NeoBundle 'lambdalisue/nose.vim'
+NeoBundle 'sontek/rope-vim'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
 
 " Nerd_Commenter の基本設定
 let NERDSpaceDelims = 1
 
 " vim-indent-guides
-Bundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size = 4 "インデントの色付け幅
 let g:indent_guides_auto_colors = 0 "autoにするとよく見えなかったので自動的に色付けするのはストップ
 let g:indent_guides_color_change_percent = 10 "色の変化の幅（？）。パーセンテージらしい
 "
 "memolist
-Bundle 'glidenote/memolist.vim'
+NeoBundle 'glidenote/memolist.vim'
 map <Leader>mn  :MemoNew<CR>
 map <Leader>ml  :MemoList<CR>
 map <Leader>mg  :MemoGrep<CR>
 "
-Bundle 'kien/ctrlp.vim'
-Bundle 'mattn/benchvimrc-vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'mattn/benchvimrc-vim'
 
 "numbers.vim
-Bundle 'myusuf3/numbers.vim'
+NeoBundle 'myusuf3/numbers.vim'
 nnoremap <F3> :NumbersToggle<CR>
 
-Bundle 'kien/ctrlp.vim'
+NeoBundle 'kien/ctrlp.vim'
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:working_path_mode = 'rc'
 let g:custom_ignore = {
-    \ 'dir': '¥.git¥|vendor/bundle¥|tmp',
+    \ 'dir': '¥.git¥|vendor/NeoBundle¥|tmp',
     \ 'file': '¥.jpg$¥|¥.jpeg$¥|¥.png$¥|¥.gif$¥|¥.log'
     \ }
 
 " vim-scripts repos
-Bundle 'TwitVim'
-Bundle 'scratch'
-Bundle 'rest.vim'
-Bundle 'occur.vim'
-Bundle 'Source-Explorer-srcexpl.vim'
-Bundle 'trinity.vim'
-Bundle 'taglist-plus'
-Bundle 'taglist.vim'
-Bundle 'snipMate'
+NeoBundle 'TwitVim'
+NeoBundle 'scratch'
+NeoBundle 'rest.vim'
+NeoBundle 'occur.vim'
+NeoBundle 'Source-Explorer-srcexpl.vim'
+NeoBundle 'trinity.vim'
+NeoBundle 'taglist-plus'
+NeoBundle 'taglist.vim'
+NeoBundle 'snipMate'
 
 " Gundo
-Bundle 'Gundo'
+NeoBundle 'Gundo'
 nmap U :<C-u>GundoToggle<CR>
 
-Bundle 'sudo.vim'
+NeoBundle 'sudo.vim'
 " non github repos
 
+"-------------------------------------------------
+" neoNeoBundle.vim
+"-------------------------------------------------
 filetype plugin indent on
+
+" Installation check.
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  "finish
+endif

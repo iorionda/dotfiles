@@ -1,21 +1,17 @@
 # users generic .zshrc file for zsh(1)
 
 ## Environment variable configuration
-#
 # LANG
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 
 ## Default LESS configuration
-#
 export LESS='-R'
 export LESSOPEN='| ~/local/bin/src-hilite-lesspipe.sh %s'
 
 ## Keybind configuration
-#
 # emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
 #   to end of it)
-#
 bindkey -e
 
 # 素早くvvを入力した時に最後に実行したvimを実行する
@@ -37,7 +33,6 @@ function cwaf() {
 }
 
 ## Default shell configuration
-#
 autoload colors
 colors
 
@@ -75,7 +70,7 @@ case ${UID} in
           # この check-for-changes が今回の設定するところ
           zstyle ':vcs_info:git:*' check-for-changes true
           zstyle ':vcs_info:git:*' stagedstr "+" # 適当な文字列に変更する
-          zstyle ':vcs_info:git:*' unstagedstr "-" # 適当の文字列に変更する
+          zstyle ':vcs_info:git:*' unstagedstr "-" # 適当な文字列に変更する
           zstyle ':vcs_info:git:*' formats '(%s)-[%c%u%b]'
           zstyle ':vcs_info:git:*' actionformats '(%s)-[%c%u%b|%a]'
         fi
@@ -110,7 +105,6 @@ case ${UID} in
 esac
 
 ## Command history configuration
-#
 # zshプロセス間でヒストリファイルを共有する
 setopt no_share_history
 
@@ -159,7 +153,6 @@ bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
 ## Default directory configuration
-#
 # ディレクトリ名だけでcdする
 setopt auto_cd
 
@@ -195,7 +188,6 @@ zstyle ':zle:*' word-chars " _-./;@"
 zstyle ':zle:*' word-style unspecified
 
 ## Prediction configuration
-#
 autoload predict-on
 #predict-off
 
@@ -203,7 +195,6 @@ autoload predict-on
 bindkey -a 'q' push-line
 
 # Default completion configuration
-#
 # 展開する前に補完候補を表示する(Ctrl-iで補完するようにする)
 bindkey "^i" menu-complete
 
@@ -301,12 +292,10 @@ setopt extended_glob
 setopt brace_ccl
 
 ## jobs
-#
 # jobsでプロセスIDも表示する
 setopt long_list_jobs
 
 ## preport time
-#
 # 実行したプロセスの消費時間が3秒以上なら
 # 自動的に消費時間の統計情報を表示する
 export PREPORTTIME=3
@@ -342,7 +331,6 @@ unset LSCOLORS
 case "${TERM}" in
 xterm)
     export TERM=xterm-color
-
     ;;
 kterm)
     export TERM=kterm-color
@@ -382,23 +370,6 @@ export HGENCODING=utf-8
 
 REPORTTIME=3
 
-## alias設定
-#
-[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
-
-case "${OSTYPE}" in
-# Mac(Unix)
-darwin*)
-# ここに設定
-    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx ;;
-# Linux
-linux*)
-# ここに設定
-    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux ;; esac
-
-# local固有設定
-[ -f ~/dotfiles/.zshrc.local ] && source ~/dotfiles/.zshrc.local
-
 # pip zsh completion start
 function _pip_completion {
   local words cword
@@ -410,3 +381,22 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 # pip zsh completion end
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+## alias設定
+[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+
+case "${OSTYPE}" in
+darwin*)
+    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx ;;
+linux*)
+    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux ;;
+esac
+
+# local固有設定
+[ -f ~/dotfiles/.zshrc.local ] && source ~/dotfiles/.zshrc.local
+
+

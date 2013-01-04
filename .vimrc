@@ -261,15 +261,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " original repos on github
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'kana/vim-fakeclip'
 NeoBundle 'kana/vim-smartchr'
-NeoBundle 'thinca/vim-ref'
+" NeoBundle 'thinca/vim-ref'
 NeoBundle 'mattn/mkdpreview-vim'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
+" NeoBundle 'thinca/vim-ref'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'mitechie/pyflakes-pathogen'
@@ -329,6 +329,39 @@ nmap U :<C-u>GundoToggle<CR>
 
 NeoBundle 'sudo.vim'
 " non github repos
+
+" その他
+NeoBundle 'Shougo/vimproc', {'build' : {'mac' : 'make -f make_mac.mak',}, }
+NeoBundle 'tpope/vim-endwise.git'
+NeoBundle 'ruby-matchit'
+NeoBundle 'vim-scripts/dbext.vim'
+
+" railsサポート
+NeoBundle 'romanvbabenko/rails.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'ujihisa/unite-rake'
+NeoBundle 'basyura/unite-rails'
+
+" reference環境
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'taichouchou2/vim-ref-ri'
+NeoBundle 'taq/vim-rspec'
+
+" rubyの設定
+if !exists('g:neocomplcache_omni_functions')
+  let g:neocomplcache_omni_functions = {}
+endif
+let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby       = '[^. *\t]\.\w*\|\h\w*::'
+
+if filereadable(expand('~/rtags'))
+  au FileType ruby,eruby setl tags+=~/rtags
+endif
 
 "-------------------------------------------------
 " neoNeoBundle.vim

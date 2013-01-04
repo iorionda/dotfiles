@@ -24,5 +24,4 @@
 README
 link.sh
 
-.vim/*
-.vim/.netrwhist
+.vim/bundle/*

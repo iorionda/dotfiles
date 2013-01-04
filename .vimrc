@@ -378,6 +378,10 @@ function! SetUpRubySetting()
   nmap <buffer>td :RSenseTypeHelp<CR>
 endfunction
 autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+autocmd FileType ruby,eruby,ruby.rspec setl tabstop=2 expandtab shiftwidth=2 softtabstop=2 smarttab
+autocmd FileType ruby,eruby,ruby.rspec setl autoindent nosmartindent cindent
+autocmd FileType ruby,eruby,ruby.rspec setl textwidth=80 colorcolumn=80
+autocmd FileType ruby,eruby,ruby.rspec setl foldmethod=indent foldlevel=99
 "}}}
 
 "-------------------------------------------------

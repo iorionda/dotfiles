@@ -14,8 +14,6 @@
 !/.tmux.conf
 !/.vimrc
 !/.vim
-!/.vim/bundle/vundle/
-!/.vimperatorrc
 !/.zsh
 !/.zshrc
 !/.zshrc.alias
@@ -23,8 +21,6 @@
 !/.zshrc.linux
 !/.zshrc.local
 !/.zshrc.osx
-!/.zshrc.percol
-!/.percol.d
 README
 link.sh
 

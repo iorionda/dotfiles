@@ -296,7 +296,7 @@ NeoBundle 'glidenote/memolist.vim'
 map <Leader>mn  :MemoNew<CR>
 map <Leader>ml  :MemoList<CR>
 map <Leader>mg  :MemoGrep<CR>
-"
+
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mattn/benchvimrc-vim'
 
@@ -369,7 +369,7 @@ endif
 "{{{
 " Rsense
 let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
+let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
 
 function! SetUpRubySetting()
   setlocal completefunc=RSenseCompleteFunction

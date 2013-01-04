@@ -363,6 +363,23 @@ if filereadable(expand('~/rtags'))
   au FileType ruby,eruby setl tags+=~/rtags
 endif
 
+"------------------------------------
+" vim-rsense
+"------------------------------------
+"{{{
+" Rsense
+let g:rsenseUseOmniFunc = 1
+let g:rsenseHome = expand('~/.vim/ref/rsense-0.3')
+
+function! SetUpRubySetting()
+  setlocal completefunc=RSenseCompleteFunction
+  nmap <buffer>tj :RSenseJumpToDefinition<CR>
+  nmap <buffer>tk :RSenseWhereIs<CR>
+  nmap <buffer>td :RSenseTypeHelp<CR>
+endfunction
+autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+"}}}
+
 "-------------------------------------------------
 " neoNeoBundle.vim
 "-------------------------------------------------

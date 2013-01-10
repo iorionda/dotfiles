@@ -21,6 +21,7 @@
 !/.zshrc.linux
 !/.zshrc.local
 !/.zshrc.osx
+!/.pryrc
 README
 link.sh
 

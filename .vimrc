@@ -357,7 +357,7 @@ let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby       = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 if filereadable(expand('~/rtags'))
   au FileType ruby,eruby setl tags+=~/rtags
@@ -368,8 +368,10 @@ endif
 "------------------------------------
 "{{{
 " Rsense
+let g:neocomplcache_enable_at_startup = 1
 let g:rsenseUseOmniFunc = 1
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
+imap <C-s>  <Plug>(neocomplcache_start_unite_snippet)
 
 function! SetUpRubySetting()
   setlocal completefunc=RSenseCompleteFunction
@@ -396,3 +398,9 @@ if neobundle#exists_not_installed_bundles()
   echomsg 'Please execute ":NeoBundleInstall" command.'
   "finish
 endif
+
+"------------------------------------------------
+" vim-ruby
+"------------------------------------------------
+compiler ruby
+let ruby_space_errors=1

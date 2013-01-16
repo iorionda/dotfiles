@@ -6,9 +6,8 @@ Pry.config.editor = proc { |file, line| "#{VIM} #{file} +#{line}" }
 begin
   require 'awesome_print'
   require 'tapp'
-  require 'hirb'
 rescue LoadError => err
-  puts 'failed to require.. :('
+  puts "failed to require #{err} ... :("
 end
 
 Pry::Commands.block_command "refe", "run refe" do |*args|

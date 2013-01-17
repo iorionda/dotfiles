@@ -247,6 +247,7 @@ NeoBundle 'glidenote/memolist.vim'
 NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'mattn/benchvimrc-vim'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'thinca/vim-singleton'
 
 " vim-scripts repos
 NeoBundle 'scratch'

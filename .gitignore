@@ -23,7 +23,7 @@
 !/.zshrc.osx
 !/.pryrc
 !/.muttrc
-README
-link.sh
+!/README.md
+!/link.sh
 
 .vim/bundle/*

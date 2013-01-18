@@ -10,6 +10,7 @@ $ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 ```
 
 2. Install vim-ruby
+
 ```
 $ git clone http://github.com/vim-ruby/vim-ruby.git
 $ cd vim-ruby/

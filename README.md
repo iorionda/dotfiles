@@ -1,15 +1,19 @@
-# Vim
+# Qucik Start
 
-## Qucik Start
+```
+$ ./link.sh
+```
 
-1. Install NeoBundle
+## Vim
+
+* Install NeoBundle
 
 ```
 $ mkdir -p ~/.vim/bundle
 $ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 ```
 
-2. Install vim-ruby
+* Install vim-ruby
 
 ```
 $ git clone http://github.com/vim-ruby/vim-ruby.git

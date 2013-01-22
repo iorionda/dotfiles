@@ -248,6 +248,8 @@ NeoBundle 'myusuf3/numbers.vim'
 NeoBundle 'mattn/benchvimrc-vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'thinca/vim-singleton'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'majutsushi/tagbar'
 
 " vim-scripts repos
 NeoBundle 'scratch'
@@ -259,6 +261,14 @@ NeoBundle 'taglist-plus'
 NeoBundle 'taglist.vim'
 NeoBundle 'Gundo'
 NeoBundle 'sudo.vim'
+NeoBundle 'project.tar.gz'
+
+"------------------------------------------------
+" テキストオブジェクトで置換
+"------------------------------------------------
+NeoBundle 'kana/vim-operator-replace.git'
+NeoBundle 'kana/vim-operator-user.git'
+map R  <Plug>(operator-replace)
 
 "------------------------------------------------
 "memolist
@@ -291,6 +301,18 @@ nmap U :<C-u>GundoToggle<CR>
 " NERDTree
 "-------------------------------------------------
 nmap <Leader>nn :NERDTreeToggle<CR>
+
+
+"-------------------------------------------------
+" tagbar
+"-------------------------------------------------
+nnoremap <silent> <F9> :TagbarToggle<CR>
+" ctagsはMacVim-kaoriyaの使ってる
+let g:tagbar_ctags_bin = '/Applications/MacVim.app/Contents/MacOS/ctags'
+" JavaScriptにはjsctagsを使用
+let g:tagbar_type_javascript = {
+    \ 'ctagsbin' : '~/.nodebrew/current/bin/jsctags'
+\ }
 
 "------------------------------------------------
 " rubyの設定
@@ -431,6 +453,36 @@ autocmd FileType python map <silent> <C-P> :call <SID>ExecPy()<CR>
 
 " PEP8
 map mp :!pep8 %<CR>
+
+
+"-------------------------------------------------
+" javascript
+"-------------------------------------------------
+NeoBundle 'jiangmiao/simple-javascript-indenter'
+NeoBundle 'nono/jquery.vim'
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'teramako/jscomplete-vim'
+
+" simple-javascript-indenter
+"-------------------------------------------------
+" この設定入れるとshiftwidthを1にしてインデントしてくれる
+let g:SimpleJsIndenter_BriefMode = 1
+" この設定入れるとswitchのインデントがいくらかマシに
+let g:SimpleJsIndenter_CaseIndentLevel = -1
+
+" jquery.vim
+"-------------------------------------------------
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+
+" vim-javascript-syntax
+"-------------------------------------------------
+" DOMとMozilla関連とES6のメソッドを補完
+let g:jscomplete_use = ['dom', 'moz', 'es6th']
+
+"syntastic
+"-------------------------------------------------
+" このようにするとjshintを必ず使ってチェックしてくれるようになる
+let g:syntastic_javascript_checker = "jshint"
 
 "-------------------------------------------------
 " neoNeoBundle.vim

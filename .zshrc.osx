@@ -69,8 +69,10 @@ alias reper='sudo diskutil repairPermissions /'
 ################################################################################
 # node.js
 ################################################################################
-export NODE_PATH=/usr/local/lib/node:$NODE_PATH
-
+if [[ -f ~/.nodebrew/nodebrew ]]; then
+  export PATH=$HOME/.nodebrew/current/bin:$PATH
+  nodebrew use stable
+fi
 ################################################################################
 # Gisty
 ################################################################################

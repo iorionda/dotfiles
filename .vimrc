@@ -51,6 +51,7 @@ set clipboard=unnamed
 set mouse=a
 set guioptions=+a
 set ttymouse=xterm2
+set nowrap
 
 command! Ev edit $MYVIMRC
 command! Rv source $MYVIMRC

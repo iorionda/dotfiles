@@ -317,31 +317,27 @@ let g:tagbar_type_javascript = {
 "------------------------------------------------
 " neocomplcache
 "------------------------------------------------
+let g:neocomplcache_force_overwrite_completefunc=1
 let g:neocomplcache_enable_at_startup = 1
+inoremap <C-s> <Plug>(neocomplcache_start_unite_snippet)
 
 "------------------------------------------------
 " rubyの設定
 "------------------------------------------------
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
+if filereadable(expand('~/rtags'))
+  au FileType ruby,eruby setl tags+=~/rtags
 endif
-let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
+
+" Rsense "{{{
+let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
+let g:rsenseUseOmniFunc = 1
+" }}}
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-if filereadable(expand('~/rtags'))
-  au FileType ruby,eruby setl tags+=~/rtags
-endif
-
-" Rsense "{{{
-let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
-imap <C-s>  <Plug>(neocomplcache_start_unite_snippet)
-" }}}
 
 function! SetUpRubySetting()
   setl completefunc=RSenseCompleteFunction

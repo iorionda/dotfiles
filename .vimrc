@@ -315,6 +315,11 @@ let g:tagbar_type_javascript = {
 \ }
 
 "------------------------------------------------
+" neocomplcache
+"------------------------------------------------
+let g:neocomplcache_enable_at_startup = 1
+
+"------------------------------------------------
 " rubyの設定
 "------------------------------------------------
 if !exists('g:neocomplcache_omni_functions')
@@ -333,7 +338,6 @@ if filereadable(expand('~/rtags'))
 endif
 
 " Rsense "{{{
-let g:neocomplcache_enable_at_startup = 1
 let g:rsenseUseOmniFunc = 1
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
 imap <C-s>  <Plug>(neocomplcache_start_unite_snippet)

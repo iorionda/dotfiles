@@ -24,5 +24,6 @@
 !/.pryrc
 !/README.md
 !/link.sh
+!/.muttrc
 
 .vim/bundle/*

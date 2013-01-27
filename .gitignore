@@ -22,8 +22,8 @@
 !/.zshrc.local
 !/.zshrc.osx
 !/.pryrc
-!/.muttrc
 !/README.md
 !/link.sh
+!/.muttrc
 
 .vim/bundle/*

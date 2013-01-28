@@ -262,7 +262,7 @@ NeoBundle 'trinity.vim'
 NeoBundle 'taglist-plus'
 NeoBundle 'taglist.vim'
 NeoBundle 'Gundo'
-NeoBundle 'sudo.vim'
+NeoBundle 'SudoEdit.vim'
 NeoBundle 'project.tar.gz'
 
 "------------------------------------------------

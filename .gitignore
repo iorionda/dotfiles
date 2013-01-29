@@ -16,6 +16,8 @@
 !/.vim
 !/.zsh
 !/.zshrc
+!/.zshenv
+!/.zprofile
 !/.zshrc.alias
 !/.zshrc.bindkey
 !/.zshrc.linux

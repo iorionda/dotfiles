@@ -504,6 +504,21 @@ let g:jscomplete_use = ['dom', 'moz', 'es6th']
 let g:syntastic_javascript_checker = "jshint"
 
 "-------------------------------------------------
+" QucikRun
+"-------------------------------------------------
+let g:quickrun_config = {}
+
+" rspec
+"-------------------------------------------------
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
+let g:quickrun_config._ = {'runner' : 'vimproc'}
+
+augroup RSpec
+  autocmd!
+  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+augroup END
+
+"-------------------------------------------------
 " neoNeoBundle.vim
 "-------------------------------------------------
 filetype plugin indent on

@@ -252,6 +252,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'thinca/vim-singleton'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'majutsushi/tagbar'
+NeoBundle 'goldfeld/vim-seek'
 
 " vim-scripts repos
 NeoBundle 'scratch'
@@ -510,7 +511,7 @@ let g:quickrun_config = {}
 
 " rspec
 "-------------------------------------------------
-let g:quickrun_config['ruby.rspec'] = {'command': 'rspec'}
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'exec': 'bundle exec %c %s'}
 let g:quickrun_config._ = {'runner' : 'vimproc'}
 
 augroup RSpec

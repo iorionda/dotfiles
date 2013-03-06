@@ -315,7 +315,7 @@ static char * arrow_right[] = {
         ;; Justify right by filling with spaces to right fringe - 16
         ;; (16 should be computed rahter than hardcoded)
         '(:eval (propertize " " 'display
-			    '((space :align-to (- right-fringe 9)))))
+			    '((space :align-to (- right-fringe 16)))))
 
         '(:eval (concat (propertize " " 'display arrow-left-2)
                         (propertize " %p " 'face 'mode-line-color-2)))

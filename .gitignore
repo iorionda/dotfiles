@@ -27,5 +27,9 @@
 !/README.md
 !/link.sh
 !/.muttrc
+!/.emacs.d
 
+.emacs.d/elpa
+.emacs.d/auto-save-list
+.emacs.d/ac-comphist.dat
 .vim/bundle/*

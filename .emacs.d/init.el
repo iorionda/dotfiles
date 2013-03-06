@@ -72,7 +72,7 @@
 (load-theme 'railscasts t nil)
 
 ;; フレーム透過設定
-(add-to-list 'default-frame-alist '(alpha . (0.75 0.75)))
+(add-to-list 'default-frame-alist '(alpha . (0.95 0.95)))
 
 ;スクロールバーを消す
 (set-scroll-bar-mode 'nil)
@@ -354,4 +354,18 @@ static char * arrow_right[] = {
 (set-face-foreground 'magit-diff-add "#b9ca4a") ; 追加した部分を緑に
 (set-face-foreground 'magit-diff-del "#d54e53")  ; 削除した 部分を赤に
 (set-face-background 'magit-item-highlight "#000000") ; 選択項目ハイライトがうっとうしいので背景色と同化
+
+;;;ruby-mode
+;M-x package-install RET ruby-mode
+(require 'ruby-mode)
+
+;;;ruby-end
+;M-x package-install RET ruby-end
+(require 'ruby-end)
+(add-hook 'ruby-mode-hook
+  '(lambda ()
+    (abbrev-mode 1)
+    (electric-pair-mode t)
+    (electric-indent-mode t)
+    (electric-layout-mode t)))
 

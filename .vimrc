@@ -225,7 +225,7 @@ NeoBundleLazy 'ruby-matchit', { 'autoload' : { 'filetypes': ['ruby', 'eruby', 'h
 NeoBundleLazy 'Shougo/neocomplcache-rsense', { 'depends': 'Shougo/neocomplcache', 'autoload': { 'filetypes': 'ruby' }}
 "
 " " original repos on github
-
+NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-endwise.git'
 NeoBundle 'tpope/vim-surround'

@@ -350,4 +350,8 @@ static char * arrow_right[] = {
 ;;;magit
 ;M-x package-install RET magit
 (require 'magit)
+;; 色変更
+(set-face-foreground 'magit-diff-add "#b9ca4a") ; 追加した部分を緑に
+(set-face-foreground 'magit-diff-del "#d54e53")  ; 削除した 部分を赤に
+(set-face-background 'magit-item-highlight "#000000") ; 選択項目ハイライトがうっとうしいので背景色と同化
 

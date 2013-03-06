@@ -96,7 +96,7 @@
   "Return an XPM right arrow string representing."
   (format "/* XPM */
 static char * arrow_right[] = {
-\"12 24 2 1\",
+\"12 18 2 1\",
 \". c %s\",
 \"  c %s\",
 \".           \",
@@ -130,7 +130,7 @@ static char * arrow_right[] = {
   "Return an XPM right arrow string representing."
   (format "/* XPM */
 static char * arrow_right[] = {
-\"12 24 2 1\",
+\"12 18 2 1\",
 \". c %s\",
 \"  c %s\",
 \"           .\",
@@ -161,6 +161,8 @@ static char * arrow_right[] = {
 (defconst color1 "#0044cc")
 (defconst color2 "#0088cc")
 (defconst color3 "#696969")
+(defconst color4 "#FF0066")
+(defconst color5 "#CDC0B0")
 
 (defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2) 'xpm t :ascent 'center))
 (defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3) 'xpm t :ascent 'center))
@@ -203,9 +205,9 @@ static char * arrow_right[] = {
 
 (set-face-attribute 'mode-line nil
                     :foreground "#fffacd"
-                    :background "#000"
+                    :background color4
 		    :bold t
                     :box nil)
 (set-face-attribute 'mode-line-inactive nil
                     :foreground "#fffacd"
-                    :background "#000")
+                    :background color5)

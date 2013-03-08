@@ -315,7 +315,7 @@ static char * arrow_right[] = {
         ;; Justify right by filling with spaces to right fringe - 16
         ;; (16 should be computed rahter than hardcoded)
         '(:eval (propertize " " 'display
-			    '((space :align-to (- right-fringe 16)))))
+			    '((space :align-to (- right-fringe 9)))))
 
         '(:eval (concat (propertize " " 'display arrow-left-2)
                         (propertize " %p " 'face 'mode-line-color-2)))
@@ -358,6 +358,7 @@ static char * arrow_right[] = {
 ;;;ruby-mode
 ;M-x package-install RET ruby-mode
 (require 'ruby-mode)
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 
 ;;;ruby-end
 ;M-x package-install RET ruby-end
@@ -368,4 +369,8 @@ static char * arrow_right[] = {
     (electric-pair-mode t)
     (electric-indent-mode t)
     (electric-layout-mode t)))
+
+;;;rspec-mode
+;M-x package-install RET rspec-mode
+(require 'rspec-mode)
 

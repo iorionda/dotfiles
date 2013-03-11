@@ -32,4 +32,5 @@
 .emacs.d/elpa
 .emacs.d/auto-save-list
 .emacs.d/ac-comphist.dat
+.emacs.d/history
 .vim/bundle/*

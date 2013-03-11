@@ -77,7 +77,7 @@
 ;スクロールバーを消す
 (set-scroll-bar-mode 'nil)
 ;ツールバーを消す
-(tool-bar-mode 'nil)
+(tool-bar-mode -1)
 
 ;;;対応する括弧を光らせる
 (setq show-paren-delay 0)

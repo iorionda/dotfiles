@@ -374,3 +374,8 @@ static char * arrow_right[] = {
 ;M-x package-install RET rspec-mode
 (require 'rspec-mode)
 
+;;;git-gutter
+;M-x package-install RET git-gutter
+(require 'git-gutter)
+(global-git-gutter-mode t)
+

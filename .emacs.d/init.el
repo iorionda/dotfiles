@@ -393,6 +393,15 @@ static char * arrow_right[] = {
     (electric-indent-mode t)
     (electric-layout-mode t)))
 
+;;;ido
+;M-x package-install RET ido
+(require 'ido)
+(ido-mode t)
+
+;;;rinari
+;M-x package-install RET rinari
+(require 'rinari)
+
 ;;;rspec-mode
 ;M-x package-install RET rspec-mode
 (require 'rspec-mode)
@@ -401,4 +410,20 @@ static char * arrow_right[] = {
 ;M-x package-install RET git-gutter
 (require 'git-gutter)
 (global-git-gutter-mode t)
+
+;;;direx
+;M-x package-install RET direx
+(require 'direx)
+(require 'direx-project)
+(setq direx:leaf-icon "  "
+      direx:open-icon "▾"
+      direx:closed-icon "▸")
+(push '(direx:direx-mode
+        :position left
+        :width 20
+        :dedicated t)
+      popwin:special-display-config)
+(global-set-key
+ (kbd "C-x C-j")
+ 'direx-project:jump-to-project-root-other-window)
 

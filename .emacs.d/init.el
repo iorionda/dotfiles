@@ -5,9 +5,9 @@
 ;;load-path
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq load-path (append
-    '("~/.emacs.d"
-      "~/.emacs.d/color-theme")
-    load-path))
+                 '("~/.emacs.d"
+                   "~/.emacs.d/color-theme")
+                 load-path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;日本語設定
@@ -15,6 +15,7 @@
 ;;; Localeに合わせた環境の設定
 (set-locale-environment nil)
 (set-language-environment 'Japanese)
+
 (prefer-coding-system 'utf-8)
 (setq default-coding-systems 'utf-8)
 (setq file-name-coding-system 'utf-8)
@@ -71,10 +72,16 @@
 ;; │             罫線                            │
 ;; └─────────────────────────────┘
 ;;
-
-(set-face-attribute 'default nil :family "Ricty" :height 130)
-(set-fontset-font nil 'japanese-jisx0208 (font-spec :family "Ricty"))
-(setq face-font-rescale-alist '(("MeiryoKe_Console" . 1.2)))
+(set-face-attribute 'default nil
+                    :family "Ricty"
+                    :height 130)
+(set-fontset-font
+ (frame-parameter nil 'font)
+ 'japanese-jisx0208
+ (font-spec
+  :family "Ricty"
+  ))
+(setq face-font-rescale-alist '(("Ricty" . 1.2)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
@@ -123,6 +130,7 @@
 ;;;行番号の表示
 (global-linum-mode t)
 (setq linum-format "%4d:")
+
 ;;; カーソルの位置が何文字目かを表示する
 (column-number-mode t)
 ;;; カーソルの位置が何行目かを表示する
@@ -197,9 +205,9 @@
 ;;;please execute M-x list-package at first
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+     '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 ;;;popwin.el :pop up window for emacs baffer
@@ -317,15 +325,15 @@ static char * arrow_right[] = {
 (defconst color5 "#CDC0B0")
 
 (defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2)
-				    'xpm t :ascent 'center))
+                                    'xpm t :ascent 'center))
 (defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3)
-				    'xpm t :ascent 'center))
+                                    'xpm t :ascent 'center))
 (defvar arrow-right-3 (create-image (arrow-right-xpm color3 "None")
-				    'xpm t :ascent 'center))
+                                    'xpm t :ascent 'center))
 (defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1)
-				    'xpm t :ascent 'center))
+                                    'xpm t :ascent 'center))
 (defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2)
-				    'xpm t :ascent 'center))
+                                    'xpm t :ascent 'center))
 
 (setq-default mode-line-format
  (list  '(:eval (concat (propertize " %* %b " 'face 'mode-line-color-1)
@@ -338,7 +346,7 @@ static char * arrow_right[] = {
         ;; Justify right by filling with spaces to right fringe - 16
         ;; (16 should be computed rahter than hardcoded)
         '(:eval (propertize " " 'display
-			    '((space :align-to (- right-fringe 9)))))
+                            '((space :align-to (- right-fringe 9)))))
 
         '(:eval (concat (propertize " " 'display arrow-left-2)
                         (propertize " %p " 'face 'mode-line-color-2)))
@@ -364,14 +372,14 @@ static char * arrow_right[] = {
 (set-face-attribute 'mode-line nil
                     :foreground "#fffacd"
                     :background color4
-		    :bold t
+                    :bold t
                     :box nil)
 (set-face-attribute 'mode-line-inactive nil
                     :foreground "#fffacd"
                     :background color5)
 
 ;;;magit
-;M-x package-install RET magit
+;;M-x package-install RET magit
 (require 'magit)
 ;; 色変更
 (set-face-foreground 'magit-diff-add "#b9ca4a") ; 追加した部分を緑に
@@ -379,12 +387,12 @@ static char * arrow_right[] = {
 (set-face-background 'magit-item-highlight "#000000") ; 選択項目ハイライトがうっとうしいので背景色と同化
 
 ;;;ruby-mode
-;M-x package-install RET ruby-mode
+;;M-x package-install RET ruby-mode
 (require 'ruby-mode)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 
 ;;;ruby-end
-;M-x package-install RET ruby-end
+;;M-x package-install RET ruby-end
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook
   '(lambda ()
@@ -394,25 +402,20 @@ static char * arrow_right[] = {
     (electric-layout-mode t)))
 
 ;;;ido
-;M-x package-install RET ido
+;;M-x package-install RET ido
 (require 'ido)
 (ido-mode t)
 
 ;;;rinari
-;M-x package-install RET rinari
+;;M-x package-install RET rinari
 (require 'rinari)
 
 ;;;rspec-mode
-;M-x package-install RET rspec-mode
+;;M-x package-install RET rspec-mode
 (require 'rspec-mode)
 
-;;;git-gutter
-;M-x package-install RET git-gutter
-(require 'git-gutter)
-(global-git-gutter-mode t)
-
 ;;;direx
-;M-x package-install RET direx
+;;M-x package-install RET direx
 (require 'direx)
 (require 'direx-project)
 (setq direx:leaf-icon "  "
@@ -427,3 +430,18 @@ static char * arrow_right[] = {
  (kbd "C-x C-j")
  'direx-project:jump-to-project-root-other-window)
 
+;;;highlight-indentation
+;; M-x package-install RET highlight-indentation RET
+(require 'highlight-indentation)
+(highlight-indentation-mode t)
+
+;;;git-gutter-fringe
+;; M-x package-install RET git-gutter-fringe RET
+;; You need to install fringe-helper.el
+(require 'fringe-helper)
+(require 'git-gutter-fringe)
+
+(global-git-gutter-mode t)
+(set-face-foreground 'git-gutter-fr:modified "yellow")
+(set-face-foreground 'git-gutter-fr:added    "green")
+(set-face-foreground 'git-gutter-fr:deleted  "red")

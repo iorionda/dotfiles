@@ -33,6 +33,8 @@
 (define-key global-map (kbd "C-c C-i") 'hippie-expand)    ; 補完
 (define-key global-map (kbd "C-c ;") 'comment-dwim)       ; コメントアウト
 (define-key global-map (kbd "M-C-g") 'grep)               ; grep
+;; 改行したらindentする
+(define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;;;ウィンドウ移動
 ;;次のウィンドウへ移動
@@ -74,14 +76,14 @@
 ;;
 (set-face-attribute 'default nil
                     :family "Ricty"
-                    :height 130)
+                    :height 140)
 (set-fontset-font
  (frame-parameter nil 'font)
  'japanese-jisx0208
  (font-spec
   :family "Ricty"
   ))
-(setq face-font-rescale-alist '(("Ricty" . 1.2)))
+(setq face-font-rescale-alist '(("Ricty" . 1.0)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
@@ -94,7 +96,6 @@
 (setq-default indent-tabs-mode nil)
 ;;デフォルトのTAB幅を4に
 (setq-default tab-width 4)
-(setq default-tab-width 4)
 (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
                       64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
 
@@ -159,6 +160,9 @@
 (setq backup-inhibited t)
 ;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
+
+;; 保存時に行末の空白を削除する
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;補完
 ;;; 補完時に大文字小文字を区別しない
@@ -433,15 +437,13 @@ static char * arrow_right[] = {
 ;;;highlight-indentation
 ;; M-x package-install RET highlight-indentation RET
 (require 'highlight-indentation)
-(highlight-indentation-mode t)
+(setq highlight-indentation-offset 2)
+(set-face-background 'highlight-indentation-face "#696969")
+(set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
+(add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode
+(highlight-indentation-mode)
 
 ;;;git-gutter-fringe
-;; M-x package-install RET git-gutter-fringe RET
-;; You need to install fringe-helper.el
-(require 'fringe-helper)
-(require 'git-gutter-fringe)
-
+;; M-x package-install RET git-gutter RET
+(require 'git-gutter)
 (global-git-gutter-mode t)
-(set-face-foreground 'git-gutter-fr:modified "yellow")
-(set-face-foreground 'git-gutter-fr:added    "green")
-(set-face-foreground 'git-gutter-fr:deleted  "red")

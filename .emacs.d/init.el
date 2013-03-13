@@ -244,6 +244,7 @@
 
 (global-set-key (kbd "C-x b") 'my-helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
 
 (setq helm-samewindow nil)
 (push '("*helm-M-x*") popwin:special-display-config)
@@ -440,10 +441,27 @@ static char * arrow_right[] = {
 (setq highlight-indentation-offset 2)
 (set-face-background 'highlight-indentation-face "#696969")
 (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
-(add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode
+(add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
 (highlight-indentation-mode)
 
-;;;git-gutter-fringe
+;;;git-gutter
 ;; M-x package-install RET git-gutter RET
 (require 'git-gutter)
 (global-git-gutter-mode t)
+(setq git-gutter:window-width 2)
+;; HTMLエスケープされてますが、実際は絵文字
+(setq git-gutter:modified-sign "&#10052;")
+(setq git-gutter:added-sign "&#9728;")
+(setq git-gutter:deleted-sign "&#9730;")
+
+(set-face-foreground 'git-gutter:modified "white")
+(set-face-foreground 'git-gutter:added "orange")
+(set-face-foreground 'git-gutter:deleted "cyan")
+
+;;;auto-complete
+;; M-x package-install RET auto-complete RET
+(require 'auto-complete)
+(global-auto-complete-mode t)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
+(require 'auto-complete-config)
+(ac-config-default)

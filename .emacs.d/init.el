@@ -244,6 +244,7 @@
 
 (global-set-key (kbd "C-x b") 'my-helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
 
 (setq helm-samewindow nil)
 (push '("*helm-M-x*") popwin:special-display-config)
@@ -448,3 +449,20 @@ static char * arrow_right[] = {
 (require 'git-gutter)
 (global-git-gutter-mode t)
 (define-key global-map (kbd "C-x g") 'git-gutter:toggle)
+(setq git-gutter:window-width 2)
+
+(setq git-gutter:modified-sign " ")
+(setq git-gutter:added-sign "+")
+(setq git-gutter:deleted-sign "-")
+
+(set-face-foreground 'git-gutter:modified "blue")
+(set-face-foreground 'git-gutter:added "green")
+(set-face-foreground 'git-gutter:deleted "red")
+
+;;;auto-complete
+;; M-x package-install RET auto-complete RET
+(require 'auto-complete)
+(global-auto-complete-mode t)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
+(require 'auto-complete-config)
+(ac-config-default)

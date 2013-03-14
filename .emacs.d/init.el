@@ -440,10 +440,11 @@ static char * arrow_right[] = {
 (setq highlight-indentation-offset 2)
 (set-face-background 'highlight-indentation-face "#696969")
 (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
-(add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode
+(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
 (highlight-indentation-mode)
 
-;;;git-gutter-fringe
+;;;git-gutter
 ;; M-x package-install RET git-gutter RET
 (require 'git-gutter)
 (global-git-gutter-mode t)
+(define-key global-map (kbd "C-x g") 'git-gutter:toggle)

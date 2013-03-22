@@ -184,7 +184,11 @@
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
-(when (executable-find "git-now"))
+(when (executable-find "git-now")
+  (defun 'git-now-after-save-hook()
+    (shell-command "git now"
+     (buffer-name (current-buffer)))
+)
 ;;関数名を表示する
 (which-function-mode 1)
 

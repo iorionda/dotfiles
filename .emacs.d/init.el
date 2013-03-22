@@ -184,13 +184,13 @@
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
+;;保存時に git-now を実行する
 (when (executable-find "git-now")
   (defun git-now-after-save-hook()
     (shell-command "git now")))
 
 (add-hook 'after-save-hook
           'git-now-after-save-hook)
-
 
 ;;関数名を表示する
 (which-function-mode 1)

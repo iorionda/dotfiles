@@ -104,6 +104,7 @@ case ${UID} in
     ;;
 esac
 
+setopt transient_rprompt
 ## Command history configuration
 # zshプロセス間でヒストリファイルを共有する
 setopt no_share_history

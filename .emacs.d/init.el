@@ -184,6 +184,7 @@
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
+(when (executable-find "git-now"))
 ;;関数名を表示する
 (which-function-mode 1)
 

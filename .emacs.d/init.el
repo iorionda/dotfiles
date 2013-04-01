@@ -156,6 +156,11 @@
 ;;; バッファの最後でnewlineで新規行を追加するのを禁止する
 (setq next-line-add-newlines nil)
 
+;;通常のウィンドウ用の設定
+(setq-default truncate-lines t)
+;;ウィンドウを左右に分割したとき用の設定
+(setq-default truncate-partial-width-windows t)
+
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
 ;;; 終了時にオートセーブファイルを消す

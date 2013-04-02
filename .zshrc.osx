@@ -87,3 +87,8 @@ if [ -d ${HOME}/.rbenv ]; then
   export PATH
   eval "$(rbenv init - zsh)"
 fi
+
+################################################################################
+# nodebrew
+################################################################################
+export PATH=$HOME/.nodebrew/current/bin:$PATH

@@ -107,6 +107,9 @@
 ;ツールバーを消す
 (tool-bar-mode -1)
 
+;; 起動時にフルスクリーンにする
+(add-hook 'window-setup-hook 'ns-toggle-fullscreen)
+
 ;;;対応する括弧を光らせる
 (setq show-paren-delay 0)
 (setq show-paren-style 'single)
@@ -486,6 +489,10 @@ static char * arrow_right[] = {
 (setq whitespace-action '(auto-cleanup)) ;; automatically clean up bad whitespace
 (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab)) ;; only show bad whitespace
 
+;; flymake-coffee
+;; M-x package-install RET flymake-coffee RET
+(require 'flymake-coffee)
+
 ;;;undo-tree
 ;; M-x package-install RET undo-tree RET
 (require 'undo-tree)
@@ -496,3 +503,7 @@ static char * arrow_right[] = {
 ;; https://github.com/marijnh/tern
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
+;;; markdown-mode
+;; M-x package-install RET markdown-mode
+(require 'markdown-mode)

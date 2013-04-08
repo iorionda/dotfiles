@@ -41,6 +41,8 @@
 (define-key global-map (kbd "C-M-n") 'next-multiframe-window)
 ;;前のウィンドウへ移動
 (define-key global-map (kbd "C-M-p") 'previous-multiframe-window)
+;; "yes or no" を "y or n" に
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; 再帰的にgrep
 (require 'grep)

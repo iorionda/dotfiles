@@ -7,7 +7,8 @@ set guifontwide=SourceCodePro-Regular-Powerline:h13
 let g:Powerline_symbols = 'fancy'
 
 " 色の設定
-colorscheme jellybeans
+let g:molokai_original = 1
+colorscheme molokai
 
 " ターミナルタイプによるカラー設定
 if &term =~ "xterm-256color" || "screen-256color"
@@ -253,6 +254,9 @@ NeoBundle 'thinca/vim-singleton'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'goldfeld/vim-seek'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'ujihisa/unite-colorscheme'
 
 " vim-scripts repos
 NeoBundle 'scratch'

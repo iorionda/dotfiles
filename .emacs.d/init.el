@@ -6,7 +6,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq load-path (append
                  '("~/.emacs.d"
-                   "~/.emacs.d/color-theme")
+                   "~/.emacs.d/color-theme"
+                   "~/.emacs.d/packages")
                  load-path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -28,7 +29,6 @@
 
 ;; 基本
 (define-key global-map (kbd "M-?") 'help-for-help)        ; ヘルプ
-(define-key global-map (kbd "C-z") 'undo)                 ; undo
 (define-key global-map (kbd "C-c i") 'indent-region)      ; インデント
 (define-key global-map (kbd "C-c C-i") 'hippie-expand)    ; 補完
 (define-key global-map (kbd "C-c ;") 'comment-dwim)       ; コメントアウト
@@ -41,6 +41,8 @@
 (define-key global-map (kbd "C-M-n") 'next-multiframe-window)
 ;;前のウィンドウへ移動
 (define-key global-map (kbd "C-M-p") 'previous-multiframe-window)
+;; "yes or no" を "y or n" に
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; 再帰的にgrep
 (require 'grep)
@@ -107,6 +109,9 @@
 ;ツールバーを消す
 (tool-bar-mode -1)
 
+;; 起動時にフルスクリーンにする
+(add-hook 'window-setup-hook 'ns-toggle-fullscreen)
+
 ;;;対応する括弧を光らせる
 (setq show-paren-delay 0)
 (setq show-paren-style 'single)
@@ -156,6 +161,11 @@
 ;;; バッファの最後でnewlineで新規行を追加するのを禁止する
 (setq next-line-add-newlines nil)
 
+;;通常のウィンドウ用の設定
+(setq-default truncate-lines t)
+;;ウィンドウを左右に分割したとき用の設定
+(setq-default truncate-partial-width-windows t)
+
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
 ;;; 終了時にオートセーブファイルを消す
@@ -183,6 +193,14 @@
 ;;実行権限を付与
 (add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
+
+;;保存時に git-now を実行する
+;; (when (executable-find "git-now")
+;;   (defun git-now-after-save-hook()
+;;     (shell-command "git now")))
+
+;; (add-hook 'after-save-hook
+;;           'git-now-after-save-hook)
 
 ;;関数名を表示する
 (which-function-mode 1)
@@ -466,3 +484,28 @@ static char * arrow_right[] = {
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
 (require 'auto-complete-config)
 (ac-config-default)
+
+;;;coffee-mode
+;; M-x package-install RET coffee-mode RET
+(require 'coffee-mode)
+(setq whitespace-action '(auto-cleanup)) ;; automatically clean up bad whitespace
+(setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab)) ;; only show bad whitespace
+
+;; flymake-coffee
+;; M-x package-install RET flymake-coffee RET
+(require 'flymake-coffee)
+
+;;;undo-tree
+;; M-x package-install RET undo-tree RET
+(require 'undo-tree)
+(global-undo-tree-mode t)
+(global-set-key (kbd "M-/") 'undo-tree-redo)
+
+;; tern
+;; https://github.com/marijnh/tern
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
+;;; markdown-mode
+;; M-x package-install RET markdown-mode
+(require 'markdown-mode)

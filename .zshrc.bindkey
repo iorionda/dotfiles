@@ -18,3 +18,27 @@ bindkey '^S' history-incremental-pattern-search-forward
 # 展開する前に補完候補を表示する(Ctrl-iで補完するようにする)
 bindkey "^i" menu-complete
 
+## Keybind configuration
+# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
+#   to end of it)
+bindkey -e
+
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+bindkey "\\ep" history-beginning-search-backward-end
+bindkey "\\en" history-beginning-search-forward-end
+
+# glob(*)によるインクリメンタルサーチ
+bindkey '^R' history-incremental-pattern-search-backward
+bindkey '^S' history-incremental-pattern-search-forward
+
+# ctrl-W,  ctrl-b で単語移動
+bindkey "^W" forward-word
+bindkey "^B" backward-word
+
+## Command Line Stack [Esc]-[q]
+bindkey -a 'q' push-line
+
+# Default completion configuration
+# 展開する前に補完候補を表示する(Ctrl-iで補完するようにする)
+bindkey "^i" menu-complete

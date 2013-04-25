@@ -59,19 +59,18 @@ export _JAVA_OPTINOS="-Dfile.encoding=UTF-8"
 ################################################################################
 # alias
 ################################################################################
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias gvim='env LANG=ja_JP.UTF-8 open /Applications/MacVim.app "$@"'
 alias view='vim -R'
 alias reper='sudo diskutil repairPermissions /'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+
 ################################################################################
 # node.js
 ################################################################################
 if [[ -f ~/.nodebrew/nodebrew ]]; then
   export PATH=$HOME/.nodebrew/current/bin:$PATH
-  nodebrew use stable
 fi
 ################################################################################
 # Gisty
@@ -87,8 +86,3 @@ if [ -d ${HOME}/.rbenv ]; then
   export PATH
   eval "$(rbenv init - zsh)"
 fi
-
-################################################################################
-# nodebrew
-################################################################################
-export PATH=$HOME/.nodebrew/current/bin:$PATH

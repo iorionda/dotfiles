@@ -41,3 +41,22 @@
     s = status --short --branch
     st = status
     su = submodule update
+
+[web]
+    browser = google-chrome
+[browse-remote "github.com"]
+        top = https://{host}/{path}
+        ref = https://{host}/{path}/tree/{short_ref}
+        rev = https://{host}/{path}/commit/{commit}
+[browse-remote "github.dev.cybozu.co.jp"]
+        top = https://{host}/{path}
+        ref = https://{host}/{path}/tree/{short_ref}
+        rev = https://{host}/{path}/commit/{commit}
+[browse-remote "git.dev.cybozu.co.jp"]
+    top = http://{host}/graph/{path[1]}
+    ref = http://{host}/changelog/~br={short_ref}/{path[1]}
+    rev = http://{host}/changelog/{path[1]}?cs={commit}
+[browse-remote "review.dev.cybozu.co.jp"]
+    top = http://{host}/graph/{path[1]}
+    ref = http://{host}/changelog/~br={short_ref}/{path[1]}
+    rev = http://{host}/changelog/{path[1]}?cs={commit}

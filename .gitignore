@@ -34,4 +34,5 @@
 .emacs.d/ac-comphist.dat
 .emacs.d/history
 .emacs.d/packages/*
+.emacs.d/eshell/*
 .vim/bundle/*

@@ -79,17 +79,21 @@
 (set-face-attribute 'default nil
                     :family "Ricty"
                     :height 140)
-(set-fontset-font
- (frame-parameter nil 'font)
- 'japanese-jisx0208
- (font-spec
-  :family "Ricty"
-  ))
-(setq face-font-rescale-alist '(("Ricty" . 1.0)))
+;; (set-fontset-font
+;;  (frame-parameter nil 'font)
+;;  'japanese-jisx0208
+;;  (font-spec
+;;   :family "Ricty"
+;;   ))
 
+(setq face-font-rescale-alist '(("Ricty" . 1.0)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; スプラッシュを表示しない
+(setq inhibit-startup-screen t)
+
+;; ロードパスの設定
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
 (load-theme 'railscasts t nil)
 
@@ -105,12 +109,12 @@
 (add-to-list 'default-frame-alist '(alpha . (0.95 0.95)))
 
 ;スクロールバーを消す
-(set-scroll-bar-mode 'nil)
+;; (set-scroll-bar-mode 'nil)
 ;ツールバーを消す
 (tool-bar-mode -1)
 
 ;; 起動時にフルスクリーンにする
-(add-hook 'window-setup-hook 'ns-toggle-fullscreen)
+;; (add-hook 'window-setup-hook 'ns-toggle-fullscreen)
 
 ;;;対応する括弧を光らせる
 (setq show-paren-delay 0)
@@ -276,130 +280,130 @@
 
 ;;;powerline
 ;M-x package-install RET powerline
-(require 'powerline)
-(defun arrow-right-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\".           \",
-\"..          \",
-\"...         \",
-\"....        \",
-\".....       \",
-\"......      \",
-\".......     \",
-\"........    \",
-\".........   \",
-\"..........  \",
-\"........... \",
-\"............\",
-\"........... \",
-\"..........  \",
-\".........   \",
-\"........    \",
-\".......     \",
-\"......      \",
-\".....       \",
-\"....        \",
-\"...         \",
-\"..          \",
-\".           \",
-\"            \"};"  color1 color2))
+;; (require 'powerline)
+;; (defun arrow-right-xpm (color1 color2)
+;;   "Return an XPM right arrow string representing."
+;;   (format "/* XPM */
+;; static char * arrow_right[] = {
+;; \"12 18 2 1\",
+;; \". c %s\",
+;; \"  c %s\",
+;; \".           \",
+;; \"..          \",
+;; \"...         \",
+;; \"....        \",
+;; \".....       \",
+;; \"......      \",
+;; \".......     \",
+;; \"........    \",
+;; \".........   \",
+;; \"..........  \",
+;; \"........... \",
+;; \"............\",
+;; \"........... \",
+;; \"..........  \",
+;; \".........   \",
+;; \"........    \",
+;; \".......     \",
+;; \"......      \",
+;; \".....       \",
+;; \"....        \",
+;; \"...         \",
+;; \"..          \",
+;; \".           \",
+;; \"            \"};"  color1 color2))
 
-(defun arrow-left-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\"           .\",
-\"          ..\",
-\"         ...\",
-\"        ....\",
-\"       .....\",
-\"      ......\",
-\"     .......\",
-\"    ........\",
-\"   .........\",
-\"  ..........\",
-\" ...........\",
-\"............\",
-\" ...........\",
-\"  ..........\",
-\"   .........\",
-\"    ........\",
-\"     .......\",
-\"      ......\",
-\"       .....\",
-\"        ....\",
-\"         ...\",
-\"          ..\",
-\"           .\",
-\"            \"};"  color2 color1))
+;; (defun arrow-left-xpm (color1 color2)
+;;   "Return an XPM right arrow string representing."
+;;   (format "/* XPM */
+;; static char * arrow_right[] = {
+;; \"12 18 2 1\",
+;; \". c %s\",
+;; \"  c %s\",
+;; \"           .\",
+;; \"          ..\",
+;; \"         ...\",
+;; \"        ....\",
+;; \"       .....\",
+;; \"      ......\",
+;; \"     .......\",
+;; \"    ........\",
+;; \"   .........\",
+;; \"  ..........\",
+;; \" ...........\",
+;; \"............\",
+;; \" ...........\",
+;; \"  ..........\",
+;; \"   .........\",
+;; \"    ........\",
+;; \"     .......\",
+;; \"      ......\",
+;; \"       .....\",
+;; \"        ....\",
+;; \"         ...\",
+;; \"          ..\",
+;; \"           .\",
+;; \"            \"};"  color2 color1))
 
-(defconst color1 "#0044cc")
-(defconst color2 "#0088cc")
-(defconst color3 "#696969")
-(defconst color4 "#FF0066")
-(defconst color5 "#CDC0B0")
+;; (defconst color1 "#0044cc")
+;; (defconst color2 "#0088cc")
+;; (defconst color3 "#696969")
+;; (defconst color4 "#FF0066")
+;; (defconst color5 "#CDC0B0")
 
-(defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2)
-                                    'xpm t :ascent 'center))
-(defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3)
-                                    'xpm t :ascent 'center))
-(defvar arrow-right-3 (create-image (arrow-right-xpm color3 "None")
-                                    'xpm t :ascent 'center))
-(defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1)
-                                    'xpm t :ascent 'center))
-(defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2)
-                                    'xpm t :ascent 'center))
+;; (defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2)
+;;                                     'xpm t :ascent 'center))
+;; (defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3)
+;;                                     'xpm t :ascent 'center))
+;; (defvar arrow-right-3 (create-image (arrow-right-xpm color3 "None")
+;;                                     'xpm t :ascent 'center))
+;; (defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1)
+;;                                     'xpm t :ascent 'center))
+;; (defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2)
+;;                                     'xpm t :ascent 'center))
 
-(setq-default mode-line-format
- (list  '(:eval (concat (propertize " %* %b " 'face 'mode-line-color-1)
-                        (propertize " " 'display arrow-right-1)))
-        '(:eval (concat (propertize " %Z " 'face 'mode-line-color-2)
-                        (propertize " " 'display arrow-right-2)))
-        '(:eval (concat (propertize " %m " 'face 'mode-line-color-3)
-                        (propertize " " 'display arrow-right-3)))
+;; (setq-default mode-line-format
+;;  (list  '(:eval (concat (propertize " %* %b " 'face 'mode-line-color-1)
+;;                         (propertize " " 'display arrow-right-1)))
+;;         '(:eval (concat (propertize " %Z " 'face 'mode-line-color-2)
+;;                         (propertize " " 'display arrow-right-2)))
+;;         '(:eval (concat (propertize " %m " 'face 'mode-line-color-3)
+;;                         (propertize " " 'display arrow-right-3)))
 
-        ;; Justify right by filling with spaces to right fringe - 16
-        ;; (16 should be computed rahter than hardcoded)
-        '(:eval (propertize " " 'display
-                            '((space :align-to (- right-fringe 9)))))
+;;         ;; Justify right by filling with spaces to right fringe - 16
+;;         ;; (16 should be computed rahter than hardcoded)
+;;         '(:eval (propertize " " 'display
+;;                             '((space :align-to (- right-fringe 9)))))
 
-        '(:eval (concat (propertize " " 'display arrow-left-2)
-                        (propertize " %p " 'face 'mode-line-color-2)))
-        '(:eval (concat (propertize " " 'display arrow-left-1)
-                        (propertize "%4l:%2c  " 'face 'mode-line-color-1)))
-))
+;;         '(:eval (concat (propertize " " 'display arrow-left-2)
+;;                         (propertize " %p " 'face 'mode-line-color-2)))
+;;         '(:eval (concat (propertize " " 'display arrow-left-1)
+;;                         (propertize "%4l:%2c  " 'face 'mode-line-color-1)))
+;; ))
 
-(make-face 'mode-line-color-1)
-(set-face-attribute 'mode-line-color-1 nil
-                    :foreground "#fffacd"
-                    :background color1)
+;; (make-face 'mode-line-color-1)
+;; (set-face-attribute 'mode-line-color-1 nil
+;;                     :foreground "#fffacd"
+;;                     :background color1)
 
-(make-face 'mode-line-color-2)
-(set-face-attribute 'mode-line-color-2 nil
-                    :foreground "#fffacd"
-                    :background color2)
+;; (make-face 'mode-line-color-2)
+;; (set-face-attribute 'mode-line-color-2 nil
+;;                     :foreground "#fffacd"
+;;                     :background color2)
 
-(make-face 'mode-line-color-3)
-(set-face-attribute 'mode-line-color-3 nil
-                    :foreground "#fffacd"
-                    :background color3)
+;; (make-face 'mode-line-color-3)
+;; (set-face-attribute 'mode-line-color-3 nil
+;;                     :foreground "#fffacd"
+;;                     :background color3)
 
-(set-face-attribute 'mode-line nil
-                    :foreground "#fffacd"
-                    :background color4
-                    :bold t
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :foreground "#fffacd"
-                    :background color5)
+;; (set-face-attribute 'mode-line nil
+;;                     :foreground "#fffacd"
+;;                     :background color4
+;;                     :bold t
+;;                     :box nil)
+;; (set-face-attribute 'mode-line-inactive nil
+;;                     :foreground "#fffacd"
+;;                     :background color5)
 
 ;;;magit
 ;;M-x package-install RET magit
@@ -464,18 +468,18 @@ static char * arrow_right[] = {
 
 ;;;git-gutter
 ;; M-x package-install RET git-gutter RET
-(require 'git-gutter)
-(global-git-gutter-mode t)
-(define-key global-map (kbd "C-x g") 'git-gutter:toggle)
-(setq git-gutter:window-width 2)
+;; (require 'git-gutter-fringe)
+;; (global-git-gutter-mode t)
+;; (define-key global-map (kbd "C-x g") 'git-gutter:toggle)
+;; (setq git-gutter:window-width 2)
 
-(setq git-gutter:modified-sign " ")
-(setq git-gutter:added-sign "+")
-(setq git-gutter:deleted-sign "-")
+;; (setq git-gutter:modified-sign " ")
+;; (setq git-gutter:added-sign "+")
+;; (setq git-gutter:deleted-sign "-")
 
-(set-face-foreground 'git-gutter:modified "blue")
-(set-face-foreground 'git-gutter:added "green")
-(set-face-foreground 'git-gutter:deleted "red")
+;; (set-face-foreground 'git-gutter:modified "blue")
+;; (set-face-foreground 'git-gutter:added "green")
+;; (set-face-foreground 'git-gutter:deleted "red")
 
 ;;;auto-complete
 ;; M-x package-install RET auto-complete RET
@@ -509,3 +513,27 @@ static char * arrow_right[] = {
 ;;; markdown-mode
 ;; M-x package-install RET markdown-mode
 (require 'markdown-mode)
+
+;; smart-compile
+;; M-x package-install RET smart-compile
+(require 'smart-compile)
+(define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
+(define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
+
+;; rbenv でインストールした ruby を smart-compile で使う
+;;(setenv "PATH" (concat (expand-file-name "~/.rbenv/shims:") (getenv "PATH")))
+;; -------------------------------------------------------
+;; Mac OSX 固有の設定
+;; -------------------------------------------------------
+(setq default-input-method "MacOSX") ;; ことえりを使う
+(setq ns-command-modifier (quote meta)) ;; CommandキーをMetaに
+(setq ns-alternate-modifier (quote super)) ;; OptionキーをSuperに
+(setq ns-pop-up-frames nil) ;; 新しいウィンドウでファイルを開かない
+(define-key global-map [165] nil)
+(define-key global-map [67109029] nil)
+(define-key global-map [134217893] nil)
+(define-key global-map [201326757] nil)
+(define-key function-key-map [165] [?\\])
+(define-key function-key-map [67109029] [?\C-\\])
+(define-key function-key-map [134217893] [?\M-\\])
+(define-key function-key-map [201326757] [?\C-\M-\\])

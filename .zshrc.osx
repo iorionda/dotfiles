@@ -1,3 +1,4 @@
+
 ################################################################################
 # Terminal Colorの設定
 ################################################################################
@@ -64,7 +65,7 @@ alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"
 alias gvim='env LANG=ja_JP.UTF-8 open /Applications/MacVim.app "$@"'
 alias view='vim -R'
 alias reper='sudo diskutil repairPermissions /'
-alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias emacs='/usr/local/Cellar/emacs/HEAD/bin/emacs -nw'
 
 ################################################################################
 # node.js
@@ -72,6 +73,7 @@ alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 if [[ -f ~/.nodebrew/nodebrew ]]; then
   export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
+
 ################################################################################
 # Gisty
 ################################################################################

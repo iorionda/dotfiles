@@ -78,7 +78,7 @@
 ;;
 (set-face-attribute 'default nil
                     :family "Ricty"
-                    :height 140)
+                    :height 160)
 ;; (set-fontset-font
 ;;  (frame-parameter nil 'font)
 ;;  'japanese-jisx0208
@@ -280,130 +280,130 @@
 
 ;;;powerline
 ;M-x package-install RET powerline
-;; (require 'powerline)
-;; (defun arrow-right-xpm (color1 color2)
-;;   "Return an XPM right arrow string representing."
-;;   (format "/* XPM */
-;; static char * arrow_right[] = {
-;; \"12 18 2 1\",
-;; \". c %s\",
-;; \"  c %s\",
-;; \".           \",
-;; \"..          \",
-;; \"...         \",
-;; \"....        \",
-;; \".....       \",
-;; \"......      \",
-;; \".......     \",
-;; \"........    \",
-;; \".........   \",
-;; \"..........  \",
-;; \"........... \",
-;; \"............\",
-;; \"........... \",
-;; \"..........  \",
-;; \".........   \",
-;; \"........    \",
-;; \".......     \",
-;; \"......      \",
-;; \".....       \",
-;; \"....        \",
-;; \"...         \",
-;; \"..          \",
-;; \".           \",
-;; \"            \"};"  color1 color2))
+(require 'powerline)
+(defun arrow-right-xpm (color1 color2)
+  "Return an XPM right arrow string representing."
+  (format "/* XPM */
+static char * arrow_right[] = {
+\"12 18 2 1\",
+\". c %s\",
+\"  c %s\",
+\".           \",
+\"..          \",
+\"...         \",
+\"....        \",
+\".....       \",
+\"......      \",
+\".......     \",
+\"........    \",
+\".........   \",
+\"..........  \",
+\"........... \",
+\"............\",
+\"........... \",
+\"..........  \",
+\".........   \",
+\"........    \",
+\".......     \",
+\"......      \",
+\".....       \",
+\"....        \",
+\"...         \",
+\"..          \",
+\".           \",
+\"            \"};"  color1 color2))
 
-;; (defun arrow-left-xpm (color1 color2)
-;;   "Return an XPM right arrow string representing."
-;;   (format "/* XPM */
-;; static char * arrow_right[] = {
-;; \"12 18 2 1\",
-;; \". c %s\",
-;; \"  c %s\",
-;; \"           .\",
-;; \"          ..\",
-;; \"         ...\",
-;; \"        ....\",
-;; \"       .....\",
-;; \"      ......\",
-;; \"     .......\",
-;; \"    ........\",
-;; \"   .........\",
-;; \"  ..........\",
-;; \" ...........\",
-;; \"............\",
-;; \" ...........\",
-;; \"  ..........\",
-;; \"   .........\",
-;; \"    ........\",
-;; \"     .......\",
-;; \"      ......\",
-;; \"       .....\",
-;; \"        ....\",
-;; \"         ...\",
-;; \"          ..\",
-;; \"           .\",
-;; \"            \"};"  color2 color1))
+(defun arrow-left-xpm (color1 color2)
+  "Return an XPM right arrow string representing."
+  (format "/* XPM */
+static char * arrow_right[] = {
+\"12 18 2 1\",
+\". c %s\",
+\"  c %s\",
+\"           .\",
+\"          ..\",
+\"         ...\",
+\"        ....\",
+\"       .....\",
+\"      ......\",
+\"     .......\",
+\"    ........\",
+\"   .........\",
+\"  ..........\",
+\" ...........\",
+\"............\",
+\" ...........\",
+\"  ..........\",
+\"   .........\",
+\"    ........\",
+\"     .......\",
+\"      ......\",
+\"       .....\",
+\"        ....\",
+\"         ...\",
+\"          ..\",
+\"           .\",
+\"            \"};"  color2 color1))
 
-;; (defconst color1 "#0044cc")
-;; (defconst color2 "#0088cc")
-;; (defconst color3 "#696969")
-;; (defconst color4 "#FF0066")
-;; (defconst color5 "#CDC0B0")
+(defconst color1 "#0044cc")
+(defconst color2 "#0088cc")
+(defconst color3 "#696969")
+(defconst color4 "#FF0066")
+(defconst color5 "#CDC0B0")
 
-;; (defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2)
-;;                                     'xpm t :ascent 'center))
-;; (defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3)
-;;                                     'xpm t :ascent 'center))
-;; (defvar arrow-right-3 (create-image (arrow-right-xpm color3 "None")
-;;                                     'xpm t :ascent 'center))
-;; (defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1)
-;;                                     'xpm t :ascent 'center))
-;; (defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2)
-;;                                     'xpm t :ascent 'center))
+(defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2)
+                                    'xpm t :ascent 'center))
+(defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3)
+                                    'xpm t :ascent 'center))
+(defvar arrow-right-3 (create-image (arrow-right-xpm color3 "None")
+                                    'xpm t :ascent 'center))
+(defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1)
+                                    'xpm t :ascent 'center))
+(defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2)
+                                    'xpm t :ascent 'center))
 
-;; (setq-default mode-line-format
-;;  (list  '(:eval (concat (propertize " %* %b " 'face 'mode-line-color-1)
-;;                         (propertize " " 'display arrow-right-1)))
-;;         '(:eval (concat (propertize " %Z " 'face 'mode-line-color-2)
-;;                         (propertize " " 'display arrow-right-2)))
-;;         '(:eval (concat (propertize " %m " 'face 'mode-line-color-3)
-;;                         (propertize " " 'display arrow-right-3)))
+(setq-default mode-line-format
+ (list  '(:eval (concat (propertize " %* %b " 'face 'mode-line-color-1)
+                        (propertize " " 'display arrow-right-1)))
+        '(:eval (concat (propertize " %Z " 'face 'mode-line-color-2)
+                        (propertize " " 'display arrow-right-2)))
+        '(:eval (concat (propertize " %m " 'face 'mode-line-color-3)
+                        (propertize " " 'display arrow-right-3)))
 
-;;         ;; Justify right by filling with spaces to right fringe - 16
-;;         ;; (16 should be computed rahter than hardcoded)
-;;         '(:eval (propertize " " 'display
-;;                             '((space :align-to (- right-fringe 9)))))
+        ;; Justify right by filling with spaces to right fringe - 16
+        ;; (16 should be computed rahter than hardcoded)
+        '(:eval (propertize " " 'display
+                            '((space :align-to (- right-fringe 9)))))
 
-;;         '(:eval (concat (propertize " " 'display arrow-left-2)
-;;                         (propertize " %p " 'face 'mode-line-color-2)))
-;;         '(:eval (concat (propertize " " 'display arrow-left-1)
-;;                         (propertize "%4l:%2c  " 'face 'mode-line-color-1)))
-;; ))
+        '(:eval (concat (propertize " " 'display arrow-left-2)
+                        (propertize " %p " 'face 'mode-line-color-2)))
+        '(:eval (concat (propertize " " 'display arrow-left-1)
+                        (propertize "%4l:%2c  " 'face 'mode-line-color-1)))
+))
 
-;; (make-face 'mode-line-color-1)
-;; (set-face-attribute 'mode-line-color-1 nil
-;;                     :foreground "#fffacd"
-;;                     :background color1)
+(make-face 'mode-line-color-1)
+(set-face-attribute 'mode-line-color-1 nil
+                    :foreground "#fffacd"
+                    :background color1)
 
-;; (make-face 'mode-line-color-2)
-;; (set-face-attribute 'mode-line-color-2 nil
-;;                     :foreground "#fffacd"
-;;                     :background color2)
+(make-face 'mode-line-color-2)
+(set-face-attribute 'mode-line-color-2 nil
+                    :foreground "#fffacd"
+                    :background color2)
 
-;; (make-face 'mode-line-color-3)
-;; (set-face-attribute 'mode-line-color-3 nil
-;;                     :foreground "#fffacd"
-;;                     :background color3)
+(make-face 'mode-line-color-3)
+(set-face-attribute 'mode-line-color-3 nil
+                    :foreground "#fffacd"
+                    :background color3)
 
-;; (set-face-attribute 'mode-line nil
-;;                     :foreground "#fffacd"
-;;                     :background color4
-;;                     :bold t
-;;                     :box nil)
-;; (set-face-attribute 'mode-line-inactive nil
-;;                     :foreground "#fffacd"
-;;                     :background color5)
+(set-face-attribute 'mode-line nil
+                    :foreground "#fffacd"
+                    :background color4
+                    :bold t
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+                    :foreground "#fffacd"
+                    :background color5)
 
 ;;;magit
 ;;M-x package-install RET magit
@@ -468,18 +468,18 @@
 
 ;;;git-gutter
 ;; M-x package-install RET git-gutter RET
-;; (require 'git-gutter-fringe)
-;; (global-git-gutter-mode t)
-;; (define-key global-map (kbd "C-x g") 'git-gutter:toggle)
-;; (setq git-gutter:window-width 2)
+(require 'git-gutter)
+(global-git-gutter-mode t)
+(define-key global-map (kbd "C-x g") 'git-gutter:toggle)
+(setq git-gutter:window-width 2)
 
-;; (setq git-gutter:modified-sign " ")
-;; (setq git-gutter:added-sign "+")
-;; (setq git-gutter:deleted-sign "-")
+(setq git-gutter:modified-sign " ")
+(setq git-gutter:added-sign "+")
+(setq git-gutter:deleted-sign "-")
 
-;; (set-face-foreground 'git-gutter:modified "blue")
-;; (set-face-foreground 'git-gutter:added "green")
-;; (set-face-foreground 'git-gutter:deleted "red")
+(set-face-foreground 'git-gutter:modified "blue")
+(set-face-foreground 'git-gutter:added "green")
+(set-face-foreground 'git-gutter:deleted "red")
 
 ;;;auto-complete
 ;; M-x package-install RET auto-complete RET

@@ -7,7 +7,8 @@
 (setq load-path (append
                  '("~/.emacs.d"
                    "~/.emacs.d/color-theme"
-                   "~/.emacs.d/packages")
+                   "~/.emacs.d/packages"
+                   "~/.emacs.d/plugins")
                  load-path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -86,7 +87,7 @@
 ;;   :family "Ricty"
 ;;   ))
 
-(setq face-font-rescale-alist '(("Ricty" . 1.0)))
+(setq face-font-rescale-alist '("Ricty" . 1.0))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

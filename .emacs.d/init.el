@@ -77,9 +77,9 @@
 ;; │             罫線                            │
 ;; └─────────────────────────────┘
 ;;
-(set-face-attribute 'default nil
-                    :family "Ricty"
-                    :height 160)
+;; (set-face-attribute 'default nil
+;;                     :family "Ricty"
+;;                     :height 160)
 ;; (set-fontset-font
 ;;  (frame-parameter nil 'font)
 ;;  'japanese-jisx0208
@@ -87,7 +87,7 @@
 ;;   :family "Ricty"
 ;;   ))
 
-(setq face-font-rescale-alist '("Ricty" . 1.0))
+;; (setq face-font-rescale-alist '("Ricty" . 1.0))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -110,7 +110,7 @@
 (add-to-list 'default-frame-alist '(alpha . (0.95 0.95)))
 
 ;スクロールバーを消す
-;; (set-scroll-bar-mode 'nil)
+(set-scroll-bar-mode 'nil)
 ;ツールバーを消す
 (tool-bar-mode -1)
 
@@ -121,6 +121,7 @@
 (setq show-paren-delay 0)
 (setq show-paren-style 'single)
 (show-paren-mode t)
+
 ;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
 (setq show-paren-style 'mixed)
 
@@ -144,8 +145,10 @@
 
 ;;; カーソルの位置が何文字目かを表示する
 (column-number-mode t)
+
 ;;; カーソルの位置が何行目かを表示する
 (line-number-mode t)
+
 ;;; カーソルの場所を保存する
 (require 'saveplace)
 (setq-default save-place t)

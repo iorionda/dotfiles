@@ -522,7 +522,8 @@ static char * arrow_right[] = {
 (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
 
 ;; rbenv でインストールした ruby を smart-compile で使う
-;;(setenv "PATH" (concat (expand-file-name "~/.rbenv/shims:") (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name "/usr/local/opt/rbenv/shims:") (getenv "PATH")))
+
 ;; -------------------------------------------------------
 ;; Mac OSX 固有の設定
 ;; -------------------------------------------------------

@@ -33,22 +33,7 @@ if defined? Hirb
 
   Hirb.enable
 end
-#
-# Aliases
-#
-Pry.commands.alias_command 'c', 'continue'
-Pry.commands.alias_command 's', 'step'
-Pry.commands.alias_command 'n', 'next'
-Pry.commands.alias_command 'f', 'finish'
-Pry.commands.alias_command 'cat', 'show-method'
-Pry.commands.alias_command 'vi', 'edit-method'
-Pry.commands.alias_command 'vim', 'edit-method'
-Pry.commands.alias_command 'pwd', 'whereami'
 
-Pry.config.exception_handler = proc do |output, exception, _|
-  output.puts "\e[31m#{exception.class}: #{exception.message}"
-  output.puts "from #{exception.backtrace.first}\e[0m"
-end
 
 #
 # Prompt
@@ -82,10 +67,26 @@ else
 end
 
 #
+# Aliases
+#
+Pry.commands.alias_command 'c', 'continue'
+Pry.commands.alias_command 's', 'step'
+Pry.commands.alias_command 'n', 'next'
+Pry.commands.alias_command 'f', 'finish'
+Pry.commands.alias_command 'cat', 'show-method'
+Pry.commands.alias_command 'vi', 'edit-method'
+Pry.commands.alias_command 'vim', 'edit-method'
+Pry.commands.alias_command 'pwd', 'whereami'
+
+Pry.config.exception_handler = proc do |output, exception, _|
+  output.puts "\e[31m#{exception.class}: #{exception.message}"
+  output.puts "from #{exception.backtrace.first}\e[0m"
+end
+
+#
 # Toy methods
 #
 def time(repetitions = 100, &block)
     require 'benchmark'
     Benchmark.bm{|b| b.report{repetitions.times(&block)}}
 end
-

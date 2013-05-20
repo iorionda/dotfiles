@@ -35,4 +35,5 @@
 .emacs.d/history
 .emacs.d/packages/*
 .emacs.d/eshell/*
+.emacs.d/url
 .vim/bundle/*

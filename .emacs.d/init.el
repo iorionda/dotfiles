@@ -619,12 +619,11 @@ static char * arrow_right[] = {
   (global-set-key "\M-n" 'flymake-goto-next-error)
 
   ;; 警告エラー行の表示
-  ;;(global-set-key "\C-cd" 'flymake-display-err-menu-for-current-line)
   (global-set-key "\C-cd"
                   '(lambda ()
                      (interactive)
-                     ;;(my-flymake-display-err-minibuf-for-current-line)
-                     (my-flymake-display-err-popup.el-for-current-line)
+                     (my-flymake-display-err-minibuf-for-current-line)
+                     ;; (my-flymake-display-err-popup.el-for-current-line)
                      ))
 
   ;; Minibuf に出力
@@ -727,18 +726,17 @@ static char * arrow_right[] = {
 ;; M-x package-install RET flymake-ruby
 (require 'flymake-ruby)
 
-;; -------------------------------------------------------
-;; Mac OSX 固有の設定
-;; -------------------------------------------------------
-(setq default-input-method "MacOSX") ;; ことえりを使う
-(setq ns-command-modifier (quote meta)) ;; CommandキーをMetaに
-(setq ns-alternate-modifier (quote super)) ;; OptionキーをSuperに
-(setq ns-pop-up-frames nil) ;; 新しいウィンドウでファイルを開かない
-(define-key global-map [165] nil)
-(define-key global-map [67109029] nil)
-(define-key global-map [134217893] nil)
-(define-key global-map [201326757] nil)
-(define-key function-key-map [165] [?\\])
-(define-key function-key-map [67109029] [?\C-\\])
-(define-key function-key-map [134217893] [?\M-\\])
-(define-key function-key-map [201326757] [?\C-\M-\\])
+;;; キーバインド
+(define-key global-map "\C-h" 'delete-backward-char)
+(define-key global-map "\M-?" 'help-for-help)
+(define-key global-map "\C-z" 'undo)
+(define-key global-map "\C-\\" nil)
+(define-key global-map "\C-c " 'other-frame)
+                 ; undo
+(define-key global-map "\C-ci" 'indent-region)       ; インデント
+(define-key global-map "\C-c\C-i" 'dabbrev-expand)   ; 補完
+(define-key global-map "\C-c;" 'comment-region)      ; コメントアウト
+(define-key global-map "\C-c:" 'uncomment-region)    ; コメント解除
+(define-key global-map "\C-o" 'toggle-input-method)  ; 日本語入力切替
+(define-key global-map "\C-\\" nil) ; \C-\の日本語入力の設定を無効にする
+(define-key global-map "\C-c " 'other-frame)         ; フレーム移動

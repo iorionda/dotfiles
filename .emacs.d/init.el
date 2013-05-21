@@ -729,14 +729,8 @@ static char * arrow_right[] = {
 ;;; キーバインド
 (define-key global-map "\C-h" 'delete-backward-char)
 (define-key global-map "\M-?" 'help-for-help)
-(define-key global-map "\C-z" 'undo)
+(define-key global-map "\C-\\" 'undo)
 (define-key global-map "\C-\\" nil)
 (define-key global-map "\C-c " 'other-frame)
-                 ; undo
-(define-key global-map "\C-ci" 'indent-region)       ; インデント
-(define-key global-map "\C-c\C-i" 'dabbrev-expand)   ; 補完
-(define-key global-map "\C-c;" 'comment-region)      ; コメントアウト
-(define-key global-map "\C-c:" 'uncomment-region)    ; コメント解除
-(define-key global-map "\C-o" 'toggle-input-method)  ; 日本語入力切替
-(define-key global-map "\C-\\" nil) ; \C-\の日本語入力の設定を無効にする
-(define-key global-map "\C-c " 'other-frame)         ; フレーム移動
+(define-key global-map "\C-c\C-i" 'dabbrev-expand)
+(define-key global-map "\C-c " 'other-frame)

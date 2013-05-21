@@ -419,7 +419,8 @@ static char * arrow_right[] = {
 
 ;;;ruby-mode
 ;;M-x package-install RET ruby-mode
-(require 'ruby-mode)
+(autoload 'ruby-mode "ruby-mode"
+    "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
@@ -439,6 +440,7 @@ static char * arrow_right[] = {
      (electric-indent-mode t)
      (electric-layout-mode t)))
 
+;;M-x
 ;;;ido
 ;;M-x package-install RET ido
 (require 'ido)
@@ -533,6 +535,24 @@ static char * arrow_right[] = {
 
 ;; rbenv でインストールした ruby を smart-compile で使う
 (setenv "PATH" (concat (expand-file-name "/usr/local/opt/rbenv/shims:") (getenv "PATH")))
+
+;;yasnipepet
+;; M-x package-install RET yasnippet
+(require 'yasnippet)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"))
+(yas-global-mode 1)
+
+;; 単語展開キーバインド (ver8.0から明記しないと機能しない)
+;; (setqだとtermなどで干渉問題ありでした)
+;; もちろんTAB以外でもOK 例えば "C-;"とか
+(custom-set-variables '(yas-trigger-key "TAB"))
+;; 既存スニペットを挿入する
+(define-key yas-minor-mode-map (kbd "C-x i i") 'yas-insert-snippet)
+;; 新規スニペットを作成するバッファを用意する
+(define-key yas-minor-mode-map (kbd "C-x i n") 'yas-new-snippet)
+;; 既存スニペットを閲覧・編集する
+(define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
 ;; -------------------------------------------------------
 ;; Mac OSX 固有の設定

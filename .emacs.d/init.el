@@ -730,7 +730,6 @@ static char * arrow_right[] = {
 (define-key global-map "\C-h" 'delete-backward-char)
 (define-key global-map "\M-?" 'help-for-help)
 (define-key global-map "\C-\\" 'undo)
-(define-key global-map "\C-\\" nil)
 (define-key global-map "\C-c " 'other-frame)
 (define-key global-map "\C-c\C-i" 'dabbrev-expand)
 (define-key global-map "\C-c " 'other-frame)

@@ -554,6 +554,10 @@ static char * arrow_right[] = {
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
+;; yasnippet-bundle
+;; M-x package-install yasnippet-bundle
+(require 'yasnippet-bundle)
+
 ;; -------------------------------------------------------
 ;; Mac OSX 固有の設定
 ;; -------------------------------------------------------

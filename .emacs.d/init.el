@@ -421,16 +421,23 @@ static char * arrow_right[] = {
 ;;M-x package-install RET ruby-mode
 (require 'ruby-mode)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;;;ruby-end
 ;;M-x package-install RET ruby-end
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook
   '(lambda ()
-    (abbrev-mode 1)
-    (electric-pair-mode t)
-    (electric-indent-mode t)
-    (electric-layout-mode t)))
+     (setq tab-width 2)
+     (setq ruby-indent-level tab-width)
+     (setq ruby-deep-indent-paren-style nil)
+     (define-key ruby-mode-map [return] 'ruby-reindent-then-newline-and-indent)
+     (abbrev-mode 1)
+     (electric-pair-mode t)
+     (electric-indent-mode t)
+     (electric-layout-mode t)))
 
 ;;;ido
 ;;M-x package-install RET ido

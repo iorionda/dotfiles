@@ -722,6 +722,11 @@ static char * arrow_right[] = {
   (push '("^\\(.+\\): line \\([0-9]+\\): \\(.+\\)$" 1 2 nil 3) flymake-err-line-patterns)
 
   )
+
+;; flymake-ruby
+;; M-x package-install RET flymake-ruby
+(require 'flymake-ruby)
+
 ;; -------------------------------------------------------
 ;; Mac OSX 固有の設定
 ;; -------------------------------------------------------

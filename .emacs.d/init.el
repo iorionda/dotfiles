@@ -536,6 +536,7 @@ static char * arrow_right[] = {
 ;; rbenv でインストールした ruby を smart-compile で使う
 (setenv "PATH" (concat (expand-file-name "/usr/local/opt/rbenv/shims:") (getenv "PATH")))
 
+;;; yasnippet
 ;;yasnipepet
 ;; M-x package-install RET yasnippet
 (require 'yasnippet)
@@ -554,9 +555,15 @@ static char * arrow_right[] = {
 ;; 既存スニペットを閲覧・編集する
 (define-key yas-minor-mode-map (kbd "C-x i v") 'yas-visit-snippet-file)
 
+;; helm-c-yasnippet
+;; M-x package-install RET helm-c-yasnippet
+(require 'helm-c-yasnippet)
+
+;; TODO: うまく動かないので外した
 ;; yasnippet-bundle
-;; M-x package-install yasnippet-bundle
-(require 'yasnippet-bundle)
+;; M-x package-install RET yasnippet-bundle
+;;(require 'yasnippet-bundle)
+;;(yas/initialize)
 
 ;; -------------------------------------------------------
 ;; Mac OSX 固有の設定

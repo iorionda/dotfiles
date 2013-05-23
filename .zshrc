@@ -37,3 +37,6 @@ plugins=(rails3 ruby git rbenv bundler)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+#disable autocorrect
+unsetopt correct_all

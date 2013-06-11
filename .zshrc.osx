@@ -83,8 +83,5 @@ export GISTY_ACCESS_TOKEN=4abc896373018be644eb770af0e3674033cb5837
 ################################################################################
 # rbenv
 ################################################################################
-if [ -d ${HOME}/.rbenv ]; then
-  PATH="${HOME}/.rbenv/bin:${PATH}"
-  export PATH
-  eval "$(rbenv init - zsh)"
-fi
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

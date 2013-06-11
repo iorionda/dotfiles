@@ -1,7 +1,6 @@
 # vim:filetype=ruby
 #
-VIM = '/Applications/MacVim.app/Contents/MacOS/Vim -f'
-Pry.config.editor = proc { |file, line| "#{VIM} #{file} +#{line}" }
+Pry.config.editor = "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 
 begin
   require 'awesome_print'

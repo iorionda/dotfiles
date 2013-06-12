@@ -228,6 +228,16 @@
 (global-set-key [triple-wheel-up] 'scroll-down-with-lines)
 (global-set-key [triple-wheel-down] 'scroll-up-with-lines)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 環境
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ruby
+(setenv "PATH" (concat (getenv "HOME") "/usr/local/opt/rbenv/shims:"
+                       (getenv "HOME") "/usr/local/opt/rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/usr/local/opt/rbenv/shims")
+                      (cons (concat (getenv "HOME") "/usr/local/opt/rbenv/bin") exec-path)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;パッケージ管理
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -423,6 +433,7 @@ static char * arrow_right[] = {
     "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
@@ -540,6 +551,16 @@ static char * arrow_right[] = {
 ;;yasnipepet
 ;; M-x package-install RET yasnippet
 (require 'yasnippet)
+
+;; helm-c-yasnippet
+;; M-x package-install RET helm-c-yasnippet
+(require 'helm-c-yasnippet)
+
+;; yasnippet-bundle
+;; M-x package-install RET yasnippet-bundle
+(require 'yasnippet-bundle)
+(yas/initialize)
+
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"))
 (yas/global-mode 1)
@@ -554,16 +575,6 @@ static char * arrow_right[] = {
 (define-key yas/minor-mode-map (kbd "C-x i n") 'yas/new-snippet)
 ;; 既存スニペットを閲覧・編集する
 (define-key yas/minor-mode-map (kbd "C-x i v") 'yas/visit-snippet-file)
-
-;; helm-c-yasnippet
-;; M-x package-install RET helm-c-yasnippet
-(require 'helm-c-yasnippet)
-
-;; TODO: うまく動かないので外した
-;; yasnippet-bundle
-;; M-x package-install RET yasnippet-bundle
-;;(require 'yasnippet-bundle)
-;;(yas/initialize)
 
 ;; flymake
 ;; M-x package-install RET flymake
@@ -699,6 +710,7 @@ static char * arrow_right[] = {
        "ruby" '("-c")))
 
     (push '(".+\\.rb\\'" flymake-ruby-init) flymake-allowed-file-name-masks)
+    (push '(".+\\.rake\\'" flymake-ruby-init) flymake-allowed-file-name-masks)
     (push '("Rakefile\\'" flymake-ruby-init) flymake-allowed-file-name-masks)
 
     (push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)

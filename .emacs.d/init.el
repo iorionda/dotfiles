@@ -250,6 +250,42 @@
      '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
+(defvar installing-package-list
+  '(
+    ;; ここに使っているパッケージを書く。
+    popwin
+    helm
+    powerline
+    magit
+    ruby-mode
+    ruby-end
+    ido
+    rinari
+    rspec-mode
+    direx
+    highlight-indentation
+    git-gutter
+    auto-complete
+    coffee-mode
+    flymake
+    flymake-coffee
+    undo-tree
+    markdown-mode
+    smart-compile
+    yasnippet
+    helm-c-yasnippet
+    yasnippet-bundle
+    flymake-ruby
+    ))
+
+(let ((not-installed (loop for x in installing-package-list
+                           when (not (package-installed-p x))
+                           collect x)))
+  (when not-installed
+    (package-refresh-contents)
+    (dolist (pkg not-installed)
+      (package-install pkg))))
+
 ;;;popwin.el :pop up window for emacs baffer
 ;;M-x package-install RET popwin
 (require 'popwin)

@@ -276,6 +276,7 @@
     helm-c-yasnippet
     yasnippet-bundle
     flymake-ruby
+    google-translate
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -285,6 +286,17 @@
     (package-refresh-contents)
     (dolist (pkg not-installed)
       (package-install pkg))))
+
+;; google-translate
+(require 'google-translate)
+
+;; キーバインドの設定(お好みで)
+(global-set-key (kbd "C-x t") 'google-translate-at-point)
+(push '("*Google Translate*") popwin:special-display-config)
+;; 翻訳のデフォルト値を設定(en -> ja)
+(custom-set-variables
+ '(google-translate-default-source-language "en")
+ '(google-translate-default-target-language "ja"))
 
 ;;;popwin.el :pop up window for emacs baffer
 ;;M-x package-install RET popwin

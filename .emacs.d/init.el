@@ -228,7 +228,6 @@
 (global-set-key [triple-wheel-up] 'scroll-down-with-lines)
 (global-set-key [triple-wheel-down] 'scroll-up-with-lines)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 環境
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -292,7 +291,6 @@
 
 ;; キーバインドの設定(お好みで)
 (global-set-key (kbd "C-x t") 'google-translate-at-point)
-(push '("*Google Translate*") popwin:special-display-config)
 ;; 翻訳のデフォルト値を設定(en -> ja)
 (custom-set-variables
  '(google-translate-default-source-language "en")
@@ -309,6 +307,7 @@
                 ("*sdic*" :noselect))
               popwin:special-display-config))
 (define-key global-map (kbd "C-x p") 'popwin:display-last-buffer)
+(push '("*Google Translate*") popwin:special-display-config)
 
 ;;;helm.el
 ;;M-x package-install RET helm RET

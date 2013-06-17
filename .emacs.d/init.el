@@ -8,9 +8,12 @@
                  '("~/.emacs.d"
                    "~/.emacs.d/color-theme"
                    "~/.emacs.d/packages"
-                   "~/.emacs.d/plugins")
+                   "~/.emacs.d/plugins"
+                   "~/.emacs.d/elisp")
                  load-path))
 
+(load-file "~/.emacs.d/elisp/dash.el")
+(load-file "~/.emacs.d/elisp/ginger-api.el")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;日本語設定
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -277,6 +280,7 @@
     flymake-ruby
     google-translate
     motion-mode
+    request
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -799,9 +803,10 @@ static char * arrow_right[] = {
 (define-key motion-mode-map (kbd "C-c C-p") 'motion-convert-code-region)
 
 ;;; キーバインド
-(define-key global-map "\C-h" 'delete-backward-char)
-(define-key global-map "\M-?" 'help-for-help)
-(define-key global-map "\C-\\" 'undo)
-(define-key global-map "\C-c " 'other-frame)
-(define-key global-map "\C-c\C-i" 'dabbrev-expand)
-(define-key global-map "\C-c " 'other-frame)
+(define-key global-map (kbd "C-h") 'delete-backward-char)
+(define-key global-map (kbd "M-?")  'help-for-help)
+(define-key global-map (kbd "C-\\") 'undo)
+(define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
+
+(define-key global-map (kbd "C-c C-d") 'dash)
+(define-key global-map (kbd "C-c C-g") 'ginger-region)

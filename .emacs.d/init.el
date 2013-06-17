@@ -276,6 +276,7 @@
     yasnippet-bundle
     flymake-ruby
     google-translate
+    motion-mode
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -784,6 +785,18 @@ static char * arrow_right[] = {
 ;; flymake-ruby
 ;; M-x package-install RET flymake-ruby
 (require 'flymake-ruby)
+
+;; motion-mode
+;; M-x package-install RET motion-mode
+(require 'motion-mode)
+
+(add-hook 'ruby-mode-hook 'motion-recognize-project)
+(add-to-list 'ac-modes 'motion-mode)
+(add-to-list 'ac-sources 'ac-source-dictionary)
+
+(define-key motion-mode-map (kbd "C-c C-c") 'motion-execute-rake)
+(define-key motion-mode-map (kbd "C-c C-d") 'motion-dash-at-point)
+(define-key motion-mode-map (kbd "C-c C-p") 'motion-convert-code-region)
 
 ;;; キーバインド
 (define-key global-map "\C-h" 'delete-backward-char)

@@ -4,7 +4,7 @@
 (require 'json)
 
 (defvar ginger-end-point
-  "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText"  )
+  "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText")
 
 ;;;###autoload
 (defun ginger-region (begin end)

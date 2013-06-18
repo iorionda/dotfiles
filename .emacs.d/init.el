@@ -12,8 +12,6 @@
                    "~/.emacs.d/elisp")
                  load-path))
 
-(load-file "~/.emacs.d/elisp/dash.el")
-(load-file "~/.emacs.d/elisp/ginger-api.el")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;日本語設定
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -807,6 +805,10 @@ static char * arrow_right[] = {
 (define-key global-map (kbd "M-?")  'help-for-help)
 (define-key global-map (kbd "C-\\") 'undo)
 (define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
+
+;; elisp の設定
+(load-file "~/.emacs.d/elisp/dash.el")
+(load-file "~/.emacs.d/elisp/ginger-api.el")
 
 (define-key global-map (kbd "C-c C-d") 'dash)
 (define-key global-map (kbd "C-c C-g") 'ginger-region)

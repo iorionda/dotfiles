@@ -280,6 +280,8 @@
     motion-mode
     request
     dash-at-point
+    js2-mode
+
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -815,6 +817,14 @@ static char * arrow_right[] = {
 (define-key global-map (kbd "C-c C-d") 'dash-at-point)
 (add-hook 'rinari-minor-mode-hook
           (lambda () (setq dash-at-point-docset "rails")))
+
+;; js2-mode
+(require 'js2-mode)
+
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (setq js2-basic-offset 4)))
 
 ;;; キーバインド
 (define-key global-map (kbd "C-h") 'delete-backward-char)

@@ -279,6 +279,7 @@
     google-translate
     motion-mode
     request
+    dash-at-point
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -438,7 +439,6 @@ static char * arrow_right[] = {
         ;; (16 should be computed rahter than hardcoded)
         '(:eval (propertize " " 'display
                             '((space :align-to (- right-fringe 9)))))
-
         '(:eval (concat (propertize " " 'display arrow-left-2)
                         (propertize " %p " 'face 'mode-line-color-2)))
         '(:eval (concat (propertize " " 'display arrow-left-1)
@@ -566,8 +566,17 @@ static char * arrow_right[] = {
 ;;;coffee-mode
 ;; M-x package-install RET coffee-mode RET
 (require 'coffee-mode)
+
 (setq whitespace-action '(auto-cleanup)) ;; automatically clean up bad whitespace
 (setq whitespace-style '(trailing space-before-tab indentation empty space-after-tab)) ;; only show bad whitespace
+
+(defun coffee-custom ()
+  "coffee-mode-hook"
+  (set (make-local-variable 'tab-width) 2)
+  (setq coffee-tab-width 2))
+
+(add-hook 'coffee-mode-hook
+          '(lambda() (coffee-custom)))
 
 ;; flymake-coffee
 ;; M-x package-install RET flymake-coffee RET
@@ -800,6 +809,13 @@ static char * arrow_right[] = {
 (define-key motion-mode-map (kbd "C-c C-d") 'motion-dash-at-point)
 (define-key motion-mode-map (kbd "C-c C-p") 'motion-convert-code-region)
 
+;; dash-at-point
+;; M-x package-install RET dash-at-point
+(require 'dash-at-point)
+(define-key global-map (kbd "C-c C-d") 'dash-at-point)
+(add-hook 'rinari-minor-mode-hook
+          (lambda () (setq dash-at-point-docset "rails")))
+
 ;;; キーバインド
 (define-key global-map (kbd "C-h") 'delete-backward-char)
 (define-key global-map (kbd "M-?")  'help-for-help)
@@ -807,8 +823,5 @@ static char * arrow_right[] = {
 (define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
 
 ;; elisp の設定
-(load-file "~/.emacs.d/elisp/dash.el")
 (load-file "~/.emacs.d/elisp/ginger-api.el")
-
-(define-key global-map (kbd "C-c C-d") 'dash)
 (define-key global-map (kbd "C-c C-g") 'ginger-region)

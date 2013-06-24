@@ -35,6 +35,7 @@
 (define-key global-map (kbd "C-c C-i") 'hippie-expand)    ; 補完
 (define-key global-map (kbd "C-c ;") 'comment-dwim)       ; コメントアウト
 (define-key global-map (kbd "M-C-g") 'grep)               ; grep
+
 ;; 改行したらindentする
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
@@ -75,20 +76,22 @@
 ;; ABCdeABCde
 ;;
 ;; ┌─────────────────────────────┐
-;; │             罫線                            │
+;; │             罫線           |
 ;; └─────────────────────────────┘
-;;
-;; (set-face-attribute 'default nil
-;;                     :family "Ricty"
-;;                     :height 160)
-;; (set-fontset-font
-;;  (frame-parameter nil 'font)
-;;  'japanese-jisx0208
-;;  (font-spec
-;;   :family "Ricty"
-;;   ))
+;; font
+(if window-system
+    (progn
+      (set-fontset-font
+       nil 'japanese-jisx0208
+       (font-spec :family "Ricty"))
+      (create-fontset-from-ascii-font "Ricty-14:weight=normal:slant=normal" nil "ricty")
+      (set-fontset-font "fontset-ricty"
+                        'japanese-jisx0208
+                        (font-spec :family "Ricty" :size 14)
+                        nil
+                        'append)
+      (add-to-list 'default-frame-alist '(font . "fontset-ricty"))))
 
-;; (setq face-font-rescale-alist '("Ricty" . 1.0))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -835,3 +838,7 @@ static char * arrow_right[] = {
 ;; elisp の設定
 (load-file "~/.emacs.d/elisp/ginger-api.el")
 (define-key global-map (kbd "C-c C-g") 'ginger-region)
+
+
+(load-file "~/.emacs.d/elisp/dash.el")
+(load-file "~/.emacs.d/elisp/ginger-api.el")

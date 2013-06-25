@@ -76,7 +76,7 @@
 ;; ABCdeABCde
 ;;
 ;; ┌─────────────────────────────┐
-;; │             罫線           |
+;; │             罫線                                         |
 ;; └─────────────────────────────┘
 ;; font
 (if window-system
@@ -284,7 +284,6 @@
     request
     dash-at-point
     js2-mode
-
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -842,3 +841,37 @@ static char * arrow_right[] = {
 
 (load-file "~/.emacs.d/elisp/dash.el")
 (load-file "~/.emacs.d/elisp/ginger-api.el")
+
+(defun move-line-down ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)
+    (indent-for-tab-command)))
+
+(defun move-line-up ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines -1))
+    (move-to-column col)
+    (indent-for-tab-command)))
+
+(global-set-key (kbd "M-P") 'move-line-up)
+(global-set-key (kbd "M-N") 'move-line-down)
+
+(defun copy-from-osx ()
+ (shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+ (let ((process-connection-type nil))
+     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+       (process-send-string proc text)
+       (process-send-eof proc))))
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)

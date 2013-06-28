@@ -75,3 +75,5 @@
     top = http://{host}/graph/{path[1]}
     ref = http://{host}/changelog/~br={short_ref}/{path[1]}
     rev = http://{host}/changelog/{path[1]}?cs={commit}
+[core]
+	editor = vim

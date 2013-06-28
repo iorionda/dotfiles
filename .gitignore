@@ -28,6 +28,7 @@
 !/link.sh
 !/.muttrc
 !/.emacs.d
+!default-gems
 
 .emacs.d/elpa
 .emacs.d/auto-save-list

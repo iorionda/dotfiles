@@ -285,6 +285,8 @@
     dash-at-point
     js2-mode
     ag
+    region-bindings-mode
+    multiple-cursors
     ))
 
 (let ((not-installed (loop for x in installing-package-list

@@ -128,14 +128,9 @@ extract () {
     echo "'$1' is not a valid file!"
   fi
 }
-
 alias ex='extract'
-
 alias rtags='/Applications/MacVim.app/Contents/MacOS/ctags -R --langmap=RUBY:.rb --sort=yes ~/.rbenv/versions/1.9.3-p327 ~/.rbenv/shims -f ~/rtags '
 
-chpwd() {
-    ls_abbrev
-}
 ls_abbrev() {
     # -a : Do not ignore entries starting with ..
     # -C : Force multi-column output.
@@ -167,6 +162,10 @@ ls_abbrev() {
     else
         echo "$ls_result"
     fi
+}
+
+chpwd() {
+    ls_abbrev
 }
 
 function do_enter() {

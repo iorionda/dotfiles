@@ -925,3 +925,16 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
               old-supersession-threat)))))
 
 (global-set-key (kbd "M-r") 'reopen-file)
+
+(defface hlline-face
+  '((((class color)
+      (background dark))
+     (:background "dark slate gray"))
+    (((class color)
+      (background light))
+     (:background  "#98FB98"))
+    (t
+     ()))
+  "*Face used by hl-line.")
+(setq hl-line-face 'hlline-face)
+(global-hl-line-mode)

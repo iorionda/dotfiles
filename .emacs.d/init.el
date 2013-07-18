@@ -100,7 +100,7 @@
 
 ;; ロードパスの設定
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
-(load-theme 'railscasts t nil)
+(load-theme 'molokai t nil)
 
 ;; 保存時にTAB
 ;; オートインデントでTABを使う

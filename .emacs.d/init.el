@@ -287,6 +287,7 @@
     ag
     region-bindings-mode
     multiple-cursors
+    rhtml-mode
     ))
 
 (let ((not-installed (loop for x in installing-package-list
@@ -339,6 +340,7 @@
 (global-set-key (kbd "C-x b") 'my-helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-r") 'helm-recentf)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
 
 (setq helm-samewindow nil)
 (push '("*helm-M-x*") popwin:special-display-config)
@@ -349,132 +351,6 @@
 (setq helm-input-idle-delay 0.02)
 ;; 候補のディレクトリが一つしかない場合に、自動的に展開しない
 (setq helm-ff-auto-update-initial-value nil)
-
-;;;powerline
-;M-x package-install RET powerline
-(require 'powerline)
-(defun arrow-right-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\".           \",
-\"..          \",
-\"...         \",
-\"....        \",
-\".....       \",
-\"......      \",
-\".......     \",
-\"........    \",
-\".........   \",
-\"..........  \",
-\"........... \",
-\"............\",
-\"........... \",
-\"..........  \",
-\".........   \",
-\"........    \",
-\".......     \",
-\"......      \",
-\".....       \",
-\"....        \",
-\"...         \",
-\"..          \",
-\".           \",
-\"            \"};"  color1 color2))
-
-(defun arrow-left-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\"           .\",
-\"          ..\",
-\"         ...\",
-\"        ....\",
-\"       .....\",
-\"      ......\",
-\"     .......\",
-\"    ........\",
-\"   .........\",
-\"  ..........\",
-\" ...........\",
-\"............\",
-\" ...........\",
-\"  ..........\",
-\"   .........\",
-\"    ........\",
-\"     .......\",
-\"      ......\",
-\"       .....\",
-\"        ....\",
-\"         ...\",
-\"          ..\",
-\"           .\",
-\"            \"};"  color2 color1))
-
-(defconst color1 "#0044cc")
-(defconst color2 "#0088cc")
-(defconst color3 "#696969")
-(defconst color4 "#FF0066")
-(defconst color5 "#CDC0B0")
-
-(defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2)
-                                    'xpm t :ascent 'center))
-(defvar arrow-right-2 (create-image (arrow-right-xpm color2 color3)
-                                    'xpm t :ascent 'center))
-(defvar arrow-right-3 (create-image (arrow-right-xpm color3 "None")
-                                    'xpm t :ascent 'center))
-(defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1)
-                                    'xpm t :ascent 'center))
-(defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2)
-                                    'xpm t :ascent 'center))
-
-(setq-default mode-line-format
- (list  '(:eval (concat (propertize " %* %b " 'face 'mode-line-color-1)
-                        (propertize " " 'display arrow-right-1)))
-        '(:eval (concat (propertize " %Z " 'face 'mode-line-color-2)
-                        (propertize " " 'display arrow-right-2)))
-        '(:eval (concat (propertize " %m " 'face 'mode-line-color-3)
-                        (propertize " " 'display arrow-right-3)))
-
-        ;; Justify right by filling with spaces to right fringe - 16
-        ;; (16 should be computed rahter than hardcoded)
-        '(:eval (propertize " " 'display
-                            '((space :align-to (- right-fringe 9)))))
-        '(:eval (concat (propertize " " 'display arrow-left-2)
-                        (propertize " %p " 'face 'mode-line-color-2)))
-        '(:eval (concat (propertize " " 'display arrow-left-1)
-                        (propertize "%4l:%2c  " 'face 'mode-line-color-1)))
-))
-
-(make-face 'mode-line-color-1)
-(set-face-attribute 'mode-line-color-1 nil
-                    :foreground "#fffacd"
-                    :background color1)
-
-(make-face 'mode-line-color-2)
-(set-face-attribute 'mode-line-color-2 nil
-                    :foreground "#fffacd"
-                    :background color2)
-
-(make-face 'mode-line-color-3)
-(set-face-attribute 'mode-line-color-3 nil
-                    :foreground "#fffacd"
-                    :background color3)
-
-(set-face-attribute 'mode-line nil
-                    :foreground "#fffacd"
-                    :background color4
-                    :bold t
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :foreground "#fffacd"
-                    :background color5)
 
 ;;;magit
 ;;M-x package-install RET magit
@@ -626,7 +502,6 @@ static char * arrow_right[] = {
 ;; M-x package-install RET yasnippet-bundle
 (require 'yasnippet-bundle)
 (yas/initialize)
-
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"))
 (yas/global-mode 1)
@@ -869,6 +744,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (load-file "~/.emacs.d/elisp/ginger-api.el")
 (define-key global-map (kbd "C-c C-g") 'ginger-region)
 
+;; rhtml-mode
+(require 'rhtml-mode)
 
 (load-file "~/.emacs.d/elisp/dash.el")
 (load-file "~/.emacs.d/elisp/ginger-api.el")
@@ -938,3 +815,35 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   "*Face used by hl-line.")
 (setq hl-line-face 'hlline-face)
 (global-hl-line-mode)
+
+(defun helm-c-sources-git-project-for (pwd)
+  (loop for elt in
+        '(("Modified files" . "--modified")
+          ("Untracked files" . "--others --exclude-standard")
+          ("All controlled files in this project" . nil))
+        for title  = (format "%s (%s)" (car elt) pwd)
+        for option = (cdr elt)
+        for cmd    = (format "git ls-files %s" (or option ""))
+        collect
+        `((name . ,title)
+          (init . (lambda ()
+                    (unless (and (not ,option) (helm-candidate-buffer))
+                      (with-current-buffer (helm-candidate-buffer 'global)
+                        (call-process-shell-command ,cmd nil t nil)))))
+          (candidates-in-buffer)
+          (type . file))))
+
+(defun helm-git-project-topdir ()
+  (file-name-as-directory
+   (replace-regexp-in-string
+    "\n" ""
+    (shell-command-to-string "git rev-parse --show-toplevel"))))
+
+(defun helm-git-project ()
+  (interactive)
+  (let ((topdir (helm-git-project-topdir)))
+    (unless (file-directory-p topdir)
+      (error "I'm not in Git Repository!!"))
+    (let* ((default-directory topdir)
+           (sources (helm-c-sources-git-project-for default-directory)))
+      (helm-other-buffer sources "*helm git project*"))))

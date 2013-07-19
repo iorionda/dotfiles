@@ -37,4 +37,5 @@
 .emacs.d/packages/*
 .emacs.d/eshell/*
 .emacs.d/url
+.emacs.d/snippets
 .vim/bundle/*

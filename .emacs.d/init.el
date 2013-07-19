@@ -309,7 +309,6 @@
  '(google-translate-default-target-language "ja"))
 
 ;;;popwin.el :pop up window for emacs baffer
-;;M-x package-install RET popwin
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
 (setq popwin:popup-window-height 0.5)
@@ -322,7 +321,6 @@
 (push '("*Google Translate*") popwin:special-display-config)
 
 ;;;helm.el
-;;M-x package-install RET helm RET
 (require 'helm)
 (require 'helm-config)
 (helm-mode 1)
@@ -353,7 +351,6 @@
 (setq helm-ff-auto-update-initial-value nil)
 
 ;;;magit
-;;M-x package-install RET magit
 (require 'magit)
 ;; 色変更
 (set-face-foreground 'magit-diff-add "#b9ca4a") ; 追加した部分を緑に
@@ -361,7 +358,6 @@
 (set-face-background 'magit-item-highlight "#000000") ; 選択項目ハイライトがうっとうしいので背景色と同化
 
 ;;;ruby-mode
-;;M-x package-install RET ruby-mode
 (autoload 'ruby-mode "ruby-mode"
     "Mode for editing ruby source files" t)
 (add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
@@ -371,7 +367,6 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
 ;;;ruby-end
-;;M-x package-install RET ruby-end
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook
   '(lambda ()
@@ -384,22 +379,17 @@
      (electric-indent-mode t)
      (electric-layout-mode t)))
 
-;;M-x
 ;;;ido
-;;M-x package-install RET ido
 (require 'ido)
 (ido-mode t)
 
 ;;;rinari
-;;M-x package-install RET rinari
 (require 'rinari)
 
 ;;;rspec-mode
-;;M-x package-install RET rspec-mode
 (require 'rspec-mode)
 
 ;;;direx
-;;M-x package-install RET direx
 (require 'direx)
 (require 'direx-project)
 (setq direx:leaf-icon "  "
@@ -415,7 +405,6 @@
  'direx-project:jump-to-project-root-other-window)
 
 ;;;highlight-indentation
-;; M-x package-install RET highlight-indentation RET
 (require 'highlight-indentation)
 (setq highlight-indentation-offset 2)
 (set-face-background 'highlight-indentation-face "#696969")
@@ -424,7 +413,6 @@
 (highlight-indentation-mode)
 
 ;;;git-gutter
-;; M-x package-install RET git-gutter RET
 (require 'git-gutter)
 (global-git-gutter-mode t)
 (define-key global-map (kbd "C-x g") 'git-gutter:toggle)
@@ -439,7 +427,6 @@
 (set-face-foreground 'git-gutter:deleted "red")
 
 ;;;auto-complete
-;; M-x package-install RET auto-complete RET
 (require 'auto-complete)
 (global-auto-complete-mode t)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
@@ -447,7 +434,6 @@
 (ac-config-default)
 
 ;;;coffee-mode
-;; M-x package-install RET coffee-mode RET
 (require 'coffee-mode)
 
 (setq whitespace-action '(auto-cleanup)) ;; automatically clean up bad whitespace
@@ -462,26 +448,21 @@
           '(lambda() (coffee-custom)))
 
 ;; flymake-coffee
-;; M-x package-install RET flymake-coffee RET
 (require 'flymake-coffee)
 
 ;;;undo-tree
-;; M-x package-install RET undo-tree RET
 (require 'undo-tree)
 (global-undo-tree-mode t)
 (global-set-key (kbd "M-/") 'undo-tree-redo)
 
 ;; tern
-;; https://github.com/marijnh/tern
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 
 ;;; markdown-mode
-;; M-x package-install RET markdown-mode
 (require 'markdown-mode)
 
 ;; smart-compile
-;; M-x package-install RET smart-compile
 (require 'smart-compile)
 (define-key ruby-mode-map (kbd "C-c c") 'smart-compile)
 (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
@@ -490,17 +471,14 @@
 (setenv "PATH" (concat (expand-file-name "/usr/local/opt/rbenv/shims:") (getenv "PATH")))
 
 ;;; yasnippet
-;;yasnipepet
-;; M-x package-install RET yasnippet
 (require 'yasnippet)
 
 ;; helm-c-yasnippet
-;; M-x package-install RET helm-c-yasnippet
 (require 'helm-c-yasnippet)
 
 ;; yasnippet-bundle
-;; M-x package-install RET yasnippet-bundle
 (require 'yasnippet-bundle)
+
 (yas/initialize)
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"))
@@ -518,9 +496,6 @@
 (define-key yas/minor-mode-map (kbd "C-x i v") 'yas/visit-snippet-file)
 
 ;; flymake
-;; M-x package-install RET flymake
-;(require 'flymake)
-
 (when (locate-library "flymake")
   (require 'flymake)
 
@@ -676,11 +651,9 @@
   )
 
 ;; flymake-ruby
-;; M-x package-install RET flymake-ruby
 (require 'flymake-ruby)
 
 ;; motion-mode
-;; M-x package-install RET motion-mode
 (require 'motion-mode)
 
 (add-hook 'ruby-mode-hook 'motion-recognize-project)
@@ -692,7 +665,6 @@
 (define-key motion-mode-map (kbd "C-c C-p") 'motion-convert-code-region)
 
 ;; dash-at-point
-;; M-x package-install RET dash-at-point
 (require 'dash-at-point)
 (define-key global-map (kbd "C-c C-d") 'dash-at-point)
 (add-hook 'rinari-minor-mode-hook
@@ -747,103 +719,11 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; rhtml-mode
 (require 'rhtml-mode)
 
+;; 自分の elisp の設定
 (load-file "~/.emacs.d/elisp/dash.el")
 (load-file "~/.emacs.d/elisp/ginger-api.el")
-
-(defun move-line-down ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines 1))
-    (forward-line)
-    (move-to-column col)
-    (indent-for-tab-command)))
-
-(defun move-line-up ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines -1))
-    (move-to-column col)
-    (indent-for-tab-command)))
-
-(global-set-key (kbd "M-P") 'move-line-up)
-(global-set-key (kbd "M-N") 'move-line-down)
-
-(defun copy-from-osx ()
- (shell-command-to-string "pbpaste"))
-
-(defun paste-to-osx (text &optional push)
- (let ((process-connection-type nil))
-     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-       (process-send-string proc text)
-       (process-send-eof proc))))
-
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
-
-(defun reopen-file ()
-  (interactive)
-  (let ((file-name (buffer-file-name))
-        (old-supersession-threat
-         (symbol-function 'ask-user-about-supersession-threat))
-        (point (point)))
-    (when file-name
-      (fset 'ask-user-about-supersession-threat (lambda (fn)))
-      (unwind-protect
-          (progn
-            (erase-buffer)
-            (insert-file file-name)
-            (set-visited-file-modtime)
-            (goto-char point))
-        (fset 'ask-user-about-supersession-threat
-              old-supersession-threat)))))
-
-(global-set-key (kbd "M-r") 'reopen-file)
-
-(defface hlline-face
-  '((((class color)
-      (background dark))
-     (:background "dark slate gray"))
-    (((class color)
-      (background light))
-     (:background  "#98FB98"))
-    (t
-     ()))
-  "*Face used by hl-line.")
-(setq hl-line-face 'hlline-face)
-(global-hl-line-mode)
-
-(defun helm-c-sources-git-project-for (pwd)
-  (loop for elt in
-        '(("Modified files" . "--modified")
-          ("Untracked files" . "--others --exclude-standard")
-          ("All controlled files in this project" . nil))
-        for title  = (format "%s (%s)" (car elt) pwd)
-        for option = (cdr elt)
-        for cmd    = (format "git ls-files %s" (or option ""))
-        collect
-        `((name . ,title)
-          (init . (lambda ()
-                    (unless (and (not ,option) (helm-candidate-buffer))
-                      (with-current-buffer (helm-candidate-buffer 'global)
-                        (call-process-shell-command ,cmd nil t nil)))))
-          (candidates-in-buffer)
-          (type . file))))
-
-(defun helm-git-project-topdir ()
-  (file-name-as-directory
-   (replace-regexp-in-string
-    "\n" ""
-    (shell-command-to-string "git rev-parse --show-toplevel"))))
-
-(defun helm-git-project ()
-  (interactive)
-  (let ((topdir (helm-git-project-topdir)))
-    (unless (file-directory-p topdir)
-      (error "I'm not in Git Repository!!"))
-    (let* ((default-directory topdir)
-           (sources (helm-c-sources-git-project-for default-directory)))
-      (helm-other-buffer sources "*helm git project*"))))
+(load-file "~/.emacs.d/elisp/move-line.el")
+(load-file "~/.emacs.d/elisp/copy-and-paste-for-osx.el")
+(load-file "~/.emacs.d/elisp/reopen-file.el")
+(load-file "~/.emacs.d/elisp/hlline-face.el")
+(load-file "~/.emacs.d/elisp/helm-git-project.el")

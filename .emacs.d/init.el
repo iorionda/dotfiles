@@ -706,6 +706,13 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (global-unset-key (kbd "M-<down-mouse-1>"))
 (global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
 
+;; rhtml-mode
+(require 'rhtml-mode)
+
+;; exec-path-from-shell
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
 ;;; キーバインド
 (define-key global-map (kbd "C-h") 'delete-backward-char)
 (define-key global-map (kbd "M-?")  'help-for-help)
@@ -716,8 +723,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (load-file "~/.emacs.d/elisp/ginger-api.el")
 (define-key global-map (kbd "C-c C-g") 'ginger-region)
 
-;; rhtml-mode
-(require 'rhtml-mode)
+
 
 ;; 自分の elisp の設定
 (load-file "~/.emacs.d/elisp/dash.el")

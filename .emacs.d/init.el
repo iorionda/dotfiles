@@ -732,16 +732,16 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
 
 ;; elisp の設定
-(load-file "~/.emacs.d/elisp/ginger-api.el")
+(load-file "~/.emacs.d/site-lisp/ginger-api.el")
 (define-key global-map (kbd "C-c C-g") 'ginger-region)
 
 
 
 ;; 自分の elisp の設定
-(load-file "~/.emacs.d/elisp/dash.el")
-(load-file "~/.emacs.d/elisp/ginger-api.el")
-(load-file "~/.emacs.d/elisp/move-line.el")
-(load-file "~/.emacs.d/elisp/copy-and-paste-for-osx.el")
-(load-file "~/.emacs.d/elisp/reopen-file.el")
-(load-file "~/.emacs.d/elisp/hlline-face.el")
-(load-file "~/.emacs.d/elisp/helm-git-project.el")
+(load-file "~/.emacs.d/site-lisp/dash.el")
+(load-file "~/.emacs.d/site-lisp/ginger-api.el")
+(load-file "~/.emacs.d/site-lisp/move-line.el")
+(load-file "~/.emacs.d/site-lisp/copy-and-paste-for-osx.el")
+(load-file "~/.emacs.d/site-lisp/reopen-file.el")
+(load-file "~/.emacs.d/site-lisp/hlline-face.el")
+(load-file "~/.emacs.d/site-lisp/helm-git-project.el")

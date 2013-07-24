@@ -1,4 +1,46 @@
 ################################################################################
+# path
+################################################################################
+typeset -U path
+path=(
+    $HOME/local/bin(N-/)
+    /opt/local/bin(N-/)
+    /usr/local/bin(N-/)
+    /usr/local/sbin(N-/)
+    /usr/bin(N-/)
+    /bin(N-/)
+    /usr/X11/bin(N-/)
+    /sbin(N-/)
+    /usr/sbin(N-/)
+    )
+
+typeset -xT SUDO_PATH sudo_path
+typeset -U sudo_path
+sudo_path=(
+    /opt/local/sbin(N-/)
+    /usr/sbin(N-/)
+    )
+
+typeset -U man_path
+man_path=(
+    /opt/local/share/man(N-/)
+    /opt/local/man(N-/)
+    $HOME/local/share/man(N-/)
+    /usr/local/share/man(N-/)
+    /usr/share/man(N-/)
+    )
+
+typeset -xT RUBYLIB ruby_path
+typeset -U ruby_path
+ruby_path=(./lib)
+
+typeset -xT PYTHONPATH python_path
+typeset -U python_path
+python_path=(
+    ./lib(N-/)
+)
+
+################################################################################
 # rbenv
 ################################################################################
 if [ -d ${HOME}/.rbenv ]; then

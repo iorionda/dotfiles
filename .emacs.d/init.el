@@ -681,6 +681,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (define-key global-map (kbd "M-?")  'help-for-help)
 (define-key global-map (kbd "C-\\") 'undo)
 (define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
+(define-key global-map (kbd "C-c g") 'goto-line)
 
 ;; elisp の設定
 (define-key global-map (kbd "C-c C-g") 'ginger-region)

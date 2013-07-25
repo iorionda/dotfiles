@@ -262,10 +262,9 @@
 
 (setq shell-file-name "/usr/local/bin/zsh")
 (setq explicit-shell-file-name "/usr/local/bin/zsh")
+
 ;; google-translate
 (require 'google-translate)
-
-;; キーバインドの設定(お好みで)
 (global-set-key (kbd "C-x t") 'google-translate-at-point)
 ;; 翻訳のデフォルト値を設定(en -> ja)
 (custom-set-variables
@@ -684,15 +683,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
 
 ;; elisp の設定
-(load-file "~/.emacs.d/site-lisp/ginger-api.el")
 (define-key global-map (kbd "C-c C-g") 'ginger-region)
-
-
 
 ;; 自分の elisp の設定
 (load-file "~/.emacs.d/site-lisp/dash.el")
-(load-file "~/.emacs.d/site-lisp/ginger-api.el")
 (load-file "~/.emacs.d/site-lisp/move-line.el")
+(load-file "~/.emacs.d/site-lisp/ginger-api.el")
 (load-file "~/.emacs.d/site-lisp/copy-and-paste-for-osx.el")
 (load-file "~/.emacs.d/site-lisp/reopen-file.el")
 (load-file "~/.emacs.d/site-lisp/hlline-face.el")

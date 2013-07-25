@@ -248,13 +248,20 @@
 ;; 環境
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ruby
-(setenv "PATH" (concat (getenv "HOME") "/usr/local/opt/rbenv/shims:"
-                       (getenv "HOME") "/usr/local/opt/rbenv/bin:" (getenv "PATH")))
-(setq exec-path (cons (concat (getenv "HOME") "/usr/local/opt/rbenv/shims")
-                      (cons (concat (getenv "HOME") "/usr/local/opt/rbenv/bin") exec-path)))
+(setenv "PATH" (concat (getenv "HOME") "/usr/local/var/rbenv/shims:"
+                       (getenv "HOME") "/usr/local/var/rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/usr/local/var/rbenv/shims")
+                      (cons (concat (getenv "HOME") "/usr/local/var/rbenv/bin") exec-path)))
 
+(dolist (dir (list
+              "/usr/local/var/rbenv/shims/"
+              ))
+  (when (and (file-exists-p dir) (not (member dir exec-path)))
+    (setenv "PATH" (concat dir ":" (getenv "PATH")))
+    (setq exec-path (append (list dir) exec-path))))
 
-
+(setq shell-file-name "/usr/local/bin/zsh")
+(setq explicit-shell-file-name "/usr/local/bin/zsh")
 ;; google-translate
 (require 'google-translate)
 

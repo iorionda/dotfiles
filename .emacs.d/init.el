@@ -36,26 +36,6 @@
 (setq file-name-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;キーバインド
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(keyboard-translate ?\C-h ?\C-?)
-
-;; 基本
-(define-key global-map (kbd "M-?") 'help-for-help)        ; ヘルプ
-(define-key global-map (kbd "C-c i") 'indent-region)      ; インデント
-(define-key global-map (kbd "C-c C-i") 'hippie-expand)    ; 補完
-(define-key global-map (kbd "C-c ;") 'comment-dwim)       ; コメントアウト
-(define-key global-map (kbd "M-C-g") 'grep)               ; grep
-
-;; 改行したらindentする
-(define-key global-map (kbd "RET") 'newline-and-indent)
-
-;;;ウィンドウ移動
-;;次のウィンドウへ移動
-(define-key global-map (kbd "C-M-n") 'next-multiframe-window)
-;;前のウィンドウへ移動
-(define-key global-map (kbd "C-M-p") 'previous-multiframe-window)
 ;; "yes or no" を "y or n" に
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -77,42 +57,11 @@
 (setq grep-command (cons (concat grep-command-before-query " .")
                          (+ (length grep-command-before-query) 1)))
 
-;; フォント
-;; abcdefghijklmnopqrstuvwxyz
-;; ABCDEFGHIJKLMNOPQRSTUVWXYZ
-;; `1234567890-=\[];',./
-;; ~!@#$%^&*()_+|{}:"<>?
-;;
-;; 壱弐参四五壱弐参四五壱弐参四五壱弐参四五壱弐参四五壱弐参四五
-;; 123456789012345678901234567890123456789012345678901234567890
-;; ABCdeABCde
-;;
-;; ┌─────────────────────────────┐
-;; │             罫線                                         |
-;; └─────────────────────────────┘
-;; font
-(if window-system
-    (progn
-      (set-fontset-font
-       nil 'japanese-jisx0208
-       (font-spec :family "Ricty"))
-      (create-fontset-from-ascii-font "Ricty-14:weight=normal:slant=normal" nil "ricty")
-      (set-fontset-font "fontset-ricty"
-                        'japanese-jisx0208
-                        (font-spec :family "Ricty" :size 14)
-                        nil
-                        'append)
-      (add-to-list 'default-frame-alist '(font . "fontset-ricty"))))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;外観
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; スプラッシュを表示しない
 (setq inhibit-startup-screen t)
-
-;; ロードパスの設定
-(add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
-(load-theme 'molokai t nil)
 
 ;; 保存時にTAB
 ;; オートインデントでTABを使う
@@ -122,61 +71,9 @@
 (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60
                       64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))
 
-;; フレーム透過設定
-(add-to-list 'default-frame-alist '(alpha . (0.95 0.95)))
-
-;スクロールバーを消す
-(set-scroll-bar-mode 'nil)
-;ツールバーを消す
-(tool-bar-mode -1)
-
-;; 起動時にフルスクリーンにする
-;; (add-hook 'window-setup-hook 'ns-toggle-fullscreen)
-
-;;;対応する括弧を光らせる
-(setq show-paren-delay 0)
-(setq show-paren-style 'single)
-(show-paren-mode t)
-
-;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
-(setq show-paren-style 'mixed)
-
-;; 空白や長すぎる行を視覚化する。
-(require 'whitespace)
-;; 1行が80桁を超えたら長すぎると判断する。
-(setq whitespace-line-column 80)
-(setq whitespace-style '(face              ; faceを使って視覚化する。
-                         trailing          ; 行末の空白を対象とする。
-                         lines-tail        ; 長すぎる行のうち
-                                           ; whitespace-line-column以降のみを
-                                           ; 対象とする。
-                         space-before-tab  ; タブの前にあるスペースを対象とする。
-                         space-after-tab)) ; タブの後にあるスペースを対象とする。
-;; デフォルトで視覚化を有効にする。
-(global-whitespace-mode 1)
-
-;;;行番号の表示
-(global-linum-mode t)
-(setq linum-format "%4d:")
-
-;;; カーソルの位置が何文字目かを表示する
-(column-number-mode t)
-
-;;; カーソルの位置が何行目かを表示する
-(line-number-mode t)
-
-;;; カーソルの場所を保存する
-(require 'saveplace)
-(setq-default save-place t)
-
-;;;バックアップ・オートセーブファイルの作成をやめる
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 基本
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; 行
 ;;; 行の先頭でC-kを一回押すだけで行全体を消去する
 (setq kill-whole-line t)
@@ -189,11 +86,6 @@
 (setq-default truncate-lines t)
 ;;ウィンドウを左右に分割したとき用の設定
 (setq-default truncate-partial-width-windows t)
-
-;;; バックアップファイルを作らない
-(setq backup-inhibited t)
-;;; 終了時にオートセーブファイルを消す
-(setq delete-auto-save-files t)
 
 ;; 保存時に行末の空白を削除する
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -676,12 +568,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
-;;; キーバインド
-(define-key global-map (kbd "C-h") 'delete-backward-char)
-(define-key global-map (kbd "M-?")  'help-for-help)
-(define-key global-map (kbd "C-\\") 'undo)
-(define-key global-map (kbd "C-c C-i") 'dabbrev-expand)
-(define-key global-map (kbd "C-c g") 'goto-line)
 
 ;; elisp の設定
 (define-key global-map (kbd "C-c C-g") 'ginger-region)

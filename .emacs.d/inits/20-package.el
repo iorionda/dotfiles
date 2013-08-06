@@ -46,6 +46,7 @@
     multiple-cursors
     rhtml-mode
     exec-path-from-shell
+    guide-key
     ))
 
 (let ((not-installed (loop for x in installing-package-list

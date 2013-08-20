@@ -47,6 +47,7 @@
     rhtml-mode
     exec-path-from-shell
     guide-key
+    rubocop
     ))
 
 (let ((not-installed (loop for x in installing-package-list

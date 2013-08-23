@@ -48,6 +48,7 @@
     exec-path-from-shell
     guide-key
     rubocop
+    auto-highlight-symbol
     ))
 
 (let ((not-installed (loop for x in installing-package-list

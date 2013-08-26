@@ -38,4 +38,5 @@
 .emacs.d/eshell/*
 .emacs.d/url
 .emacs.d/snippets
+.emacs.d/site-lisp/howm
 .vim/bundle/*

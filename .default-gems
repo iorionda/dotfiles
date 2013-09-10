@@ -2,6 +2,8 @@
 bundler
 gisty
 pry
+debugger
 pry-debugger
 awesome_print
 tapp
+byebug

@@ -1,0 +1,7 @@
+# Move or copy to $RBENV_ROOT
+bundler
+gisty
+pry
+pry-debugger
+awesome_print
+tapp

@@ -49,6 +49,7 @@
     guide-key
     rubocop
     auto-highlight-symbol
+    smartparens
     ))
 
 (let ((not-installed (loop for x in installing-package-list

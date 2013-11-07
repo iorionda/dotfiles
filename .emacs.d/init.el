@@ -216,6 +216,18 @@
 (add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 
+(defun ruby-mode-hook-init ()
+  "avoid auto insert encoding pragma"
+  (remove-hook 'before-save-hook 'ruby-mode-set-encoding)
+  (define-key ruby-mode-map (kbd "C-c e") 'my-ruby-mode-set-encoding))
+
+(add-hook 'ruby-mode-hook 'ruby-mode-hook-init)
+
+(defun my-ruby-mode-set-encoding ()
+  "set-encoding ruby-mode"
+  (interactive)
+  (ruby-mode-set-encoding))
+
 ;;;ruby-end
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook
@@ -225,7 +237,8 @@
      (setq ruby-deep-indent-paren-style nil)
      (define-key ruby-mode-map [return] 'ruby-reindent-then-newline-and-indent)
      (abbrev-mode 1)
-     (electric-pair-mode t)
+     ;; smartparens に任せる
+     ;; (electric-pair-mode t)
      (electric-indent-mode t)
      (electric-layout-mode t)))
 

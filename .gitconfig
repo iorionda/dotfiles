@@ -56,8 +56,8 @@
     s = status --short --branch
     st = status
     su = submodule update
-	conflicts = !git ls-files -u | cut -f 2 | sort -u
-
+    conflicts = !git ls-files -u | cut -f 2 | sort -u
+    see = browse
 [web]
     browser = google-chrome
 [browse-remote "github.com"]
@@ -77,4 +77,4 @@
     ref = http://{host}/changelog/~br={short_ref}/{path[1]}
     rev = http://{host}/changelog/{path[1]}?cs={commit}
 [core]
-	editor = vim
+    editor = vim

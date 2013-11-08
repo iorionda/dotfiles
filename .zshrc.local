@@ -7,3 +7,6 @@
 export AWS_RDS_HOME=/usr/local/src/RDSCli-1.10.003
 export PATH=$PATH:$AWS_RDS_HOME/bin
 export AWS_CREDENTIAL_FILE=$AWS_RDS_HOME/credential-file-path
+
+# GNU Global
+export GTAGSCONF=/usr/local/share/gtags/gtags.conf

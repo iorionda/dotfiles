@@ -1,3 +1,6 @@
 [submodule "/Users/iori/.vim/vundle.git"]
 	path = /Users/iori/.vim/vundle.git
 	url = git://github.com/gmarik/vundle.git
+[submodule "/Users/iori/.dotfiles/oh-my-zsh"]
+	path = /Users/iori/.dotfiles/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git

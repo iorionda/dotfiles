@@ -5,15 +5,12 @@
 !/.gitconfig
 !/.gitignore
 !/.gitmodules
-!/.gvimrc
 !/.hgignore
 !/.hgrc
 !/.inputrc
 !/.screenrc
 !/.source-highlight
 !/.tmux.conf
-!/.vimrc
-!/.vim
 !/.zsh
 !/.zshrc
 !/.zshenv
@@ -29,6 +26,7 @@
 !/.muttrc
 !/.emacs.d
 !.default-gems
+!/oh-my-zsh
 
 .emacs.d/elpa
 .emacs.d/auto-save-list
@@ -40,4 +38,3 @@
 .emacs.d/snippets
 .emacs.d/site-lisp/howm
 .emacs.d/elisp
-.vim/bundle/*

@@ -41,46 +41,26 @@ python_path=(
 )
 
 ################################################################################
-# rbenv
+# AWS
 ################################################################################
-if [ -d ${HOME}/.rbenv ]; then
-    export PATH="${HOME}/.rbenv/bin:${PATH}"
-    export PATH="/Users/ONDA/.rbenv/shims:${PATH}"
+export AWS_RDS_HOME=/usr/local/src/RDSCli-1.10.003
+export PATH=$PATH:$AWS_RDS_HOME/bin
+export AWS_CREDENTIAL_FILE=$AWS_RDS_HOME/credential-file-path
 
-    source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.zsh"
-    rbenv rehash 2>/dev/null
-    rbenv() {
-    typeset command
-    command="$1"
-    if [ "$#" -gt 0 ]; then
-        shift
-    fi
+################################################################################
+# GNU Global
+################################################################################
+export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 
-    case "$command" in
-        rehash|shell)
-        eval `rbenv "sh-$command" "$@"`;;
-        *)
-        command rbenv "$command" "$@";;
-    esac
-    }
-elif [ -d ${RBENV_ROOT} ]; then
-    export PATH="${RBENV_ROOT}/bin:${PATH}"
-    export PATH="${RBENV_ROOT}/shims:${PATH}"
-
-    source "/usr/local/Cellar/rbenv/0.4.0/completions/rbenv.zsh"
-    rbenv rehash 2>/dev/null
-    rbenv() {
-    typeset command
-    command="$1"
-    if [ "$#" -gt 0 ]; then
-        shift
-    fi
-
-    case "$command" in
-        rehash|shell)
-        eval `rbenv "sh-$command" "$@"`;;
-        *)
-        command rbenv "$command" "$@";;
-    esac
-    }
+################################################################################
+# node.js
+################################################################################
+if [[ -f ~/.nodebrew/nodebrew ]]; then
+  export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
+
+################################################################################
+# Gisty
+################################################################################
+export GISTY_DIR="$HOME/dev/gists"
+export GISTY_ACCESS_TOKEN=4abc896373018be644eb770af0e3674033cb5837

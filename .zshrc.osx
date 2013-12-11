@@ -1,4 +1,3 @@
-
 ################################################################################
 # Terminal Colorの設定
 ################################################################################
@@ -22,22 +21,3 @@ alias gvim='env LANG=ja_JP.UTF-8 open /Applications/MacVim.app "$@"'
 alias view='vim -R'
 alias reper='sudo diskutil repairPermissions /'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-
-################################################################################
-# node.js
-################################################################################
-if [[ -f ~/.nodebrew/nodebrew ]]; then
-  export PATH=$HOME/.nodebrew/current/bin:$PATH
-fi
-
-################################################################################
-# Gisty
-################################################################################
-export GISTY_DIR="$HOME/dev/gists"
-export GISTY_ACCESS_TOKEN=4abc896373018be644eb770af0e3674033cb5837
-
-################################################################################
-# rbenv
-################################################################################
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

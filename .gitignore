@@ -38,3 +38,4 @@
 .emacs.d/snippets
 .emacs.d/site-lisp/howm
 .emacs.d/elisp
+.emacs.d/el-get

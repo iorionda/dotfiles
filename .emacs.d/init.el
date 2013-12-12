@@ -16,13 +16,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;load-path
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq load-path (append
-                 '("~/.emacs.d"
-                   "~/.emacs.d/color-theme"
-                   "~/.emacs.d/packages"
-                   "~/.emacs.d/plugins"
-                   "~/.emacs.d/elisp")
-                 load-path))
+(setq load-path
+      (append
+       (list
+       (expand-file-name "~/.emacs.d")
+       (expand-file-name "~/.emacs.d/color-theme")
+       (expand-file-name "~/.emacs.d/packages")
+       (expand-file-name "~/.emacs.d/plugins")
+       (expand-file-name "~/.emacs.d/elisp"))
+       load-path))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;日本語設定

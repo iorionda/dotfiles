@@ -40,3 +40,6 @@ source $ZSH/oh-my-zsh.sh
 
 #disable autocorrect
 unsetopt correct_all
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

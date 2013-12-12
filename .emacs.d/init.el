@@ -205,7 +205,23 @@
 ;; 候補のディレクトリが一つしかない場合に、自動的に展開しない
 (setq helm-ff-auto-update-initial-value nil)
 
+;;; c-mode
+(setq-default c-basic-offset 4     ;;基本インデント量4
+              tab-width 4          ;;タブ幅4
+               indent-tabs-mode nil)  ;;インデントをタブでするかスペースでするか
 
+;; C++ style
+(defun add-c++-mode-conf ()
+  (c-set-style "stroustrup")  ;;スタイルはストラウストラップ
+  (show-paren-mode t))        ;;カッコを強調表示する
+(add-hook 'c++-mode-hook 'add-c++-mode-conf)
+
+;; C style
+(defun add-c-mode-common-conf ()
+  (c-set-style "stroustrup")                  ;;スタイルはストラウストラップ
+  (show-paren-mode t)                         ;;カッコを強調表示する
+  )
+(add-hook 'c-mode-common-hook 'add-c-mode-common-conf)
 
 ;;;ruby-mode
 (autoload 'ruby-mode "ruby-mode"
@@ -233,14 +249,14 @@
 (add-hook 'ruby-mode-hook
   '(lambda ()
      (setq tab-width 2)
-     (setq ruby-indent-level tab-width)
-     (setq ruby-deep-indent-paren-style nil)
-     (define-key ruby-mode-map [return] 'ruby-reindent-then-newline-and-indent)
-     (abbrev-mode 1)
-     ;; smartparens に任せる
-     ;; (electric-pair-mode t)
-     (electric-indent-mode t)
-     (electric-layout-mode t)))
+     (setq ruby-indent-level tab-width)))
+;;      (setq ruby-deep-indent-paren-style nil)
+;;      (define-key ruby-mode-map [return] 'ruby-reindent-then-newline-and-indent)
+;;      (abbrev-mode 1)))
+;;      ;; smartparens に任せる
+;;      ;; (electric-pair-mode t)
+;;      (electric-indent-mode t)
+;;      (electric-layout-mode t)))
 
 ;;;ido
 (require 'ido)

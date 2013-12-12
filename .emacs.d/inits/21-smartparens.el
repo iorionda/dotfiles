@@ -1,11 +1,21 @@
-(require 'smartparens-config)
+;; (require 'smartparens-config)
+(require 'smartparens)
 
+;;;;;;;;;;;;;;;;;;
+;; global
 (package-initialize)
 (smartparens-global-mode t)
 
-(show-smartparens-global-mode +1)
+;;;;;;;;;;;;;;;;;;
+;; highlights matching pairs
+(show-smartparens-global-mode t)
 
-;; smartparens for ruby
+;;;;;;;;;;;;;;;;;;
+;; pair management
+(sp-local-pair 'minibuffer-inactive-mode "'" nil :actions nil)
+
+;;;;;;;;;;;;;;;;;;
+;; ruby-mode
 (eval-after-load "ruby-mode"
   '(progn
      (require 'smartparens-ruby)

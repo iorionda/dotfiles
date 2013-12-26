@@ -1,6 +1,7 @@
 bundler
 pry
-pry-debugger
+pry-byebug
 awesome_print
 rbenv-rehash
 tapp
+byebug

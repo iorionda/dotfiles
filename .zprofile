@@ -5,7 +5,7 @@ if [ -d ${HOME}/.rbenv ]; then
     export PATH="${HOME}/.rbenv/bin:${PATH}"
     export PATH="/Users/ONDA/.rbenv/shims:${PATH}"
 
-    source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.zsh"
+    source "${HOME}/.rbenv/completions/rbenv.zsh"
     rbenv rehash 2>/dev/null
     rbenv() {
     typeset command

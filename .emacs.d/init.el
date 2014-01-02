@@ -222,6 +222,9 @@
   (interactive)
   (ruby-mode-set-encoding))
 
+;; magic-comment を無効にする
+(setq ruby-insert-encoding-magic-comment nil)
+
 ;;;ruby-end
 (require 'ruby-end)
 (add-hook 'ruby-mode-hook

@@ -118,6 +118,7 @@
 ;; 環境
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ruby
+;; TODO - PATH の見直し
 (setenv "PATH" (concat (getenv "HOME") "/usr/local/var/rbenv/shims:"
                        (getenv "HOME") "/usr/local/var/rbenv/bin:" (getenv "PATH")))
 (setq exec-path (cons (concat (getenv "HOME") "/usr/local/var/rbenv/shims")
@@ -130,6 +131,7 @@
     (setenv "PATH" (concat dir ":" (getenv "PATH")))
     (setq exec-path (append (list dir) exec-path))))
 
+;; shell
 (setq shell-file-name "/usr/local/bin/zsh")
 (setq explicit-shell-file-name "/usr/local/bin/zsh")
 
@@ -314,6 +316,7 @@
 (define-key ruby-mode-map (kbd "C-c C-c") (kbd "C-c c C-m"))
 
 ;; rbenv でインストールした ruby を smart-compile で使う
+;; TODO - PATH の見直し
 (setenv "PATH" (concat (expand-file-name "/usr/local/opt/rbenv/shims:") (getenv "PATH")))
 
 ;;; yasnippet
@@ -527,16 +530,6 @@
 ;; ag
 (require 'ag)
 (setq ag-highlight-search t)
-(defun set-exec-path-from-shell-PATH ()
-  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
-
-This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
-  (interactive)
-  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
-    (setenv "PATH" path-from-shell)
-    (setq exec-path (split-string path-from-shell path-separator))))
-
-(set-exec-path-from-shell-PATH)
 
 ;; region-bindings-mode
 (require 'region-bindings-mode)
@@ -554,11 +547,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 ;; rhtml-mode
 (require 'rhtml-mode)
-
-;; exec-path-from-shell
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
 
 ;; elisp の設定
 (define-key global-map (kbd "C-c C-g") 'ginger-region)

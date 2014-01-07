@@ -241,9 +241,6 @@
 ;;;rinari
 (require 'rinari)
 
-;;;rspec-mode
-(require 'rspec-mode)
-
 ;;;direx
 (require 'direx)
 (require 'direx-project)

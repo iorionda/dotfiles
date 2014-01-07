@@ -1,6 +1,8 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
-(require 'cl)
+(eval-when-compile (require 'cl))
 
+(unless (fboundp 'cl-flet)
+  (defalias 'cl-flet 'flet))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ~/.emacs.d/site-lisp 以下全部読み込み
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -117,25 +119,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 環境
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ruby
-;; TODO - PATH の見直し
-(setenv "PATH" (concat (getenv "HOME") "/usr/local/var/rbenv/shims:"
-                       (getenv "HOME") "/usr/local/var/rbenv/bin:" (getenv "PATH")))
-(setq exec-path (cons (concat (getenv "HOME") "/usr/local/var/rbenv/shims")
-                      (cons (concat (getenv "HOME") "/usr/local/var/rbenv/bin") exec-path)))
-
-(dolist (dir (list
-              "/usr/local/var/rbenv/shims/"
-              ))
-  (when (and (file-exists-p dir) (not (member dir exec-path)))
-    (setenv "PATH" (concat dir ":" (getenv "PATH")))
-    (setq exec-path (append (list dir) exec-path))))
+;; Setting rbenv path
+(setenv "PATH" (concat (getenv "HOME") "/.rbenv/shims:" (getenv "HOME") "/.rbenv/bin:" (getenv "PATH")))
+(setq exec-path (cons (concat (getenv "HOME") "/.rbenv/shims") (cons (concat (getenv "HOME") "/.rbenv/bin") exec-path)))
+(setenv "PATH" (concat (expand-file-name "~/.rbenv/shims:") (getenv "PATH")))
 
 ;; shell
 (setq shell-file-name "/usr/local/bin/zsh")
 (setq explicit-shell-file-name "/usr/local/bin/zsh")
 
-;; google-translate
+;; ;; google-translate
 (require 'google-translate)
 (global-set-key (kbd "C-x t") 'google-translate-at-point)
 ;; 翻訳のデフォルト値を設定(en -> ja)
@@ -294,6 +287,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
 (require 'auto-complete-config)
 (ac-config-default)
+(setq ac-disable-faces nil)
 
 ;; flymake-coffee
 (require 'flymake-coffee)
@@ -317,7 +311,7 @@
 
 ;; rbenv でインストールした ruby を smart-compile で使う
 ;; TODO - PATH の見直し
-(setenv "PATH" (concat (expand-file-name "/usr/local/opt/rbenv/shims:") (getenv "PATH")))
+(setenv "PATH" (concat (expand-file-name "~/.rbenv/shims:") (getenv "PATH")))
 
 ;;; yasnippet
 (require 'yasnippet)

@@ -14,6 +14,7 @@
   '(
     ;; ここに使っているパッケージを書く。
     cl-lib
+    mode-compile
     popwin
     helm
     powerline

@@ -2,4 +2,5 @@
           '(lambda ()
              (robe-mode)
              (robe-ac-setup)
-             (inf-ruby-keys))
+             (inf-ruby-keys)
+             ))

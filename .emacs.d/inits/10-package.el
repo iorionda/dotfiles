@@ -53,6 +53,8 @@
     auto-highlight-symbol
     smartparens
     ggtags
+    inf-ruby
+    robe
     ))
 
 (let ((not-installed (loop for x in installing-package-list

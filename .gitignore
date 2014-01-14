@@ -27,6 +27,7 @@
 !/.emacs.d
 !.default-gems
 !/oh-my-zsh
+!/brewfile
 
 .emacs.d/elpa
 .emacs.d/auto-save-list

@@ -55,6 +55,8 @@
     ggtags
     inf-ruby
     robe
+    ack-and-a-half
+    cucumber-goto-step
     ))
 
 (let ((not-installed (loop for x in installing-package-list

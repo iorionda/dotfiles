@@ -78,3 +78,5 @@
     rev = http://{host}/changelog/{path[1]}?cs={commit}
 [core]
     editor = vim
+[ghn]
+	token = 9e249e125a1eedb93da6645242902ef5cb4f82d0

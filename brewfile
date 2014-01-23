@@ -57,6 +57,7 @@ install elixir
 install readline
 install reattach-to-user-namespace
 install jq
+install shunit2
 
 # .dmg
 cask install google-chrome

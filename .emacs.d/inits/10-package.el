@@ -57,6 +57,7 @@
     robe
     ack-and-a-half
     cucumber-goto-step
+    smartrep
     ))
 
 (let ((not-installed (loop for x in installing-package-list

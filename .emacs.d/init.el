@@ -527,16 +527,6 @@
 (require 'region-bindings-mode)
 (region-bindings-mode-enable)
 
-;; mutiple-cursor
-(require 'multiple-cursors)
-(define-key region-bindings-mode-map "a" 'mc/mark-all-like-this)
-(define-key region-bindings-mode-map "p" 'mc/mark-previous-like-this)
-(define-key region-bindings-mode-map "n" 'mc/mark-next-like-this)
-(define-key region-bindings-mode-map "m" 'mc/mark-more-like-this-extended)
-
-(global-unset-key (kbd "M-<down-mouse-1>"))
-(global-set-key (kbd "M-<mouse-1>") 'mc/add-cursor-on-click)
-
 ;; rhtml-mode
 (require 'rhtml-mode)
 

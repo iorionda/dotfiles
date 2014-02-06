@@ -1,9 +1,12 @@
+[user]
+    name = Iori ONDA
+    email = iori.onda@gmail.com
+
 [include]
     path = .gitconfig.local
 
 [core]
-    editor       = emacs
-    pager        = lv
+    editor       = vi
     whitespace   = fix, -indent-with-non-tab, trailing-space, cr-at-eol
     excludesfile = .gitignore
 

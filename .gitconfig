@@ -1,10 +1,11 @@
-[user]
-    name = Iori ONDA
-    email = iori.onda@gmail.com
+[include]
+    path = .gitconfig.local
 
-[github]
-    token = 410f2a3bb3ba59f36ffa90e81ef07715
-    user = iori-o
+[core]
+    editor       = emacs
+    pager        = lv
+    whitespace   = fix, -indent-with-non-tab, trailing-space, cr-at-eol
+    excludesfile = .gitignore
 
 [color]
     ui = true
@@ -58,25 +59,11 @@
     su = submodule update
     conflicts = !git ls-files -u | cut -f 2 | sort -u
     see = browse
+
 [web]
     browser = google-chrome
+
 [browse-remote "github.com"]
         top = https://{host}/{path}
         ref = https://{host}/{path}/tree/{short_ref}
         rev = https://{host}/{path}/commit/{commit}
-[browse-remote "github.dev.cybozu.co.jp"]
-        top = https://{host}/{path}
-        ref = https://{host}/{path}/tree/{short_ref}
-        rev = https://{host}/{path}/commit/{commit}
-[browse-remote "git.dev.cybozu.co.jp"]
-    top = http://{host}/graph/{path[1]}
-    ref = http://{host}/changelog/~br={short_ref}/{path[1]}
-    rev = http://{host}/changelog/{path[1]}?cs={commit}
-[browse-remote "review.dev.cybozu.co.jp"]
-    top = http://{host}/graph/{path[1]}
-    ref = http://{host}/changelog/~br={short_ref}/{path[1]}
-    rev = http://{host}/changelog/{path[1]}?cs={commit}
-[core]
-    editor = vim
-[ghn]
-	token = 9e249e125a1eedb93da6645242902ef5cb4f82d0

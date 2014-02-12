@@ -1,6 +1,5 @@
 ;; カラーテーマのロードパスを設定
-(add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes")
-(load-theme 'molokai t nil)
+(load-theme 'zenburn)
 
 ;; フレーム透過設定
 (add-to-list 'default-frame-alist '(alpha . (0.95 0.95)))

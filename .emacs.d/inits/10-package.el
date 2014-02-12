@@ -65,6 +65,7 @@
     git-commit-mode
     yaml-mode
     projectile
+    helm-projectile
     popup
     ))
 

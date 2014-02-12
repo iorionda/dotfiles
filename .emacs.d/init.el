@@ -133,8 +133,15 @@
 (global-set-key (kbd "C-x t") 'google-translate-at-point)
 ;; 翻訳のデフォルト値を設定(en -> ja)
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" default)))
  '(google-translate-default-source-language "en")
- '(google-translate-default-target-language "ja"))
+ '(google-translate-default-target-language "ja")
+ '(rspec-use-rake-when-possible nil)
+ '(yas-trigger-key "TAB"))
 
 ;;;popwin.el :pop up window for emacs baffer
 (require 'popwin)
@@ -328,7 +335,7 @@
 ;; 単語展開キーバインド (ver8.0から明記しないと機能しない)
 ;; (setqだとtermなどで干渉問題ありでした)
 ;; もちろんTAB以外でもOK 例えば "C-;"とか
-(custom-set-variables '(yas-trigger-key "TAB"))
+
 ;; 既存スニペットを挿入する
 (define-key yas/minor-mode-map (kbd "C-x i i") 'yas/insert-snippet)
 ;; 新規スニペットを作成するバッファを用意する
@@ -541,3 +548,9 @@
 (load-file "~/.emacs.d/site-lisp/reopen-file.el")
 (load-file "~/.emacs.d/site-lisp/hlline-face.el")
 (load-file "~/.emacs.d/site-lisp/helm-git-project.el")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

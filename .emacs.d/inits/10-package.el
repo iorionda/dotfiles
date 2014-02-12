@@ -58,6 +58,14 @@
     ack-and-a-half
     cucumber-goto-step
     smartrep
+    rainbow-delimiters
+    zenburn-theme
+    gitconfig-mode
+    gitignore-mode
+    git-commit-mode
+    yaml-mode
+    projectile
+    popup
     ))
 
 (let ((not-installed (loop for x in installing-package-list

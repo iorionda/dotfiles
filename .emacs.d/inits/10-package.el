@@ -21,6 +21,8 @@
     magit
     ruby-mode
     ruby-end
+    ruby-block
+    ruby-electric
     ido
     rinari
     rspec-mode

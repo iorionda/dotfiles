@@ -228,20 +228,6 @@
 ;; magic-comment を無効にする
 (setq ruby-insert-encoding-magic-comment nil)
 
-;;;ruby-end
-(require 'ruby-end)
-(add-hook 'ruby-mode-hook
-  '(lambda ()
-     (setq tab-width 2)
-     (setq ruby-indent-level tab-width)))
-;;      (setq ruby-deep-indent-paren-style nil)
-;;      (define-key ruby-mode-map [return] 'ruby-reindent-then-newline-and-indent)
-;;      (abbrev-mode 1)))
-;;      ;; smartparens に任せる
-;;      ;; (electric-pair-mode t)
-;;      (electric-indent-mode t)
-;;      (electric-layout-mode t)))
-
 ;;;ido
 (require 'ido)
 (ido-mode t)

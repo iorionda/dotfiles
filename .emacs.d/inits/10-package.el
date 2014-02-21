@@ -23,6 +23,8 @@
     ruby-end
     ruby-block
     ruby-electric
+    robe
+    ac-inf-ruby
     ido
     rinari
     rspec-mode

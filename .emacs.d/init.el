@@ -203,31 +203,6 @@
   )
 (add-hook 'c-mode-common-hook 'add-c-mode-common-conf)
 
-;;;ruby-mode
-(autoload 'ruby-mode "ruby-mode"
-    "Mode for editing ruby source files" t)
-(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.thor$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-
-(defun ruby-mode-hook-init ()
-  "avoid auto insert encoding pragma"
-  (remove-hook 'before-save-hook 'ruby-mode-set-encoding)
-  (define-key ruby-mode-map (kbd "C-c e") 'my-ruby-mode-set-encoding))
-
-(add-hook 'ruby-mode-hook 'ruby-mode-hook-init)
-
-(defun my-ruby-mode-set-encoding ()
-  "set-encoding ruby-mode"
-  (interactive)
-  (ruby-mode-set-encoding))
-
-;; magic-comment を無効にする
-(setq ruby-insert-encoding-magic-comment nil)
-
 ;;;ido
 (require 'ido)
 (ido-mode t)
@@ -272,13 +247,66 @@
 (set-face-foreground 'git-gutter:added "green")
 (set-face-foreground 'git-gutter:deleted "red")
 
+;; ruby-mode
+(autoload 'ruby-mode "ruby-mode" "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("Rakefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.thor$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'interpreter-mode-alist '("ruby" . ruby-mode))
+
+(add-hook 'ruby-mode-hook '(lambda ()
+                             (require 'rcodetools)
+                             (require 'anything-rcodetools)
+                             (require 'myrurema)
+                             (load-auto-complete)
+                             (define-key ruby-mode-map "\M-c" 'rct-complete-symbol)
+                             (define-key ruby-mode-map "\M-d" 'xmp)
+                             (setq ruby-deep-indent-paren-style nil)))
+
+(defun ruby-mode-hook-init ()
+  "avoid auto insert encoding pragma"
+  (remove-hook 'before-save-hook 'ruby-mode-set-encoding)
+  (define-key ruby-mode-map (kbd "C-c e") 'my-ruby-mode-set-encoding))
+
+(add-hook 'ruby-mode-hook 'ruby-mode-hook-init)
+
+(defun my-ruby-mode-set-encoding ()
+  "set-encoding ruby-mode"
+  (interactive)
+  (ruby-mode-set-encoding))
+
+;; magic-comment を無効にする
+(setq ruby-insert-encoding-magic-comment nil)
+
 ;;;auto-complete
 (require 'auto-complete)
 (global-auto-complete-mode t)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-disable-faces nil)
+(defun load-auto-complete()
+  (require 'auto-complete-config)
+  (ac-config-default)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20130209.651/dict")
+
+  (setq ac-use-menu-map t)
+  (define-key ac-menu-map "\C-n" ac-next)
+  (define-key ac-menu-map "\C-p" ac-previous)
+
+  (setq ac-auto-show-menu 0.5)
+  (setq ac-menu-height 20)
+
+  (robe-mode)
+  )
+
+;;; robe-mode
+; robe
+(require 'robe)
+(autoload 'robe-mode "robe" "Code navigation, documentation lookup and completion for Ruby" t nil)
+(autoload 'robe-ac-setup "robe-ac" "robe auto-complete" nil nil)
+(add-hook 'robe-mode-hook 'robe-mode)
+(add-hook 'robe-mode-hook 'robe-ac-setup)
+(add-hook 'robe-mode-hook 'inf-ruby-keys)
 
 ;; flymake-coffee
 (require 'flymake-coffee)

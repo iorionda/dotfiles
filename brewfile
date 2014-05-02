@@ -1,4 +1,3 @@
-
 Pull to refresh
 # Make sure using latest Homebrew
 update
@@ -70,7 +69,7 @@ cask install vagrant
 cask install omnifocus
 cask install omnigraffle
 cask install dash
-
+cask install launchrocket
 
 # Remove outdated versions
 cleanup

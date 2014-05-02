@@ -21,3 +21,8 @@ alias gvim='env LANG=ja_JP.UTF-8 open /Applications/MacVim.app "$@"'
 alias view='vim -R'
 alias reper='sudo diskutil repairPermissions /'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+
+################################################################################
+# hubot
+################################################################################
+export  HUBOT_GITHUB_ACCESS_TOKEN=226a9cedb336d04ddbb7d92fc60eae25cb60a728

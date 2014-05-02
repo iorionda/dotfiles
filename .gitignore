@@ -27,3 +27,4 @@
 !.default-gems
 !/oh-my-zsh
 !/brewfile
+!/.editorconfig

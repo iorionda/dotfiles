@@ -1,6 +1,4 @@
-# vim:filetype=ruby
-#
-Pry.config.editor = "/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+Pry.config.editor = "/Applications/Atom.app/Contents/MacOS/Atom"
 
 begin
   require 'awesome_print'
@@ -11,6 +9,12 @@ end
 
 Pry::Commands.block_command "refe", "run refe" do |*args|
   run ".refe-1_9_2 #{args.join(' ')}"
+end
+
+begin
+  require 'hirb'
+rescue
+  # Missing
 end
 
 if defined? Hirb
@@ -32,7 +36,6 @@ if defined? Hirb
 
   Hirb.enable
 end
-
 
 #
 # Prompt

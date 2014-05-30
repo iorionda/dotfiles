@@ -1,9 +1,10 @@
 # Move or copy to $RBENV_ROOT
-bundler
-gisty
-pry
-debugger
-pry-debugger
 awesome_print
-tapp
+bundler
 byebug
+debugger
+gisty
+hirb
+pry
+pry-debugger
+tapp

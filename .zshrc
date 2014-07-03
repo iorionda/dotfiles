@@ -47,3 +47,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if [[ -f ~/.nodebrew/nodebrew ]]; then
     export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
+
+source $HOME/.dotfiles/.zsh/functions/peco-select-history.zsh

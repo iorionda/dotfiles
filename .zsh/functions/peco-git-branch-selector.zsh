@@ -11,9 +11,12 @@ function peco-git-branch-selector() {
 
   git rev-parse --git-dir >/dev/null 2>&1
   if [[ $? == 0 ]]; then
-    BUFFER=$(git branch | grep -v "*" | eval $tac | peco --query "$LBUFFER" | tr -d ' ')
-    BUFFER="git checkout $BUFFER"
-    CURSOR=$#BUFFER
+    BUFFER=$(git branch | grep -v "*" | eval $tac | peco --query "$LBUFFER")
+    if [[ $? == 0 ]];then
+      BUFFER=$(echo $BUFFER | tr -d ' ')
+      BUFFER="git checkout $BUFFER"
+      CURSOR=$#BUFFER
+    fi
   fi
   zle clear-screen
 }

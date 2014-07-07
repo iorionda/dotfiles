@@ -49,3 +49,4 @@ if [[ -f ~/.nodebrew/nodebrew ]]; then
 fi
 
 source $HOME/.dotfiles/.zsh/functions/peco-select-history.zsh
+source $HOME/.dotfiles/.zsh/functions/peco-git-branch-selector.zsh

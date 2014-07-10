@@ -1,13 +1,14 @@
 ################################################################################
 # peco
 ################################################################################
-function peco-select-history() {
+peco-select-history() {
     local tac
     if which tac > /dev/null; then
         tac="tac"
     else
         tac="tail -r"
     fi
+
     BUFFER=$(history | \
         awk '{ $1="";print }' | \
         eval $tac | \

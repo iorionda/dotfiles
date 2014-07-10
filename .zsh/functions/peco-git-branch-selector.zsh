@@ -1,7 +1,7 @@
 ################################################################################
 # peco-git-branch-selector
 ################################################################################
-function peco-git-branch-selector() {
+peco-git-branch-selector() {
   local tac
   if which tac > /dev/null; then
     tac="tac"

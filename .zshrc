@@ -50,3 +50,5 @@ fi
 
 source $HOME/.dotfiles/.zsh/functions/peco-select-history.zsh
 source $HOME/.dotfiles/.zsh/functions/peco-git-branch-selector.zsh
+source $HOME/.dotfiles/.zsh/functions/route-peco.zsh
+source $HOME/.dotfiles/.zsh/functions/peco-bundle-gem-open.zsh

@@ -1,6 +1,6 @@
 peco-bundle-gem-open() {
   bundle help > /dev/null 2>&1
-  if [[ $? == 0 ]]; then
+  if [[ "${?}" == "0" ]]; then
     local selected_dir=$(bundle show --paths | peco)
     if [ -n "$selected_dir" ]; then
       BUFFER="$EDITOR ${selected_dir}"

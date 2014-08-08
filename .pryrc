@@ -11,6 +11,21 @@ Pry::Commands.block_command "refe", "run refe" do |*args|
   run ".refe-1_9_2 #{args.join(' ')}"
 end
 
+default_command_set = Pry::CommandSet.new do
+  command "caller_method" do |depth|
+    depth = depth.to_i || 1
+    if /^(.+?):(\d+)(?::in `(.*)')?/ =~ caller(depth+1).first
+      file   = Regexp.last_match[1]
+      line   = Regexp.last_match[2].to_i
+      method = Regexp.last_match[3]
+      output.puts [file, line, method]
+    end
+  end
+end
+
+Pry.config.commands.import default_command_set
+Pry.config.should_load_plugins = false
+
 begin
   require 'hirb'
 rescue

@@ -52,3 +52,6 @@ source $HOME/.dotfiles/.zsh/functions/peco-select-history.zsh
 source $HOME/.dotfiles/.zsh/functions/peco-git-branch-selector.zsh
 source $HOME/.dotfiles/.zsh/functions/route-peco.zsh
 source $HOME/.dotfiles/.zsh/functions/peco-bundle-gem-open.zsh
+source $HOME/.dotfiles/.zsh/functions/notify.plugin.zsh
+export SYS_NOTIFIER=/usr/local/bin/terminal-notifier
+export NOTIFY_COMMAND_COMPLETE_TIMEOUT=5

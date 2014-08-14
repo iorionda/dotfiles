@@ -4,16 +4,16 @@ set split-view-height = 80%
 # 差分の前後の表示行数(diff-context)を指定
 set diff-context = 6
 
-set show-author = full
-set show-refs = true
-set show-rev-graph = true
-set show-date = local
-set show-line-numbers = yes
-set line-number-interval = 10
+set blame-view = date:local author:full id line-number:true,interval=1 text
+set main-view = line-number:true,interval=10 date:local author:full id commit-title:true,graph=true,refs=true
+set refs-view = date:local author:full id ref:true commit-title:true
+set status-view = file-name status:long
+set tree-view = date:local author:full id file-size:unit mode file-name
+
 set line-graphics = ascii
-set show-file-size = units
 set horizontal-scroll = 20%
 
 bind main R !git rebase -i %(commit)
 bind diff R !git rebase -i %(commit)
 bind generic L !git reflog
+bind generic <Esc>c !@bash -c "cut -c-7 <<<%(commit) | xargs echo -n | pbcopy"

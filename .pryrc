@@ -1,8 +1,12 @@
 Pry.config.editor = "/Applications/Atom.app/Contents/MacOS/Atom"
-
 begin
   require 'awesome_print'
   require 'tapp'
+  # require 'hirb'
+  # require 'hirb-unicode'
+  require 'pry-debugger'
+  require 'pry-doc'
+  require 'pry-stack_explorer'
 rescue LoadError => err
   puts "failed to require #{err} ... :("
 end
@@ -26,31 +30,25 @@ end
 Pry.config.commands.import default_command_set
 Pry.config.should_load_plugins = false
 
-begin
-  require 'hirb'
-rescue
-  # Missing
-end
-
-if defined? Hirb
-  # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
-  Hirb::View.instance_eval do
-    def enable_output_method
-      @output_method = true
-      @old_print = Pry.config.print
-      Pry.config.print = proc do |output, value|
-        Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
-      end
-    end
-
-    def disable_output_method
-      Pry.config.print = @old_print
-      @output_method = nil
-    end
-  end
-
-  Hirb.enable
-end
+# if defined? Hirb
+#   # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
+#   Hirb::View.instance_eval do
+#     def enable_output_method
+#       @output_method = true
+#       @old_print = Pry.config.print
+#       Pry.config.print = proc do |output, value|
+#         Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
+#       end
+#     end
+#
+#     def disable_output_method
+#       Pry.config.print = @old_print
+#       @output_method = nil
+#     end
+#   end
+#
+#   Hirb.enable
+# end
 
 #
 # Prompt

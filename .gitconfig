@@ -80,6 +80,7 @@
     rh = reset --hard
     rh1 = reset HEAD^ --hard
     rh2 = reset HEAD^^ --hard
+    n   = now --all --stat
 [web]
     browser = google-chrome
 

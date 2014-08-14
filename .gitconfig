@@ -6,7 +6,8 @@
     path = .gitconfig.local
 
 [core]
-    editor = atom --wait
+#    editor = atom --wait
+    editor = vi
     whitespace   = fix, -indent-with-non-tab, trailing-space, cr-at-eol
     excludesfile = .gitignore
 

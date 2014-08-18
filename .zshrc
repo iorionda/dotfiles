@@ -53,5 +53,8 @@ source $HOME/.dotfiles/.zsh/functions/peco-git-branch-selector.zsh
 source $HOME/.dotfiles/.zsh/functions/route-peco.zsh
 source $HOME/.dotfiles/.zsh/functions/peco-bundle-gem-open.zsh
 source $HOME/.dotfiles/.zsh/functions/notify.plugin.zsh
+
+# [TODO]  - 仕事用に分離させなきゃ
 export SYS_NOTIFIER=/usr/local/bin/terminal-notifier
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=5
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home

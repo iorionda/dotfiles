@@ -69,3 +69,8 @@ export GISTY_ACCESS_TOKEN=4abc896373018be644eb770af0e3674033cb5837
 # PostgreSQL
 ################################################################################
 export PGDATA=/usr/local/var/postgres
+
+################################################################################
+# Java
+################################################################################
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home

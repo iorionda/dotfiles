@@ -13,6 +13,10 @@ if [ -f ~/.zsh/antigen/antigen.zsh ] ; then
     source ~/.zsh/zshrc.antigen.zsh
 fi
 
+# Editor Setting
+#---------------------------------------
+export EDITOR=atom
+
 # Prompt setting
 #---------------------------------------
 source ~/.zsh/theme/iori-theme.zsh

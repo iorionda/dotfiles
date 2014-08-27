@@ -179,4 +179,3 @@ esac
 export PATH="/usr/local/heroku/bin:$PATH"
 export SYS_NOTIFIER=/usr/local/bin/terminal-notifier
 export NOTIFY_COMMAND_COMPLETE_TIMEOUT=5
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_05.jdk/Contents/Home

@@ -6,10 +6,11 @@
     path = .gitconfig.local
 
 [core]
-#    editor = atom --wait
     editor = vi
     whitespace   = fix, -indent-with-non-tab, trailing-space, cr-at-eol
     excludesfile = .gitignore
+    # from 2.1.0
+    pager = less -S
 
 [color]
     ui = true

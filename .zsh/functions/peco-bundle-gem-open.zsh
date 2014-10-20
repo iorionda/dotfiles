@@ -11,4 +11,4 @@ peco-bundle-gem-open() {
 }
 zle -N peco-bundle-gem-open
 
-bindkey '^bo' peco-bundle-gem-open
+bindkey '^xo' peco-bundle-gem-open

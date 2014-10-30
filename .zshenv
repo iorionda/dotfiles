@@ -53,6 +53,11 @@ export AWS_CREDENTIAL_FILE=$AWS_RDS_HOME/credential-file-path
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 
 ################################################################################
+# nodebrew
+################################################################################
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+################################################################################
 # node.js
 ################################################################################
 if [[ -f ~/.nodebrew/nodebrew ]]; then

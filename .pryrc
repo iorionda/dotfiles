@@ -1,4 +1,4 @@
-Pry.config.editor = "/Applications/Atom.app/Contents/MacOS/Atom"
+Pry.config.editor = "emacsclient"
 begin
   require 'awesome_print'
   require 'tapp'

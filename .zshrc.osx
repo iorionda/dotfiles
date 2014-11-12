@@ -13,7 +13,7 @@ alias reper='sudo diskutil repairPermissions /'
 
 # emacs
 alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
-alias emacs='emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+alias emacs='emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs -n'
 ################################################################################
 # hubot
 ################################################################################

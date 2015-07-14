@@ -42,3 +42,17 @@ elif [ -d ${RBENV_ROOT} ]; then
     esac
     }
 fi
+
+################################################################################
+# pyenv
+################################################################################
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+# Initialization for FDK command line tools.Mon Jun  8 10:34:10 2015
+FDK_EXE="/Users/ONDA/bin/FDK/Tools/osx"
+PATH=${PATH}:"/Users/ONDA/bin/FDK/Tools/osx"
+export PATH
+export FDK_EXE

@@ -184,3 +184,7 @@ export NOTIFY_COMMAND_COMPLETE_TIMEOUT=5
 export PATH="/Users/ONDA/.cask/bin:$PATH"
 autoload -Uz git-escape-magic
 git-escape-magic
+
+export PATH=$HOME/anaconda/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/anaconda/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$HOME/Dropbox/github/caffe/python

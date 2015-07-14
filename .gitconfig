@@ -6,8 +6,8 @@
     path = .gitconfig.local
 
 [core]
-    editor = emacsclient
-    whitespace   = fix, -indent-with-non-tab, trailing-space, cr-at-eol
+    editor = vim
+    whitespace = fix, -indent-with-non-tab, trailing-space, cr-at-eol
     excludesfile = .gitignore
     # from 2.1.0
     pager = less -S
@@ -90,3 +90,5 @@
         top = https://{host}/{path}
         ref = https://{host}/{path}/tree/{short_ref}
         rev = https://{host}/{path}/commit/{commit}
+[pr-release]
+	token = d0c1fa1468477326d1c5598ae2007267f332f5d8

@@ -2,9 +2,9 @@ Pry.config.editor = "emacsclient"
 begin
   require 'awesome_print'
   require 'tapp'
-  # require 'hirb'
-  # require 'hirb-unicode'
-  require 'pry-debugger'
+  require 'hirb'
+  require 'hirb-unicode'
+  require 'pry-byebug'
   require 'pry-doc'
   require 'pry-stack_explorer'
 rescue LoadError => err
@@ -36,8 +36,8 @@ Pry.config.should_load_plugins = false
 #     def enable_output_method
 #       @output_method = true
 #       @old_print = Pry.config.print
-#       Pry.config.print = proc do |output, value|
-#         Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
+#       Pry.config.print = proc do |*args|
+#         Hirb::View.view_or_page_output(args[1]) || @old_print.call(*args)
 #       end
 #     end
 #

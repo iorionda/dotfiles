@@ -5,6 +5,9 @@ byebug
 debugger
 gisty
 hirb
+hirb-unicode
 pry
-pry-debugger
+pry-byebug
+pry-doc
+pry-stack_explorer
 tapp

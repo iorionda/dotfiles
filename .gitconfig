@@ -1,6 +1,6 @@
 [user]
-    name = Iori ONDA
-    email = iori.onda@gmail.com
+  name = Iori ONDA
+	email = iorionda@gmail.com
 
 [include]
     path = .gitconfig.local
@@ -92,3 +92,7 @@
         rev = https://{host}/{path}/commit/{commit}
 [pr-release]
 	token = d0c1fa1468477326d1c5598ae2007267f332f5d8
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

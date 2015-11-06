@@ -15,7 +15,7 @@ fi
 
 # Editor Setting
 #---------------------------------------
-export EDITOR=atom
+export EDITOR=vim
 
 # Prompt setting
 #---------------------------------------
